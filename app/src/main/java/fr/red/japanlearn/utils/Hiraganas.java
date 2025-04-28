@@ -1,195 +1,197 @@
 package fr.red.japanlearn.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Hiraganas {
 
-    public static HashMap<String, String> hiraganaMap = new HashMap<>();
-    public static HashMap<String, String> hiraganaCombinedMap = new HashMap<>();
+    public static List<GuessAnswerData> hiraganaMap = new ArrayList<>();
+    public static List<GuessAnswerData> hiraganaCombinedMap = new ArrayList<>();
 
     static {
         // voyelles
-        hiraganaMap.put("あ", "a");
-        hiraganaMap.put("い", "i");
-        hiraganaMap.put("う", "u");
-        hiraganaMap.put("え", "e");
-        hiraganaMap.put("お", "o");
+        hiraganaMap.add(new GuessAnswerData("あ", "a"));
+        hiraganaMap.add(new GuessAnswerData("い", "i"));
+        hiraganaMap.add(new GuessAnswerData("う", "u"));
+        hiraganaMap.add(new GuessAnswerData("え", "e"));
+        hiraganaMap.add(new GuessAnswerData("お", "o"));
 
         // k
-        hiraganaMap.put("か", "ka");
-        hiraganaMap.put("き", "ki");
-        hiraganaMap.put("く", "ku");
-        hiraganaMap.put("け", "ke");
-        hiraganaMap.put("こ", "ko");
+        hiraganaMap.add(new GuessAnswerData("か", "ka"));
+        hiraganaMap.add(new GuessAnswerData("き", "ki"));
+        hiraganaMap.add(new GuessAnswerData("く", "ku"));
+        hiraganaMap.add(new GuessAnswerData("け", "ke"));
+        hiraganaMap.add(new GuessAnswerData("こ", "ko"));
 
         // g
-        hiraganaMap.put("が", "ga");
-        hiraganaMap.put("ぎ", "gi");
-        hiraganaMap.put("ぐ", "gu");
-        hiraganaMap.put("げ", "ge");
-        hiraganaMap.put("ご", "go");
+        hiraganaMap.add(new GuessAnswerData("が", "ga"));
+        hiraganaMap.add(new GuessAnswerData("ぎ", "gi"));
+        hiraganaMap.add(new GuessAnswerData("ぐ", "gu"));
+        hiraganaMap.add(new GuessAnswerData("げ", "ge"));
+        hiraganaMap.add(new GuessAnswerData("ご", "go"));
 
         // s
-        hiraganaMap.put("さ", "sa");
-        hiraganaMap.put("し", "shi");
-        hiraganaMap.put("す", "su");
-        hiraganaMap.put("せ", "se");
-        hiraganaMap.put("そ", "so");
+        hiraganaMap.add(new GuessAnswerData("さ", "sa"));
+        hiraganaMap.add(new GuessAnswerData("し", "shi"));
+        hiraganaMap.add(new GuessAnswerData("す", "su"));
+        hiraganaMap.add(new GuessAnswerData("せ", "se"));
+        hiraganaMap.add(new GuessAnswerData("そ", "so"));
 
         // z
-        hiraganaMap.put("ざ", "za");
-        hiraganaMap.put("じ", "ji");
-        hiraganaMap.put("ず", "zu");
-        hiraganaMap.put("ぜ", "ze");
-        hiraganaMap.put("ぞ", "zo");
+        hiraganaMap.add(new GuessAnswerData("ざ", "za"));
+        hiraganaMap.add(new GuessAnswerData("じ", "ji"));
+        hiraganaMap.add(new GuessAnswerData("ず", "zu"));
+        hiraganaMap.add(new GuessAnswerData("ぜ", "ze"));
+        hiraganaMap.add(new GuessAnswerData("ぞ", "zo"));
 
         // t
-        hiraganaMap.put("た", "ta");
-        hiraganaMap.put("ち", "chi");
-        hiraganaMap.put("つ", "tsu");
-        hiraganaMap.put("て", "te");
-        hiraganaMap.put("と", "to");
+        hiraganaMap.add(new GuessAnswerData("た", "ta"));
+        hiraganaMap.add(new GuessAnswerData("ち", "chi"));
+        hiraganaMap.add(new GuessAnswerData("つ", "tsu"));
+        hiraganaMap.add(new GuessAnswerData("て", "te"));
+        hiraganaMap.add(new GuessAnswerData("と", "to"));
 
         // d
-        hiraganaMap.put("だ", "da");
-        hiraganaMap.put("ぢ", "ji"); // utilisé rarement
-        hiraganaMap.put("づ", "zu"); // utilisé rarement
-        hiraganaMap.put("で", "de");
-        hiraganaMap.put("ど", "do");
+        hiraganaMap.add(new GuessAnswerData("だ", "da"));
+        hiraganaMap.add(new GuessAnswerData("ぢ", "ji")); // utilisé rarement
+        hiraganaMap.add(new GuessAnswerData("づ", "zu")); // utilisé rarement
+        hiraganaMap.add(new GuessAnswerData("で", "de"));
+        hiraganaMap.add(new GuessAnswerData("ど", "do"));
 
         // n
-        hiraganaMap.put("な", "na");
-        hiraganaMap.put("に", "ni");
-        hiraganaMap.put("ぬ", "nu");
-        hiraganaMap.put("ね", "ne");
-        hiraganaMap.put("の", "no");
+        hiraganaMap.add(new GuessAnswerData("な", "na"));
+        hiraganaMap.add(new GuessAnswerData("に", "ni"));
+        hiraganaMap.add(new GuessAnswerData("ぬ", "nu"));
+        hiraganaMap.add(new GuessAnswerData("ね", "ne"));
+        hiraganaMap.add(new GuessAnswerData("の", "no"));
 
         // h
-        hiraganaMap.put("は", "ha");
-        hiraganaMap.put("ひ", "hi");
-        hiraganaMap.put("ふ", "fu");
-        hiraganaMap.put("へ", "he");
-        hiraganaMap.put("ほ", "ho");
+        hiraganaMap.add(new GuessAnswerData("は", "ha"));
+        hiraganaMap.add(new GuessAnswerData("ひ", "hi"));
+        hiraganaMap.add(new GuessAnswerData("ふ", "fu"));
+        hiraganaMap.add(new GuessAnswerData("へ", "he"));
+        hiraganaMap.add(new GuessAnswerData("ほ", "ho"));
 
         // b
-        hiraganaMap.put("ば", "ba");
-        hiraganaMap.put("び", "bi");
-        hiraganaMap.put("ぶ", "bu");
-        hiraganaMap.put("べ", "be");
-        hiraganaMap.put("ぼ", "bo");
+        hiraganaMap.add(new GuessAnswerData("ば", "ba"));
+        hiraganaMap.add(new GuessAnswerData("び", "bi"));
+        hiraganaMap.add(new GuessAnswerData("ぶ", "bu"));
+        hiraganaMap.add(new GuessAnswerData("べ", "be"));
+        hiraganaMap.add(new GuessAnswerData("ぼ", "bo"));
 
         // p
-        hiraganaMap.put("ぱ", "pa");
-        hiraganaMap.put("ぴ", "pi");
-        hiraganaMap.put("ぷ", "pu");
-        hiraganaMap.put("ぺ", "pe");
-        hiraganaMap.put("ぽ", "po");
+        hiraganaMap.add(new GuessAnswerData("ぱ", "pa"));
+        hiraganaMap.add(new GuessAnswerData("ぴ", "pi"));
+        hiraganaMap.add(new GuessAnswerData("ぷ", "pu"));
+        hiraganaMap.add(new GuessAnswerData("ぺ", "pe"));
+        hiraganaMap.add(new GuessAnswerData("ぽ", "po"));
 
         // m
-        hiraganaMap.put("ま", "ma");
-        hiraganaMap.put("み", "mi");
-        hiraganaMap.put("む", "mu");
-        hiraganaMap.put("め", "me");
-        hiraganaMap.put("も", "mo");
+        hiraganaMap.add(new GuessAnswerData("ま", "ma"));
+        hiraganaMap.add(new GuessAnswerData("み", "mi"));
+        hiraganaMap.add(new GuessAnswerData("む", "mu"));
+        hiraganaMap.add(new GuessAnswerData("め", "me"));
+        hiraganaMap.add(new GuessAnswerData("も", "mo"));
 
         // y
-        hiraganaMap.put("や", "ya");
-        hiraganaMap.put("ゆ", "yu");
-        hiraganaMap.put("よ", "yo");
+        hiraganaMap.add(new GuessAnswerData("や", "ya"));
+        hiraganaMap.add(new GuessAnswerData("ゆ", "yu"));
+        hiraganaMap.add(new GuessAnswerData("よ", "yo"));
 
         // r
-        hiraganaMap.put("ら", "ra");
-        hiraganaMap.put("り", "ri");
-        hiraganaMap.put("る", "ru");
-        hiraganaMap.put("れ", "re");
-        hiraganaMap.put("ろ", "ro");
+        hiraganaMap.add(new GuessAnswerData("ら", "ra"));
+        hiraganaMap.add(new GuessAnswerData("り", "ri"));
+        hiraganaMap.add(new GuessAnswerData("る", "ru"));
+        hiraganaMap.add(new GuessAnswerData("れ", "re"));
+        hiraganaMap.add(new GuessAnswerData("ろ", "ro"));
 
         // w
-        hiraganaMap.put("わ", "wa");
-        hiraganaMap.put("を", "wo"); // utilisé comme particule "o"
+        hiraganaMap.add(new GuessAnswerData("わ", "wa"));
+        hiraganaMap.add(new GuessAnswerData("を", "wo")); // utilisé comme particule "o"
 
         // n
-        hiraganaMap.put("ん", "n");
+        hiraganaMap.add(new GuessAnswerData("ん", "n"));
 
         // petites lettres (utilisées pour créer des sons combinés)
-        hiraganaMap.put("ぁ", "a");
-        hiraganaMap.put("ぃ", "i");
-        hiraganaMap.put("ぅ", "u");
-        hiraganaMap.put("ぇ", "e");
-        hiraganaMap.put("ぉ", "o");
-        hiraganaMap.put("ゃ", "ya");
-        hiraganaMap.put("ゅ", "yu");
-        hiraganaMap.put("ょ", "yo");
+        hiraganaMap.add(new GuessAnswerData("ぁ", "a"));
+        hiraganaMap.add(new GuessAnswerData("ぃ", "i"));
+        hiraganaMap.add(new GuessAnswerData("ぅ", "u"));
+        hiraganaMap.add(new GuessAnswerData("ぇ", "e"));
+        hiraganaMap.add(new GuessAnswerData("ぉ", "o"));
+        hiraganaMap.add(new GuessAnswerData("ゃ", "ya"));
+        hiraganaMap.add(new GuessAnswerData("ゅ", "yu"));
+        hiraganaMap.add(new GuessAnswerData("ょ", "yo"));
     }
 
     static {
         // k+ya/yu/yo
-        hiraganaCombinedMap.put("きゃ", "kya");
-        hiraganaCombinedMap.put("きゅ", "kyu");
-        hiraganaCombinedMap.put("きょ", "kyo");
+        hiraganaCombinedMap.add(new GuessAnswerData("きゃ", "kya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("きゅ", "kyu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("きょ", "kyo"));
 
         // g+ya/yu/yo
-        hiraganaCombinedMap.put("ぎゃ", "gya");
-        hiraganaCombinedMap.put("ぎゅ", "gyu");
-        hiraganaCombinedMap.put("ぎょ", "gyo");
+        hiraganaCombinedMap.add(new GuessAnswerData("ぎゃ", "gya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ぎゅ", "gyu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ぎょ", "gyo"));
 
         // s+ya/yu/yo
-        hiraganaCombinedMap.put("しゃ", "sha");
-        hiraganaCombinedMap.put("しゅ", "shu");
-        hiraganaCombinedMap.put("しょ", "sho");
+        hiraganaCombinedMap.add(new GuessAnswerData("しゃ", "sha"));
+        hiraganaCombinedMap.add(new GuessAnswerData("しゅ", "shu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("しょ", "sho"));
 
         // z+ya/yu/yo
-        hiraganaCombinedMap.put("じゃ", "ja");
-        hiraganaCombinedMap.put("じゅ", "ju");
-        hiraganaCombinedMap.put("じょ", "jo");
+        hiraganaCombinedMap.add(new GuessAnswerData("じゃ", "ja"));
+        hiraganaCombinedMap.add(new GuessAnswerData("じゅ", "ju"));
+        hiraganaCombinedMap.add(new GuessAnswerData("じょ", "jo"));
 
         // t+ya/yu/yo
-        hiraganaCombinedMap.put("ちゃ", "cha");
-        hiraganaCombinedMap.put("ちゅ", "chu");
-        hiraganaCombinedMap.put("ちょ", "cho");
+        hiraganaCombinedMap.add(new GuessAnswerData("ちゃ", "cha"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ちゅ", "chu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ちょ", "cho"));
 
         // d+ya/yu/yo
-        hiraganaCombinedMap.put("ぢゃ", "ja"); // très rare
-        hiraganaCombinedMap.put("ぢゅ", "ju");
-        hiraganaCombinedMap.put("ぢょ", "jo");
+        hiraganaCombinedMap.add(new GuessAnswerData("ぢゃ", "ja")); // très rare
+        hiraganaCombinedMap.add(new GuessAnswerData("ぢゅ", "ju"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ぢょ", "jo"));
 
         // n+ya/yu/yo
-        hiraganaCombinedMap.put("にゃ", "nya");
-        hiraganaCombinedMap.put("にゅ", "nyu");
-        hiraganaCombinedMap.put("にょ", "nyo");
+        hiraganaCombinedMap.add(new GuessAnswerData("にゃ", "nya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("にゅ", "nyu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("にょ", "nyo"));
 
         // h+ya/yu/yo
-        hiraganaCombinedMap.put("ひゃ", "hya");
-        hiraganaCombinedMap.put("ひゅ", "hyu");
-        hiraganaCombinedMap.put("ひょ", "hyo");
+        hiraganaCombinedMap.add(new GuessAnswerData("ひゃ", "hya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ひゅ", "hyu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ひょ", "hyo"));
 
         // b+ya/yu/yo
-        hiraganaCombinedMap.put("びゃ", "bya");
-        hiraganaCombinedMap.put("びゅ", "byu");
-        hiraganaCombinedMap.put("びょ", "byo");
+        hiraganaCombinedMap.add(new GuessAnswerData("びゃ", "bya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("びゅ", "byu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("びょ", "byo"));
 
         // p+ya/yu/yo
-        hiraganaCombinedMap.put("ぴゃ", "pya");
-        hiraganaCombinedMap.put("ぴゅ", "pyu");
-        hiraganaCombinedMap.put("ぴょ", "pyo");
+        hiraganaCombinedMap.add(new GuessAnswerData("ぴゃ", "pya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ぴゅ", "pyu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("ぴょ", "pyo"));
 
         // m+ya/yu/yo
-        hiraganaCombinedMap.put("みゃ", "mya");
-        hiraganaCombinedMap.put("みゅ", "myu");
-        hiraganaCombinedMap.put("みょ", "myo");
+        hiraganaCombinedMap.add(new GuessAnswerData("みゃ", "mya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("みゅ", "myu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("みょ", "myo"));
 
         // r+ya/yu/yo
-        hiraganaCombinedMap.put("りゃ", "rya");
-        hiraganaCombinedMap.put("りゅ", "ryu");
-        hiraganaCombinedMap.put("りょ", "ryo");
+        hiraganaCombinedMap.add(new GuessAnswerData("りゃ", "rya"));
+        hiraganaCombinedMap.add(new GuessAnswerData("りゅ", "ryu"));
+        hiraganaCombinedMap.add(new GuessAnswerData("りょ", "ryo"));
     }
 
-    public static void addHiraganas(Map<String, String> currentSession, boolean addHiragana, boolean addComposition) {
+    public static void addHiraganas(List<GuessAnswerData> currentSession, boolean addHiragana, boolean addComposition) {
         if (addHiragana) {
-            currentSession.putAll(Hiraganas.hiraganaMap);
+            currentSession.addAll(Hiraganas.hiraganaMap);
             if (addComposition) {
-                currentSession.putAll(Hiraganas.hiraganaCombinedMap);
+                currentSession.addAll(Hiraganas.hiraganaCombinedMap);
             }
         }
     }

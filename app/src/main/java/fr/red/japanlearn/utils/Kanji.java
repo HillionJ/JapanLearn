@@ -1,145 +1,126 @@
 package fr.red.japanlearn.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public enum Kanji {
+public class Kanji {
 
-    // Jours / Temps
-    NICHI("日", "nichi", "jour, soleil"),
-    GETSU("月", "getsu", "lune, mois"),
-    KA("火", "ka", "feu"),
-    SUI("水", "sui", "eau"),
-    MOKU("木", "moku", "arbre"),
-    KIN("金", "kin", "or, argent (métal)"),
-    DO("土", "do", "terre, sol"),
+    public static List<GuessAnswerData> kanjiMap = new ArrayList<>();
 
-    // Nombres
-    ICHI("一", "ichi", "un"),
-    NI("二", "ni", "deux"),
-    SAN("三", "san", "trois"),
-    SHI("四", "shi", "quatre"),
-    GO("五", "go", "cinq"),
-    ROKU("六", "roku", "six"),
-    SHICHI("七", "shichi", "sept"),
-    HACHI("八", "hachi", "huit"),
-    KYUU("九", "kyuu", "neuf"),
-    JUU("十", "juu", "dix"),
+    static {
+        // Jours / Temps
+        kanjiMap.add(new GuessAnswerData("日", "nichi", "jour, soleil"));
+        kanjiMap.add(new GuessAnswerData("月", "getsu", "lune, mois"));
+        kanjiMap.add(new GuessAnswerData("火", "ka", "feu"));
+        kanjiMap.add(new GuessAnswerData("水", "sui", "eau"));
+        kanjiMap.add(new GuessAnswerData("木", "moku", "arbre"));
+        kanjiMap.add(new GuessAnswerData("金", "kin", "or, argent (métal)"));
+        kanjiMap.add(new GuessAnswerData("土", "do", "terre, sol"));
 
-    // Personnes et relations
-    HITO("人", "hito", "personne"),
-    ONNA("女", "onna", "femme"),
-    OTOKO("男", "otoko", "homme"),
-    KO("子", "ko", "enfant"),
-    TOMO("友", "tomo", "ami"),
-    KAZOKU("家族", "kazoku", "famille"),
+        // Nombres
+        kanjiMap.add(new GuessAnswerData("一", "ichi", "un"));
+        kanjiMap.add(new GuessAnswerData("二", "ni", "deux"));
+        kanjiMap.add(new GuessAnswerData("三", "san", "trois"));
+        kanjiMap.add(new GuessAnswerData("四", "shi", "quatre"));
+        kanjiMap.add(new GuessAnswerData("五", "go", "cinq"));
+        kanjiMap.add(new GuessAnswerData("六", "roku", "six"));
+        kanjiMap.add(new GuessAnswerData("七", "shichi", "sept"));
+        kanjiMap.add(new GuessAnswerData("八", "hachi", "huit"));
+        kanjiMap.add(new GuessAnswerData("九", "kyuu", "neuf"));
+        kanjiMap.add(new GuessAnswerData("十", "juu", "dix"));
 
-    // Ecole et travail
-    GAKU("学", "gaku", "apprendre, étudier"),
-    KOU("校", "kou", "école"),
-    SENSEI("先生", "sensei", "professeur"),
-    SEI("生", "sei", "vie, naître"),
-    SHIGOTO("仕事", "shigoto", "travail"),
+        // Personnes et relations
+        kanjiMap.add(new GuessAnswerData("人", "hito", "personne"));
+        kanjiMap.add(new GuessAnswerData("女", "onna", "femme"));
+        kanjiMap.add(new GuessAnswerData("男", "otoko", "homme"));
+        kanjiMap.add(new GuessAnswerData("子", "ko", "enfant"));
+        kanjiMap.add(new GuessAnswerData("友", "tomo", "ami"));
+        kanjiMap.add(new GuessAnswerData("家族", "kazoku", "famille"));
 
-    // Lieux
-    IE("家", "ie", "maison"),
-    KUNI("国", "kuni", "pays"),
-    MACHI("町", "machi", "ville"),
-    YAMA("山", "yama", "montagne"),
-    KAWA("川", "kawa", "rivère"),
+        // Ecole et travail
+        kanjiMap.add(new GuessAnswerData("学", "gaku", "apprendre, étudier"));
+        kanjiMap.add(new GuessAnswerData("校", "kou", "école"));
+        kanjiMap.add(new GuessAnswerData("先生", "sensei", "professeur"));
+        kanjiMap.add(new GuessAnswerData("生", "sei", "vie, naître"));
+        kanjiMap.add(new GuessAnswerData("仕事", "shigoto", "travail"));
 
-    // Corps humain
-    ME("目", "me", "oeil"),
-    KUCHI("口", "kuchi", "bouche"),
-    MIMI("耳", "mimi", "oreille"),
-    TE("手", "te", "main"),
-    ASHI("足", "ashi", "jambe, pied"),
+        // Lieux
+        kanjiMap.add(new GuessAnswerData("家", "ie", "maison"));
+        kanjiMap.add(new GuessAnswerData("国", "kuni", "pays"));
+        kanjiMap.add(new GuessAnswerData("町", "machi", "ville"));
+        kanjiMap.add(new GuessAnswerData("山", "yama", "montagne"));
+        kanjiMap.add(new GuessAnswerData("川", "kawa", "rivère"));
 
-    // Nature
-    HANA("花", "hana", "fleur"),
-    KUSA("草", "kusa", "herbe"),
-    KI("木", "ki", "arbre"),
-    ISHI("石", "ishi", "pierre"),
-    SORA("空", "sora", "ciel"),
+        // Corps humain
+        kanjiMap.add(new GuessAnswerData("目", "me", "oeil"));
+        kanjiMap.add(new GuessAnswerData("口", "kuchi", "bouche"));
+        kanjiMap.add(new GuessAnswerData("耳", "mimi", "oreille"));
+        kanjiMap.add(new GuessAnswerData("手", "te", "main"));
+        kanjiMap.add(new GuessAnswerData("足", "ashi", "jambe, pied"));
 
-    // Directions
-    UE("上", "ue", "au-dessus"),
-    SHITA("下", "shita", "en dessous"),
-    NAKA("中", "naka", "dedans"),
-    SOTO("外", "soto", "dehors"),
-    MAE("前", "mae", "avant"),
-    USHIRO("後", "ushiro", "après"),
-    HIDARI("左", "hidari", "gauche"),
-    MIGI("右", "migi", "droite"),
+        // Nature
+        kanjiMap.add(new GuessAnswerData("花", "hana", "fleur"));
+        kanjiMap.add(new GuessAnswerData("草", "kusa", "herbe"));
+        kanjiMap.add(new GuessAnswerData("木", "ki", "arbre"));
+        kanjiMap.add(new GuessAnswerData("石", "ishi", "pierre"));
+        kanjiMap.add(new GuessAnswerData("空", "sora", "ciel"));
 
-    // Couleurs
-    AKA("赤", "aka", "rouge"),
-    AO("青", "ao", "bleu"),
-    SHIRO("白", "shiro", "blanc"),
-    KURO("黒", "kuro", "noir"),
-    KI_IRO("黄色", "kiiro", "jaune"),
+        // Directions
+        kanjiMap.add(new GuessAnswerData("上", "ue", "au-dessus"));
+        kanjiMap.add(new GuessAnswerData("下", "shita", "en dessous"));
+        kanjiMap.add(new GuessAnswerData("中", "naka", "dedans"));
+        kanjiMap.add(new GuessAnswerData("外", "soto", "dehors"));
+        kanjiMap.add(new GuessAnswerData("前", "mae", "avant"));
+        kanjiMap.add(new GuessAnswerData("後", "ushiro", "après"));
+        kanjiMap.add(new GuessAnswerData("左", "hidari", "gauche"));
+        kanjiMap.add(new GuessAnswerData("右", "migi", "droite"));
 
-    // Transport
-    DENSHA("電車", "densha", "train"),
-    JIDENSHA("自転車", "jitensha", "vélo"),
-    KURUMA("車", "kuruma", "voiture"),
+        // Couleurs
+        kanjiMap.add(new GuessAnswerData("赤", "aka", "rouge"));
+        kanjiMap.add(new GuessAnswerData("青", "ao", "bleu"));
+        kanjiMap.add(new GuessAnswerData("白", "shiro", "blanc"));
+        kanjiMap.add(new GuessAnswerData("黒", "kuro", "noir"));
+        kanjiMap.add(new GuessAnswerData("黄色", "kiiro", "jaune"));
 
-    // Objets
-    HON("本", "hon", "livre"),
-    DENWA("電話", "denwa", "téléphone"),
-    TEREBI("テレビ", "terebi", "télévision"),
+        // Transport
+        kanjiMap.add(new GuessAnswerData("電車", "densha", "train"));
+        kanjiMap.add(new GuessAnswerData("自転車", "jitensha", "vélo"));
+        kanjiMap.add(new GuessAnswerData("車", "kuruma", "voiture"));
 
-    // Verbes très de base
-    TABERU("食べる", "taberu", "manger"),
-    NOMU("飲む", "nomu", "boire"),
-    MIRU("見る", "miru", "regarder"),
-    KIKU("聞く", "kiku", "écouter"),
-    IU("言う", "iu", "dire"),
-    IKU("行く", "iku", "aller"),
-    KURU("来る", "kuru", "venir"),
-    KAERU("帰る", "kaeru", "rentrer"),
+        // Objets
+        kanjiMap.add(new GuessAnswerData("本", "hon", "livre"));
+        kanjiMap.add(new GuessAnswerData("電話", "denwa", "téléphone"));
+        kanjiMap.add(new GuessAnswerData("テレビ", "terebi", "télévision"));
 
-    // Temps / Saisons
-    HARU("春", "haru", "printemps"),
-    NATSU("夏", "natsu", "été"),
-    AKI("秋", "aki", "automne"),
-    FUYU("冬", "fuyu", "hiver"),
+        // Verbes très de base
+        kanjiMap.add(new GuessAnswerData("食べる", "taberu", "manger"));
+        kanjiMap.add(new GuessAnswerData("飲む", "nomu", "boire"));
+        kanjiMap.add(new GuessAnswerData("見る", "miru", "regarder"));
+        kanjiMap.add(new GuessAnswerData("聞く", "kiku", "écouter"));
+        kanjiMap.add(new GuessAnswerData("言う", "iu", "dire"));
+        kanjiMap.add(new GuessAnswerData("行く", "iku", "aller"));
+        kanjiMap.add(new GuessAnswerData("来る", "kuru", "venir"));
+        kanjiMap.add(new GuessAnswerData("帰る", "kaeru", "rentrer"));
 
-    // Autres utiles
-    YASUI("安い", "yasui", "bon marché"),
-    TAKAI("高い", "takai", "cher, haut"),
-    OOKII("大きい", "ookii", "grand"),
-    CHIISAI("小さい", "chiisai", "petit"),
-    NAGAI("長い", "nagai", "long"),
-    MIJIKAI("短い", "mijikai", "court");
+        // Temps / Saisons
+        kanjiMap.add(new GuessAnswerData("春", "haru", "printemps"));
+        kanjiMap.add(new GuessAnswerData("夏", "natsu", "été"));
+        kanjiMap.add(new GuessAnswerData("秋", "aki", "automne"));
+        kanjiMap.add(new GuessAnswerData("冬", "fuyu", "hiver"));
 
-
-    private final String kanji;
-    private final String romaji;
-    private final String traductionFr;
-
-    Kanji(String kanji, String romaji, String traductionFr) {
-        this.kanji = kanji;
-        this.romaji = romaji;
-        this.traductionFr = traductionFr;
+        // Autres utiles
+        kanjiMap.add(new GuessAnswerData("安い", "yasui", "bon marché"));
+        kanjiMap.add(new GuessAnswerData("高い", "takai", "cher, haut"));
+        kanjiMap.add(new GuessAnswerData("大きい", "ookii", "grand"));
+        kanjiMap.add(new GuessAnswerData("小さい", "chiisai", "petit"));
+        kanjiMap.add(new GuessAnswerData("長い", "nagai", "long"));
+        kanjiMap.add(new GuessAnswerData("短い", "mijikai", "court"));
     }
 
-    public String getKanji() {
-        return kanji;
-    }
-
-    public String getRomaji() {
-        return romaji;
-    }
-
-    public String getTraductionFr() {
-        return traductionFr;
-    }
-
-    public static void addKanji(Map<String, String> currentSession, boolean addKanji) {
+    public static void addKanji(List<GuessAnswerData> currentSession, boolean addKanji) {
         if (addKanji) {
-            for (Kanji kanji : values()) {
-                currentSession.put(kanji.getKanji(), kanji.getRomaji());
-            }
+            currentSession.addAll(kanjiMap);
         }
     }
 }

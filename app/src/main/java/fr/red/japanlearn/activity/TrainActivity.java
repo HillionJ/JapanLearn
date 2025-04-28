@@ -1,5 +1,6 @@
 package fr.red.japanlearn.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,10 +21,12 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import fr.red.japanlearn.MainActivity;
 import fr.red.japanlearn.R;
+import fr.red.japanlearn.utils.GuessAnswerData;
 
 public class TrainActivity extends AppCompatActivity {
 
     private String correctAnswer;
+    private GuessAnswerData guessAnswerData;
     private TextView guess;
     private TextInputEditText inputText;
 
@@ -41,20 +44,27 @@ public class TrainActivity extends AppCompatActivity {
         inputText = findViewById(R.id.textInput);
         Button validate = findViewById(R.id.validate);
         validate.setOnClickListener(new View.OnClickListener() {
+            boolean _continue = false;
             @Override
             public void onClick(View view) {
+                if (_continue) {
+                    restartActivity();
+                    return;
+                }
                 if (inputText.getText().length() == 0) {
                     return;
                 }
-                Log.d("_RED", inputText.getText().toString().length() + "");
-                Log.d("_RED", inputText.getText().toString().trim().length() + "");
-                Log.d("_RED", correctAnswer.length() + "");
-                if (inputText.getText().toString().trim().equalsIgnoreCase(correctAnswer)) {
+                if (inputText.getText().toString().equalsIgnoreCase(correctAnswer)) {
                     Toast.makeText(TrainActivity.this, "Bonne réponse !", Toast.LENGTH_SHORT).show();
+                    MainActivity.getInstance().removeGuessAnswerData(guessAnswerData);
+                    restartActivity();
                 } else {
                     Toast.makeText(TrainActivity.this, "Faux ! Réponse: " + correctAnswer, Toast.LENGTH_SHORT).show();
+                    validate.setBackgroundColor(Color.RED);
+                    guessAnswerData.requiredCorrection();
+                    validate.setText("CONTINUER");
+                    _continue = true;
                 }
-                restartActivity();
             }
         });
 
@@ -70,9 +80,9 @@ public class TrainActivity extends AppCompatActivity {
     }
 
     public void nextTry() {
-        String[] random = MainActivity.getInstance().getRandom();
-        guess.setText(random[0]);
-        correctAnswer = random[1];
+        guessAnswerData = MainActivity.getInstance().getRandom();
+        guess.setText(guessAnswerData.getGuess());
+        correctAnswer = guessAnswerData.getAnswer();
         inputText.setText("");
         inputText.requestFocus();
 
@@ -84,7 +94,7 @@ public class TrainActivity extends AppCompatActivity {
         // 2. Ensuite changer la langue
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             inputText.setImeHintLocales(
-                    new android.os.LocaleList(new java.util.Locale(MainActivity.getInstance().isReversed() ? "fr" : "ja"))
+                    new android.os.LocaleList(new java.util.Locale(guessAnswerData.isReversed() ? "fr" : "ja"))
             );
         }
 
@@ -101,5 +111,4 @@ public class TrainActivity extends AppCompatActivity {
         startActivity(getIntent());
         overridePendingTransition(0, 0); // Pas d'animation d'entrée
     }
-
 }

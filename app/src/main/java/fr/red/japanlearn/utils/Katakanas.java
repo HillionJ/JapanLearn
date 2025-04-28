@@ -1,195 +1,197 @@
 package fr.red.japanlearn.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Katakanas {
 
-    public static HashMap<String, String> katakanaMap = new HashMap<>();
-    public static HashMap<String, String> katakanaCombinedMap = new HashMap<>();
+    public static List<GuessAnswerData> katakanaMap = new ArrayList<>();
+    public static List<GuessAnswerData> katakanaCombinedMap = new ArrayList<>();
 
     static {
         // voyelles
-        katakanaMap.put("ア", "a");
-        katakanaMap.put("イ", "i");
-        katakanaMap.put("ウ", "u");
-        katakanaMap.put("エ", "e");
-        katakanaMap.put("オ", "o");
+        katakanaMap.add(new GuessAnswerData("ア", "a"));
+        katakanaMap.add(new GuessAnswerData("イ", "i"));
+        katakanaMap.add(new GuessAnswerData("ウ", "u"));
+        katakanaMap.add(new GuessAnswerData("エ", "e"));
+        katakanaMap.add(new GuessAnswerData("オ", "o"));
 
         // k
-        katakanaMap.put("カ", "ka");
-        katakanaMap.put("キ", "ki");
-        katakanaMap.put("ク", "ku");
-        katakanaMap.put("ケ", "ke");
-        katakanaMap.put("コ", "ko");
+        katakanaMap.add(new GuessAnswerData("カ", "ka"));
+        katakanaMap.add(new GuessAnswerData("キ", "ki"));
+        katakanaMap.add(new GuessAnswerData("ク", "ku"));
+        katakanaMap.add(new GuessAnswerData("ケ", "ke"));
+        katakanaMap.add(new GuessAnswerData("コ", "ko"));
 
         // g
-        katakanaMap.put("ガ", "ga");
-        katakanaMap.put("ギ", "gi");
-        katakanaMap.put("グ", "gu");
-        katakanaMap.put("ゲ", "ge");
-        katakanaMap.put("ゴ", "go");
+        katakanaMap.add(new GuessAnswerData("ガ", "ga"));
+        katakanaMap.add(new GuessAnswerData("ギ", "gi"));
+        katakanaMap.add(new GuessAnswerData("グ", "gu"));
+        katakanaMap.add(new GuessAnswerData("ゲ", "ge"));
+        katakanaMap.add(new GuessAnswerData("ゴ", "go"));
 
         // s
-        katakanaMap.put("サ", "sa");
-        katakanaMap.put("シ", "shi");
-        katakanaMap.put("ス", "su");
-        katakanaMap.put("セ", "se");
-        katakanaMap.put("ソ", "so");
+        katakanaMap.add(new GuessAnswerData("サ", "sa"));
+        katakanaMap.add(new GuessAnswerData("シ", "shi"));
+        katakanaMap.add(new GuessAnswerData("ス", "su"));
+        katakanaMap.add(new GuessAnswerData("セ", "se"));
+        katakanaMap.add(new GuessAnswerData("ソ", "so"));
 
         // z
-        katakanaMap.put("ザ", "za");
-        katakanaMap.put("ジ", "ji");
-        katakanaMap.put("ズ", "zu");
-        katakanaMap.put("ゼ", "ze");
-        katakanaMap.put("ゾ", "zo");
+        katakanaMap.add(new GuessAnswerData("ザ", "za"));
+        katakanaMap.add(new GuessAnswerData("ジ", "ji"));
+        katakanaMap.add(new GuessAnswerData("ズ", "zu"));
+        katakanaMap.add(new GuessAnswerData("ゼ", "ze"));
+        katakanaMap.add(new GuessAnswerData("ゾ", "zo"));
 
         // t
-        katakanaMap.put("タ", "ta");
-        katakanaMap.put("チ", "chi");
-        katakanaMap.put("ツ", "tsu");
-        katakanaMap.put("テ", "te");
-        katakanaMap.put("ト", "to");
+        katakanaMap.add(new GuessAnswerData("タ", "ta"));
+        katakanaMap.add(new GuessAnswerData("チ", "chi"));
+        katakanaMap.add(new GuessAnswerData("ツ", "tsu"));
+        katakanaMap.add(new GuessAnswerData("テ", "te"));
+        katakanaMap.add(new GuessAnswerData("ト", "to"));
 
         // d
-        katakanaMap.put("ダ", "da");
-        katakanaMap.put("ヂ", "ji");
-        katakanaMap.put("ヅ", "zu");
-        katakanaMap.put("デ", "de");
-        katakanaMap.put("ド", "do");
+        katakanaMap.add(new GuessAnswerData("ダ", "da"));
+        katakanaMap.add(new GuessAnswerData("ヂ", "ji"));
+        katakanaMap.add(new GuessAnswerData("ヅ", "zu"));
+        katakanaMap.add(new GuessAnswerData("デ", "de"));
+        katakanaMap.add(new GuessAnswerData("ド", "do"));
 
         // n
-        katakanaMap.put("ナ", "na");
-        katakanaMap.put("ニ", "ni");
-        katakanaMap.put("ヌ", "nu");
-        katakanaMap.put("ネ", "ne");
-        katakanaMap.put("ノ", "no");
+        katakanaMap.add(new GuessAnswerData("ナ", "na"));
+        katakanaMap.add(new GuessAnswerData("ニ", "ni"));
+        katakanaMap.add(new GuessAnswerData("ヌ", "nu"));
+        katakanaMap.add(new GuessAnswerData("ネ", "ne"));
+        katakanaMap.add(new GuessAnswerData("ノ", "no"));
 
         // h
-        katakanaMap.put("ハ", "ha");
-        katakanaMap.put("ヒ", "hi");
-        katakanaMap.put("フ", "fu");
-        katakanaMap.put("ヘ", "he");
-        katakanaMap.put("ホ", "ho");
+        katakanaMap.add(new GuessAnswerData("ハ", "ha"));
+        katakanaMap.add(new GuessAnswerData("ヒ", "hi"));
+        katakanaMap.add(new GuessAnswerData("フ", "fu"));
+        katakanaMap.add(new GuessAnswerData("ヘ", "he"));
+        katakanaMap.add(new GuessAnswerData("ホ", "ho"));
 
         // b
-        katakanaMap.put("バ", "ba");
-        katakanaMap.put("ビ", "bi");
-        katakanaMap.put("ブ", "bu");
-        katakanaMap.put("ベ", "be");
-        katakanaMap.put("ボ", "bo");
+        katakanaMap.add(new GuessAnswerData("バ", "ba"));
+        katakanaMap.add(new GuessAnswerData("ビ", "bi"));
+        katakanaMap.add(new GuessAnswerData("ブ", "bu"));
+        katakanaMap.add(new GuessAnswerData("ベ", "be"));
+        katakanaMap.add(new GuessAnswerData("ボ", "bo"));
 
         // p
-        katakanaMap.put("パ", "pa");
-        katakanaMap.put("ピ", "pi");
-        katakanaMap.put("プ", "pu");
-        katakanaMap.put("ペ", "pe");
-        katakanaMap.put("ポ", "po");
+        katakanaMap.add(new GuessAnswerData("パ", "pa"));
+        katakanaMap.add(new GuessAnswerData("ピ", "pi"));
+        katakanaMap.add(new GuessAnswerData("プ", "pu"));
+        katakanaMap.add(new GuessAnswerData("ペ", "pe"));
+        katakanaMap.add(new GuessAnswerData("ポ", "po"));
 
         // m
-        katakanaMap.put("マ", "ma");
-        katakanaMap.put("ミ", "mi");
-        katakanaMap.put("ム", "mu");
-        katakanaMap.put("メ", "me");
-        katakanaMap.put("モ", "mo");
+        katakanaMap.add(new GuessAnswerData("マ", "ma"));
+        katakanaMap.add(new GuessAnswerData("ミ", "mi"));
+        katakanaMap.add(new GuessAnswerData("ム", "mu"));
+        katakanaMap.add(new GuessAnswerData("メ", "me"));
+        katakanaMap.add(new GuessAnswerData("モ", "mo"));
 
         // y
-        katakanaMap.put("ヤ", "ya");
-        katakanaMap.put("ユ", "yu");
-        katakanaMap.put("ヨ", "yo");
+        katakanaMap.add(new GuessAnswerData("ヤ", "ya"));
+        katakanaMap.add(new GuessAnswerData("ユ", "yu"));
+        katakanaMap.add(new GuessAnswerData("ヨ", "yo"));
 
         // r
-        katakanaMap.put("ラ", "ra");
-        katakanaMap.put("リ", "ri");
-        katakanaMap.put("ル", "ru");
-        katakanaMap.put("レ", "re");
-        katakanaMap.put("ロ", "ro");
+        katakanaMap.add(new GuessAnswerData("ラ", "ra"));
+        katakanaMap.add(new GuessAnswerData("リ", "ri"));
+        katakanaMap.add(new GuessAnswerData("ル", "ru"));
+        katakanaMap.add(new GuessAnswerData("レ", "re"));
+        katakanaMap.add(new GuessAnswerData("ロ", "ro"));
 
         // w
-        katakanaMap.put("ワ", "wa");
-        katakanaMap.put("ヲ", "wo");
+        katakanaMap.add(new GuessAnswerData("ワ", "wa"));
+        katakanaMap.add(new GuessAnswerData("ヲ", "wo"));
 
         // n
-        katakanaMap.put("ン", "n");
+        katakanaMap.add(new GuessAnswerData("ン", "n"));
 
         // petites lettres
-        katakanaMap.put("ァ", "a");
-        katakanaMap.put("ィ", "i");
-        katakanaMap.put("ゥ", "u");
-        katakanaMap.put("ェ", "e");
-        katakanaMap.put("ォ", "o");
-        katakanaMap.put("ャ", "ya");
-        katakanaMap.put("ュ", "yu");
-        katakanaMap.put("ョ", "yo");
+        katakanaMap.add(new GuessAnswerData("ァ", "a"));
+        katakanaMap.add(new GuessAnswerData("ィ", "i"));
+        katakanaMap.add(new GuessAnswerData("ゥ", "u"));
+        katakanaMap.add(new GuessAnswerData("ェ", "e"));
+        katakanaMap.add(new GuessAnswerData("ォ", "o"));
+        katakanaMap.add(new GuessAnswerData("ャ", "ya"));
+        katakanaMap.add(new GuessAnswerData("ュ", "yu"));
+        katakanaMap.add(new GuessAnswerData("ョ", "yo"));
     }
 
     static {
         // k+ya/yu/yo
-        katakanaCombinedMap.put("キャ", "kya");
-        katakanaCombinedMap.put("キュ", "kyu");
-        katakanaCombinedMap.put("キョ", "kyo");
+        katakanaCombinedMap.add(new GuessAnswerData("キャ", "kya"));
+        katakanaCombinedMap.add(new GuessAnswerData("キュ", "kyu"));
+        katakanaCombinedMap.add(new GuessAnswerData("キョ", "kyo"));
 
         // g+ya/yu/yo
-        katakanaCombinedMap.put("ギャ", "gya");
-        katakanaCombinedMap.put("ギュ", "gyu");
-        katakanaCombinedMap.put("ギョ", "gyo");
+        katakanaCombinedMap.add(new GuessAnswerData("ギャ", "gya"));
+        katakanaCombinedMap.add(new GuessAnswerData("ギュ", "gyu"));
+        katakanaCombinedMap.add(new GuessAnswerData("ギョ", "gyo"));
 
         // s+ya/yu/yo
-        katakanaCombinedMap.put("シャ", "sha");
-        katakanaCombinedMap.put("シュ", "shu");
-        katakanaCombinedMap.put("ショ", "sho");
+        katakanaCombinedMap.add(new GuessAnswerData("シャ", "sha"));
+        katakanaCombinedMap.add(new GuessAnswerData("シュ", "shu"));
+        katakanaCombinedMap.add(new GuessAnswerData("ショ", "sho"));
 
         // z+ya/yu/yo
-        katakanaCombinedMap.put("ジャ", "ja");
-        katakanaCombinedMap.put("ジュ", "ju");
-        katakanaCombinedMap.put("ジョ", "jo");
+        katakanaCombinedMap.add(new GuessAnswerData("ジャ", "ja"));
+        katakanaCombinedMap.add(new GuessAnswerData("ジュ", "ju"));
+        katakanaCombinedMap.add(new GuessAnswerData("ジョ", "jo"));
 
         // t+ya/yu/yo
-        katakanaCombinedMap.put("チャ", "cha");
-        katakanaCombinedMap.put("チュ", "chu");
-        katakanaCombinedMap.put("チョ", "cho");
+        katakanaCombinedMap.add(new GuessAnswerData("チャ", "cha"));
+        katakanaCombinedMap.add(new GuessAnswerData("チュ", "chu"));
+        katakanaCombinedMap.add(new GuessAnswerData("チョ", "cho"));
 
         // d+ya/yu/yo
-        katakanaCombinedMap.put("ヂャ", "ja");
-        katakanaCombinedMap.put("ヂュ", "ju");
-        katakanaCombinedMap.put("ヂョ", "jo");
+        katakanaCombinedMap.add(new GuessAnswerData("ヂャ", "ja"));
+        katakanaCombinedMap.add(new GuessAnswerData("ヂュ", "ju"));
+        katakanaCombinedMap.add(new GuessAnswerData("ヂョ", "jo"));
 
         // n+ya/yu/yo
-        katakanaCombinedMap.put("ニャ", "nya");
-        katakanaCombinedMap.put("ニュ", "nyu");
-        katakanaCombinedMap.put("ニョ", "nyo");
+        katakanaCombinedMap.add(new GuessAnswerData("ニャ", "nya"));
+        katakanaCombinedMap.add(new GuessAnswerData("ニュ", "nyu"));
+        katakanaCombinedMap.add(new GuessAnswerData("ニョ", "nyo"));
 
         // h+ya/yu/yo
-        katakanaCombinedMap.put("ヒャ", "hya");
-        katakanaCombinedMap.put("ヒュ", "hyu");
-        katakanaCombinedMap.put("ヒョ", "hyo");
+        katakanaCombinedMap.add(new GuessAnswerData("ヒャ", "hya"));
+        katakanaCombinedMap.add(new GuessAnswerData("ヒュ", "hyu"));
+        katakanaCombinedMap.add(new GuessAnswerData("ヒョ", "hyo"));
 
         // b+ya/yu/yo
-        katakanaCombinedMap.put("ビャ", "bya");
-        katakanaCombinedMap.put("ビュ", "byu");
-        katakanaCombinedMap.put("ビョ", "byo");
+        katakanaCombinedMap.add(new GuessAnswerData("ビャ", "bya"));
+        katakanaCombinedMap.add(new GuessAnswerData("ビュ", "byu"));
+        katakanaCombinedMap.add(new GuessAnswerData("ビョ", "byo"));
 
         // p+ya/yu/yo
-        katakanaCombinedMap.put("ピャ", "pya");
-        katakanaCombinedMap.put("ピュ", "pyu");
-        katakanaCombinedMap.put("ピョ", "pyo");
+        katakanaCombinedMap.add(new GuessAnswerData("ピャ", "pya"));
+        katakanaCombinedMap.add(new GuessAnswerData("ピュ", "pyu"));
+        katakanaCombinedMap.add(new GuessAnswerData("ピョ", "pyo"));
 
         // m+ya/yu/yo
-        katakanaCombinedMap.put("ミャ", "mya");
-        katakanaCombinedMap.put("ミュ", "myu");
-        katakanaCombinedMap.put("ミョ", "myo");
+        katakanaCombinedMap.add(new GuessAnswerData("ミャ", "mya"));
+        katakanaCombinedMap.add(new GuessAnswerData("ミュ", "myu"));
+        katakanaCombinedMap.add(new GuessAnswerData("ミョ", "myo"));
 
         // r+ya/yu/yo
-        katakanaCombinedMap.put("リャ", "rya");
-        katakanaCombinedMap.put("リュ", "ryu");
-        katakanaCombinedMap.put("リョ", "ryo");
+        katakanaCombinedMap.add(new GuessAnswerData("リャ", "rya"));
+        katakanaCombinedMap.add(new GuessAnswerData("リュ", "ryu"));
+        katakanaCombinedMap.add(new GuessAnswerData("リョ", "ryo"));
     }
 
-    public static void addKatakanas(Map<String, String> currentSession, boolean addKatakana, boolean addComposition) {
+    public static void addKatakanas(List<GuessAnswerData> currentSession, boolean addKatakana, boolean addComposition) {
         if (addKatakana) {
-            currentSession.putAll(Katakanas.katakanaMap);
+            currentSession.addAll(Katakanas.katakanaMap);
             if (addComposition) {
-                currentSession.putAll(Katakanas.katakanaCombinedMap);
+                currentSession.addAll(Katakanas.katakanaCombinedMap);
             }
         }
     }

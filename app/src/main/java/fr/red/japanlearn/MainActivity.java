@@ -14,11 +14,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import fr.red.japanlearn.activity.TrainActivity;
+import fr.red.japanlearn.utils.GuessAnswerData;
 import fr.red.japanlearn.utils.Hiraganas;
 import fr.red.japanlearn.utils.Kanji;
 import fr.red.japanlearn.utils.Katakanas;
@@ -32,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, hiraganaCombinedCheckBox, katakanaCombinedCheckBox;
-    private Map<String, String> currentSession = new HashMap<>();
-    private boolean reversed;
+    private List<GuessAnswerData> currentSession = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentSession.forEach(GuessAnswerData::clearCorrection);
                 currentSession.clear();
                 Hiraganas.addHiraganas(currentSession, hiraganaCheckBox.isChecked(), hiraganaCombinedCheckBox.isChecked());
                 Katakanas.addKatakanas(currentSession, katakanaCheckBox.isChecked(), katakanaCombinedCheckBox.isChecked());
@@ -74,24 +77,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public String[] getRandom() {
-        String[] random = new String[2];
-        int randomIndex = (int) (Math.random() * currentSession.size());
-        int i = 0;
-        for (Map.Entry<String, String> entry : currentSession.entrySet()) {
-            if (i == randomIndex) {
-                reversed = new Random().nextBoolean();
-                random[reversed ? 0 : 1] = entry.getKey();
-                random[reversed ? 1 : 0] = entry.getValue();
-                currentSession.remove(entry.getKey());
-                break;
-            }
-            i++;
+    public GuessAnswerData getRandom() {
+        GuessAnswerData guessAnswerData = currentSession.get(new Random().nextInt(currentSession.size()));
+        if (!guessAnswerData.isCorrection()){
+            guessAnswerData.setReversed(new Random().nextBoolean());
         }
-        return random;
+        return guessAnswerData;
     }
 
-    public boolean isReversed() {
-        return reversed;
+    public void removeGuessAnswerData(GuessAnswerData guessAnswerData) {
+        currentSession.remove(guessAnswerData);
     }
 }

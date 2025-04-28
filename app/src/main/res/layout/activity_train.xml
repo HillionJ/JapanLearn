@@ -22,6 +22,8 @@
         android:layout_margin="50px"
         android:backgroundTint="#12B32C"
         android:padding="50px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
         android:text="VALIDER"
         android:textSize="50px"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
