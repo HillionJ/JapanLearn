@@ -1,5 +1,6 @@
 package fr.red.japanlearn.activity;
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,7 +57,9 @@ public class TrainActivity extends AppCompatActivity {
             }
         } else {
             updateKeyboardLang();
-            openKeyboardAfter(200);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                openKeyboardAfter(200);
+            }
         }
     }
 
