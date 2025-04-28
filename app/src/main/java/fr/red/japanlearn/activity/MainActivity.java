@@ -1,8 +1,7 @@
-package fr.red.japanlearn;
+package fr.red.japanlearn.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,16 +14,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
-import fr.red.japanlearn.activity.TrainActivity;
+import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.GuessAnswerData;
 import fr.red.japanlearn.utils.Hiraganas;
 import fr.red.japanlearn.utils.Kanji;
 import fr.red.japanlearn.utils.Katakanas;
+import fr.red.japanlearn.utils.SessionState;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, hiraganaCombinedCheckBox, katakanaCombinedCheckBox;
     private List<GuessAnswerData> currentSession = new ArrayList<>();
+    private GuessAnswerData guessAnswerData = null;
+    private SessionState sessionState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentSession.forEach(GuessAnswerData::clearCorrection);
+                currentSession.forEach(GuessAnswerData::reset);
                 currentSession.clear();
                 Hiraganas.addHiraganas(currentSession, hiraganaCheckBox.isChecked(), hiraganaCombinedCheckBox.isChecked());
                 Katakanas.addKatakanas(currentSession, katakanaCheckBox.isChecked(), katakanaCombinedCheckBox.isChecked());
@@ -71,21 +71,47 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Sélection vide", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                nextTry();
                 Intent intent = new Intent(MainActivity.this, TrainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    public GuessAnswerData getRandom() {
-        GuessAnswerData guessAnswerData = currentSession.get(new Random().nextInt(currentSession.size()));
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sessionState = SessionState.HOME;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sessionState = SessionState.HOME;
+    }
+
+    public void nextTry() {
+        sessionState = SessionState.TRAINING;
+        guessAnswerData = currentSession.get(new Random().nextInt(currentSession.size()));
         if (!guessAnswerData.isCorrection()){
             guessAnswerData.setReversed(new Random().nextBoolean());
         }
-        return guessAnswerData;
     }
 
     public void removeGuessAnswerData(GuessAnswerData guessAnswerData) {
         currentSession.remove(guessAnswerData);
+    }
+
+    public GuessAnswerData getCurrentGuessAnswerData() {
+        return guessAnswerData;
+    }
+
+    public SessionState getSessionState() {
+        return sessionState;
+    }
+
+    public void setSessionState(SessionState sessionState) {
+        this.sessionState = sessionState;
     }
 }
