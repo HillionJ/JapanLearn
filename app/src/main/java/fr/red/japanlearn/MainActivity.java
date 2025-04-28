@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,13 +56,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 currentSession.clear();
-                if (hiraganaCheckBox.isChecked()) {
-                    currentSession.putAll(Hiraganas.hiraganaMap);
-                    if (hiraganaCombinedCheckBox.isChecked()) {
-                        currentSession.putAll(Hiraganas.hiraganaCombinedMap);
-                    }
-                }
+                Hiraganas.addHiraganas(currentSession, hiraganaCheckBox.isChecked(), hiraganaCombinedCheckBox.isChecked());
 
+                if (currentSession.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Sélection vide", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, TrainActivity.class);
                 startActivity(intent);
             }

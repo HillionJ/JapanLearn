@@ -1,6 +1,7 @@
 package fr.red.japanlearn.utils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Hiraganas {
 
@@ -182,5 +183,14 @@ public class Hiraganas {
         hiraganaCombinedMap.put("りゃ", "rya");
         hiraganaCombinedMap.put("りゅ", "ryu");
         hiraganaCombinedMap.put("りょ", "ryo");
+    }
+
+    public static void addHiraganas(Map<String, String> currentSession, boolean addHiragana, boolean addComposition) {
+        if (addHiragana) {
+            currentSession.putAll(Hiraganas.hiraganaMap);
+            if (addComposition) {
+                currentSession.putAll(Hiraganas.hiraganaCombinedMap);
+            }
+        }
     }
 }
