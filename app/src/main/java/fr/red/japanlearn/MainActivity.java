@@ -20,6 +20,8 @@ import java.util.Random;
 
 import fr.red.japanlearn.activity.TrainActivity;
 import fr.red.japanlearn.utils.Hiraganas;
+import fr.red.japanlearn.utils.Kanji;
+import fr.red.japanlearn.utils.Katakanas;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,13 +31,15 @@ public class MainActivity extends AppCompatActivity {
         return instance;
     }
 
-    private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, hiraganaCombinedCheckBox;
+    private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, hiraganaCombinedCheckBox, katakanaCombinedCheckBox;
     private Map<String, String> currentSession = new HashMap<>();
     private boolean reversed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.background), (v, insets) -> {
@@ -44,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        instance = this;
-
         hiraganaCheckBox = findViewById(R.id.hiraganaCheckBox);
         katakanaCheckBox = findViewById(R.id.katakanaCheckBox);
         kanjiCheckBox = findViewById(R.id.kanjiCheckBox);
+
         hiraganaCombinedCheckBox = findViewById(R.id.hiraganaCombinedCheckBox);
+        katakanaCombinedCheckBox = findViewById(R.id.katakanaCombinedCheckBox);
 
         Button startButton = findViewById(R.id.start);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 currentSession.clear();
                 Hiraganas.addHiraganas(currentSession, hiraganaCheckBox.isChecked(), hiraganaCombinedCheckBox.isChecked());
+                Katakanas.addKatakanas(currentSession, katakanaCheckBox.isChecked(), katakanaCombinedCheckBox.isChecked());
+                Kanji.addKanji(currentSession, kanjiCheckBox.isChecked());
 
                 if (currentSession.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Sélection vide", Toast.LENGTH_SHORT).show();

@@ -66,6 +66,19 @@
             android:layout_height="wrap_content"
             android:text="Katakana" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="75px">
+
+            <CheckBox
+                android:id="@+id/katakanaCombinedCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inclure les Combinaisons" />
+        </LinearLayout>
+
         <CheckBox
             android:id="@+id/kanjiCheckBox"
             android:layout_width="match_parent"
