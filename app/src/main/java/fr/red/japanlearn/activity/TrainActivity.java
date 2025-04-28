@@ -17,11 +17,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import fr.red.japanlearn.MainActivity;
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.GuessAnswerData;
+import fr.red.japanlearn.utils.SoftKeyboardInput;
 
 public class TrainActivity extends AppCompatActivity {
 
@@ -40,6 +40,8 @@ public class TrainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        SoftKeyboardInput.handleSoftKeyboard(this);
         guess = findViewById(R.id.guess);
         inputText = findViewById(R.id.textInput);
         Button validate = findViewById(R.id.validate);
@@ -111,5 +113,12 @@ public class TrainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0); // Pas d'animation de sortie
         startActivity(getIntent());
         overridePendingTransition(0, 0); // Pas d'animation d'entrée
+    }    private void onKeyboardVisibilityChanged(boolean keyboardVisible) {
+        // Mets ici ce que tu veux faire
+        if (keyboardVisible) {
+            System.out.println("Clavier ouvert");
+        } else {
+            System.out.println("Clavier fermé");
+        }
     }
 }

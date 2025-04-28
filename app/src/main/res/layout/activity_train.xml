@@ -11,6 +11,8 @@
         android:id="@+id/close"
         android:layout_width="100px"
         android:layout_height="100px"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator" />
@@ -20,15 +22,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="50px"
-        android:backgroundTint="#12B32C"
         android:padding="50px"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
+        android:backgroundTint="#12B32C"
         android:text="VALIDER"
         android:textSize="50px"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/guess"
