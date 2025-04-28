@@ -93,8 +93,9 @@ public class TrainActivity extends AppCompatActivity {
 
         // 2. Ensuite changer la langue
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Log.d("_RED", !guessAnswerData.isReversed() ? "fr" : "ja");
             inputText.setImeHintLocales(
-                    new android.os.LocaleList(new java.util.Locale(guessAnswerData.isReversed() ? "fr" : "ja"))
+                    new android.os.LocaleList(new java.util.Locale(!guessAnswerData.isReversed() ? "fr" : "ja"))
             );
         }
 
