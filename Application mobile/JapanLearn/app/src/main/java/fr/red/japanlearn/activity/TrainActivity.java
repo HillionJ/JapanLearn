@@ -158,7 +158,7 @@ public class TrainActivity extends AppCompatActivity {
         errorTitle = findViewById(R.id.errorTitle);
 
         TextView session_progress = findViewById(R.id.session_progress);
-        int maxNumber = MainActivity.getInstance().getNumberOfQuestions();
+        int maxNumber = MainActivity.getInstance().getMaxNumberOfQuestions();
         int currentNumber = maxNumber - MainActivity.getInstance().getCurrentSession().size() + 1;
         session_progress.setText(currentNumber + " / " + maxNumber);
 
