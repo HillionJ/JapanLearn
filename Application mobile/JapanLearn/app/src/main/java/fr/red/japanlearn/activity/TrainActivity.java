@@ -21,12 +21,14 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputEditText;
 
 import fr.red.japanlearn.R;
+import fr.red.japanlearn.utils.IHM;
 import fr.red.japanlearn.utils.guess.GuessAnswerData;
 import fr.red.japanlearn.utils.session.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
 
 public class TrainActivity extends AppCompatActivity {
 
+    private IHM ihm;
     private String correctAnswer;
     private TextView guess;
     private TextInputEditText inputText;
@@ -39,7 +41,6 @@ public class TrainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         initLayout();
         initVars();
 
@@ -132,7 +133,7 @@ public class TrainActivity extends AppCompatActivity {
     private void initLayout() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_train);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.background), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -141,6 +142,8 @@ public class TrainActivity extends AppCompatActivity {
     }
 
     private void initVars() {
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
 
         guessAnswerData = MainActivity.getInstance().getCurrentGuessAnswerData();
         guess = findViewById(R.id.guess);
