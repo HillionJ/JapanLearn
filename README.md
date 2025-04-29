@@ -1,25 +1,45 @@
-# JapanLearn v0.1
+# JapanLearn v0.2
 
 **Développeur** : RedEstDeRetour
 **Plateforme** : Android
-**Version** : 0.1 (Première version)
+**Version** : 0.2 (Deuxième version)
 **Nom de l'application** : JapanLearn
 
 ## 📖 Présentation
 
-JapanLearn est une application Android d'entraînement simple et rapide pour apprendre et pratiquer les hiraganas japonais. Elle permet de s'exercer à reconnaître les hiraganas et à écrire leur transcription en romaji.
+JapanLearn est une application Android d'entraînement simple et rapide pour apprendre et pratiquer les hiraganas, les katakanas et les kanji. Elle permet de s'exercer à les reconnaître et à écrire leur transcription en romaji.
 
-**Version 0.1** : uniquement les hiraganas de base et combinés sont disponibles.
+## 🕒 Historique des versions
+**Version 0.1** : 
+- Paramétrer la session (Hiraganas et Combinaisons Hiraganas)
+- Lancer une session
+- Visualiser le caractère
+- Ecrire la réponse
+- Visualiser le statut de la réponse via un "Toast" (Bonne réponse / Mauvaise réponse)
+
+
+**Version 0.2** : 
+- Paramétrer la session (Hiraganas ± Kataganas ± Kanji ± Combinaisons Hiraganas ± Combinaisions Katakanas)
+- Lancer une session
+- Visualiser le caractère
+- Ecrire la réponse
+- Visualiser le statut de la réponse:
+  - **Bonne réponse**: Afficher la signification (si disponible)
+  - **Mauvaise réponse**: Afficher la solution
+- Passer à la question suivante avec `Continuer` en cas de _visualisation du statut d'une réponse_
 
 ## ✨ Fonctionnalités principales
 
 - 📚 **Sélection des modes d'apprentissage** :
   - Hiragana simple (あ, い, う, え, お, etc.)
   - Hiragana combinés (きゃ, きゅ, きょ, etc.)
+  - Katakanas simple (ア, イ, ウ, エ, オ, etc.)
+  - Katakanas combinés (キャ, ショ, チョ, etc.)
+  - Kanji (日, 月, 火, 水, 木, etc.)
 
 - 🔄 **Questions aléatoires** :
 
-    À chaque lancement d'exercice, un caractère est tiré aléatoirement.
+  À chaque lancement d'exercice, un caractère est tiré aléatoirement.
 
 - 🔁 **Inversion des questions** :
 
@@ -30,46 +50,33 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 - ✅ **Correction instantanée** :
 
     L'utilisateur est informé immédiatement si sa réponse est correcte ou non.
+    
+    - **En cas de mauvaise réponse**: Un texte apparait en **rouge** avec la bonne réponse d'afficher
+    - **En cas de bonne réponse**:
+      - AVEC SIGNIFICATION: Un texte apparait en **vert** avec la signification (Kanji uniquement)
+      - SANS SIGNIFICATION: Passage automatique vers la question suivante.
 
 - 🎯 **Relance rapide** :
 
-    Après chaque réponse, l'application enchaîne directement sur un nouveau caractère.
+    Après chaque réponse ou continuation, l'application enchaîne directement sur un nouveau caractère.
 
 - 🖐️ **Fermeture facile** :
 
     Un bouton `Fermer` permet de quitter rapidement l'entraînement.
 
-## 📸 Aperçu rapide de l'utilisation
+## 📸 Aperçu de l'interface utilisateur
 
-1. Lancer l'application
+### Format portrait
+![Video horizontale](Sources/horizontal.gif)
 
-2. Sélectionner les caractères à étudier (Hiragana simples et/ou combinés)
+### Format paysage
+![Video verticale](Sources/vertical.gif)
 
-3. Cliquer sur `Démarrer`
+## ⚙️ Diagrammes
 
-4. Écrire la bonne transcription et valider
+### Cas d'utilisation
 
-5. Corriger immédiatement en cas d'erreur
-
-6. Continuer l'apprentissage sur de nouveaux caractères
-
-## ⚙️ Structure technique
-
-- **MainActivity** :
-  - Permet de configurer la session (choix des types de caractères).
-  - Démarre l'activité d'entraînement.
-  - Gère la sélection aléatoire des caractères et la possibilité d'inversion question/réponse.
-
-- **TrainActivity** :
-  - Présente un caractère à deviner.
-  - Compare la réponse de l'utilisateur à la réponse attendue.
-  - Fournit un feedback immédiat.
-  - Relance une nouvelle tentative automatiquement.
-
-- **Hiraganas** (utilitaire) :
-  - Contient deux maps statiques :
-  - `hiraganaMap` : hiragana simples
-  - `hiraganaCombinedMap` : hiragana combinés (`きゃ`, `ぎゅ`, etc.)
+### Diagramme de classes
 
 ## 🛠️ Installation et lancement
 
