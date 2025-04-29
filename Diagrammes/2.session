@@ -1,0 +1,17 @@
+window_sizes 1920 1001 450 1464 819 128
+
+diagrams
+  usecasediagram_ref 134530 // Cas d'utilisations
+    1171 655 100 A3 0 0
+  active  classdiagram_ref 134658 // Diagramme de classe
+    1464 819 100 E 0 0
+end
+show_stereotypes
+selected class_ref 134786 // AppCompatActivity
+open
+  classview_ref 134530 // Diagramme de classes
+  classview_ref 134658 // activity
+  classview_ref 134914 // utils
+  classview_ref 134786 // unknown
+end
+end

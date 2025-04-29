@@ -75,8 +75,10 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 ## ⚙️ Diagrammes
 
 ### Cas d'utilisation
+![Cas d'utilisation](Sources/Cas%20d'utilisation.png)
 
 ### Diagramme de classes
+![Cas d'utilisation](Sources/Diagrammes%20de%20classes.png)
 
 ## 🛠️ Installation et lancement
 
@@ -87,21 +89,16 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 **Minimum SDK recommandé** : Android 7.0 (Nougat)
 
 ## 🚧 Limitations connues
-- Seuls les hiraganas sont implémentés pour l'instant.
-- Katakana et Kanji sont cochables mais non encore pris en charge.
 - Pas encore de suivi de score ou de progression.
 - Aucune gestion d'historique d'erreurs.
 - Pas de personnalisation avancée de l'exercice.
 
 ## 📅 À venir dans les prochaines versions
-- Support du katakana.
-- Ajout de kanji de base avec leur lecture.
 - Mode "révision des erreurs" pour revoir les mauvaises réponses.
-- Mode "niveau" avec difficulté progressive.
 - Enregistrement de la progression de l'utilisateur.
 
 ## 💬 Remarques
 
-JapanLearn v0.1 est une version expérimentale, pensée avant tout pour aider à renforcer la mémoire visuelle et écrite du syllabaire japonais.
+JapanLearn v0.2 est une version expérimentale, pensée avant tout pour aider à renforcer la mémoire visuelle et écrite du syllabaire japonais.
 
 **Merci d'utiliser JapanLearn !**
