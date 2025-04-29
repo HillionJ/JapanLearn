@@ -1,0 +1,38 @@
+format 224
+"japanlearn" // java::fr::red::japanlearn
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn - Copie/JapanLearn/app/src/main/java/fr/red/japanlearn/"
+  java_package "fr.red.japanlearn"
+  package_ref 135170 // activity
+
+  package_ref 135426 // utils
+end
