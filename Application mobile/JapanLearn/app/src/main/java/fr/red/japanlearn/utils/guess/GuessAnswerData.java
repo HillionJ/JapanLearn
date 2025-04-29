@@ -1,4 +1,4 @@
-package fr.red.japanlearn.utils;
+package fr.red.japanlearn.utils.guess;
 
 public class GuessAnswerData {
 

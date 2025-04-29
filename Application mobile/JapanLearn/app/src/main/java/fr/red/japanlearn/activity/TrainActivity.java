@@ -1,7 +1,6 @@
 package fr.red.japanlearn.activity;
 
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,11 +8,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputEditText;
 
 import fr.red.japanlearn.R;
-import fr.red.japanlearn.utils.GuessAnswerData;
-import fr.red.japanlearn.utils.SessionState;
+import fr.red.japanlearn.utils.guess.GuessAnswerData;
+import fr.red.japanlearn.utils.session.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
 
 public class TrainActivity extends AppCompatActivity {
@@ -101,6 +98,10 @@ public class TrainActivity extends AppCompatActivity {
 
 
     public void restartActivity() {
+        if (!MainActivity.getInstance().hasNextTry()){
+            finish();
+            return;
+        }
         MainActivity.getInstance().nextTry();
         finish();
         startActivity(getIntent());
@@ -155,6 +156,16 @@ public class TrainActivity extends AppCompatActivity {
         errorContainer = findViewById(R.id.errorContainer);
         errorText = findViewById(R.id.errorText);
         errorTitle = findViewById(R.id.errorTitle);
+
+        TextView session_progress = findViewById(R.id.session_progress);
+        int maxNumber = MainActivity.getInstance().getNumberOfQuestions();
+        int currentNumber = maxNumber - MainActivity.getInstance().getCurrentSession().size() + 1;
+        session_progress.setText(currentNumber + " / " + maxNumber);
+
+        TextView wrong_label = findViewById(R.id.wrong_label);
+        if (guessAnswerData.isCorrection()) {
+            wrong_label.setVisibility(View.VISIBLE);
+        }
 
         initValidationButton();
 

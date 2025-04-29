@@ -83,7 +83,7 @@
             <ScrollView
                 android:id="@+id/scrollView2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +100,7 @@
                         android:id="@+id/hiraganaCheckBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
                         android:text="Hiragana" />
 
                     <LinearLayout
@@ -112,6 +113,7 @@
                             android:id="@+id/hiraganaCombinedCheckBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@color/black"
                             android:text="Inclure les Combinaisons" />
                     </LinearLayout>
 
@@ -119,6 +121,7 @@
                         android:id="@+id/katakanaCheckBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
                         android:text="Katakana" />
 
                     <LinearLayout
@@ -131,6 +134,7 @@
                             android:id="@+id/katakanaCombinedCheckBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@color/black"
                             android:text="Inclure les Combinaisons" />
                     </LinearLayout>
 
@@ -138,7 +142,17 @@
                         android:id="@+id/kanjiCheckBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
                         android:text="Kanji" />
+
+                    <EditText
+                        android:id="@+id/numberOfQuestions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Nombre de questions"
+                        android:inputType="numberDecimal"
+                        android:padding="12dp" />
                 </LinearLayout>
             </ScrollView>
 
