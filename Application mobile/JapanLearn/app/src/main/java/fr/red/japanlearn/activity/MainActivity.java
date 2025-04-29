@@ -99,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (numberOfQuestions.length() > 0) {
+                String numberOfQuestionsString = numberOfQuestions.getText().toString();
+                int numberOfQuestionsInteger;
+                if (numberOfQuestions.length() > 0 && (numberOfQuestionsInteger = parseInt(numberOfQuestionsString)) > 0) {
                     Collections.shuffle(currentSession);
-                    MainActivity.this.numberOfQuestions = Math.min(Integer.parseInt(numberOfQuestions.getText().toString()), currentSession.size());
+                    MainActivity.this.numberOfQuestions = Math.min(numberOfQuestionsInteger, currentSession.size());
                     currentSession = currentSession.subList(0, MainActivity.this.numberOfQuestions);
                 } else {
                     MainActivity.this.numberOfQuestions = currentSession.size();
@@ -183,5 +185,18 @@ public class MainActivity extends AppCompatActivity {
 
     public List<GuessAnswerData> getCurrentSession() {
         return currentSession;
+    }
+
+    private int parseInt(String string) {
+        int integer = 0;
+        try {
+            integer = Integer.parseInt(string);
+        } catch (Exception ignored) {
+            try {
+                integer = (int)  Double.parseDouble(string);
+            } catch (Exception ignored1) {
+            }
+        }
+        return integer;
     }
 }
