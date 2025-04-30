@@ -1,0 +1,62 @@
+class IHM
+!!!151938.java!!!	init(inout mainActivity : MainActivity) : IHM
+        if (ihm == null)
+            ihm = new IHM(mainActivity);
+        return ihm;
+!!!152066.java!!!	getIHMActive(inout typeObjet : Class<?>) : Object
+        for (Object ihmActive : ihmActives) {
+            if (typeObjet.isInstance(ihmActive)) {
+                return ihmActive;
+            }
+        }
+        return null;
+!!!152194.java!!!	getIHM() : IHM
+        return IHM.ihm;
+!!!152322.java!!!	IHM(inout activiteActive : AppCompatActivity)
+        IHM.ihm = this;
+        this.activiteActive = activiteActive;
+!!!152450.java!!!	ajouterIHM(inout pageIHM : Object) : void
+        if (pageIHM instanceof AppCompatActivity) {
+            activiteActive = (AppCompatActivity) pageIHM;
+        }
+        for (Object ihmActive : ihmActives) {
+            if (pageIHM.getClass() == ihmActive.getClass()) {
+                ihmActives.remove(ihmActive);
+                break;
+            }
+        }
+        ihmActives.add(pageIHM);
+!!!152578.java!!!	getActiviteActive() : AppCompatActivity
+        if (activiteActive.isDestroyed()) {
+            // En cas d'activité inactive, chercher une potentiellement active
+            for (Object ihmActive : ihmActives) {
+                if (ihmActive instanceof AppCompatActivity && !((AppCompatActivity) ihmActive).isDestroyed()) {
+                    activiteActive = (AppCompatActivity) ihmActive;
+                    break;
+                }
+            }
+        }
+        return activiteActive;
+!!!152706.java!!!	getActivite(inout typeActivite : Class<?>) : AppCompatActivity
+        return (AppCompatActivity) getIHMActive(typeActivite);
+!!!152834.java!!!	fermerActivite(inout typeActivite : Class<?>) : void
+        Object activite = getIHMActive(typeActivite);
+        if (activite instanceof AppCompatActivity) {
+            ((AppCompatActivity)activite).finish();
+        }
+!!!152962.java!!!	fermerPopups() : void
+        for (Object ihmActive : ihmActives) {
+            if (ihmActive instanceof DialogFragment) {
+                try {
+                    ((DialogFragment)ihmActive).dismiss();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+!!!153090.java!!!	demarrerActivite(inout lanceur : Object, inout contexte : Context, inout typeActivite : Class<?>) : void
+        Intent intent = new Intent(contexte, typeActivite);
+        if (lanceur instanceof Fragment) {
+            ((Fragment) lanceur).startActivity(intent);
+        } else {
+            ((AppCompatActivity) lanceur).startActivity(intent);
+        }

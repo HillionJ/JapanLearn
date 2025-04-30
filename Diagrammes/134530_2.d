@@ -1,0 +1,84 @@
+format 224
+
+classcanvas 128002 class_ref 134530 // Utilisateur
+  simpleclassdiagramsettings end
+  xyz 136 440 2000
+end
+usecasecanvas 128130 usecase_ref 134530 // Paramétrer une session
+  xyzwh 530 165 3005 64 32 label_xy 493 197
+end
+usecasecanvas 128258 usecase_ref 134658 // Inclure les Hiraganas
+  xyzwh 770 32 3005 64 32 label_xy 742 64
+end
+usecasecanvas 128386 usecase_ref 134786 // Inclure les Commbinaisons
+  xyzwh 1042 32 3005 64 32 label_xy 996 64
+end
+usecasecanvas 128514 usecase_ref 134914 // Inclure les Katakanas
+  xyzwh 770 165 3005 64 32 label_xy 740 197
+end
+usecasecanvas 128642 usecase_ref 135042 // Inclure les Kanji
+  xyzwh 770 287 3005 64 32 label_xy 756 319
+end
+usecasecanvas 128770 usecase_ref 134786 // Inclure les Commbinaisons
+  xyzwh 1042 165 3005 64 32 label_xy 996 197
+end
+usecasecanvas 128898 usecase_ref 135170 // Lancer une session
+  xyzwh 371 456 3005 64 32 label_xy 347 488
+end
+usecasecanvas 129026 usecase_ref 135298 // Répondre à une question
+  xyzwh 648 456 3005 64 32 label_xy 608 488
+end
+usecasecanvas 129154 usecase_ref 135426 // Quitter la session
+  xyzwh 648 595 3005 64 32 label_xy 629 627
+end
+usecasecanvas 129282 usecase_ref 135554 // Visualiser l'erreur
+  xyzwh 907 388 3005 64 32 label_xy 890 420
+end
+usecasecanvas 129410 usecase_ref 135682 // Visualiser la signification
+  xyzwh 907 516 3005 64 32 label_xy 868 548
+end
+line 129538 ----
+  from ref 128002 z 3006 to ref 128898
+simplerelationcanvas 129666 simplerelation_ref 134530
+  from ref 128898 z 3006 to ref 128130
+end
+simplerelationcanvas 129922 simplerelation_ref 134786
+  from ref 128258 z 3006 to ref 128130
+end
+simplerelationcanvas 130050 simplerelation_ref 134914
+  from ref 128386 z 3006 to ref 128258
+end
+simplerelationcanvas 130178 simplerelation_ref 135042
+  from ref 128770 z 3006 to ref 128514
+end
+simplerelationcanvas 130306 simplerelation_ref 135170
+  from ref 128514 z 3006 to ref 128130
+end
+simplerelationcanvas 130434 simplerelation_ref 135298
+  from ref 128642 z 3006 to ref 128130
+end
+simplerelationcanvas 130562 simplerelation_ref 135426
+  from ref 128898 z 3006 to ref 129026
+end
+simplerelationcanvas 130690 simplerelation_ref 135554
+  from ref 129154 z 3006 to ref 128898
+end
+simplerelationcanvas 130946 simplerelation_ref 135810
+  from ref 129282 z 3006 to ref 129026
+end
+simplerelationcanvas 131074 simplerelation_ref 135938
+  from ref 129410 z 3006 to ref 129026
+end
+simplerelationcanvas 131202 simplerelation_ref 135682
+  from ref 129026 z 3006 to ref 129282
+end
+simplerelationcanvas 131330 simplerelation_ref 134658
+  from ref 128130 z 3006 to ref 128258
+end
+simplerelationcanvas 131458 simplerelation_ref 135042
+  from ref 128386 z 3006 to ref 128514
+end
+simplerelationcanvas 131586 simplerelation_ref 134914
+  from ref 128770 z 3006 to ref 128258
+end
+end

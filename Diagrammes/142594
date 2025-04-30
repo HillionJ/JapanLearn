@@ -1,0 +1,613 @@
+format 224
+"utils" // fr::red::japanlearn::utils
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn/Application mobile/JapanLearn/app/src/main/java/fr/red/japanlearn/utils/"
+  java_package "fr.red.japanlearn.utils"
+  classview 141698 "utils"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 142466 "Settings"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144258 // instance (<unidirectional association>)
+	relation 144258 --->
+	  a role_name "instance" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144258 // instance (<unidirectional association>)
+	  b parent class_ref 142466 // Settings
+      end
+
+      operation 153218 "getSettings"
+	class_operation public return_type class_ref 142466 // Settings
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 145794 "hiraganaCheckBox"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145922 "katakanaCheckBox"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146050 "kanjiCheckBox"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146178 "hiraganaCombinedCheckBox"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146306 "katakanaCombinedCheckBox"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146434 "numberOfQuestions"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 144386 // ihm (<unidirectional association>)
+	relation 144386 --->
+	  a role_name "ihm" const_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144386 // ihm (<unidirectional association>)
+	  b parent class_ref 143234 // IHM
+      end
+
+      operation 153346 "Settings"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153474 "update"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153602 "saveSettings"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "settings" explicit_type "Map<String, Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"ConstantConditions\")
+"
+	
+	
+	
+      end
+
+      operation 153730 "isModified"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "settings" explicit_type "Map<String, Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"ConstantConditions\")
+"
+	
+	
+	
+      end
+
+      operation 153858 "numberOfQuestionsStr"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153986 "isNumberOfQuestionsSet"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154114 "getNumberOfQuestions"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154242 "isHiragana"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154370 "isHiraganaCombined"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154498 "isKatakana"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154626 "isKatakanaCombined"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154754 "isKanji"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154882 "parseInt"
+	private explicit_return_type "int"
+	nparams 1
+	  param in name "string" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 143234 "IHM"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144130 // ihm (<unidirectional association>)
+	relation 144130 --->
+	  a role_name "ihm" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144130 // ihm (<unidirectional association>)
+	  b parent class_ref 143234 // IHM
+      end
+
+      attribute 145538 "ihmActives"
+	private explicit_type "Object"
+	init_value " new ArrayList<>()"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145666 "activiteActive"
+	private explicit_type "AppCompatActivity"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 151938 "init"
+	class_operation public return_type class_ref 143234 // IHM
+	nparams 1
+	  param inout name "mainActivity" type class_ref 142210 // MainActivity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152066 "getIHMActive"
+	public explicit_return_type "Object"
+	nparams 1
+	  param inout name "typeObjet" explicit_type "Class<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Nullable
+"
+	
+	
+	
+	comment " Récupérer une Activité, un Fragment ou autre élément actif ou en sommeil"
+      end
+
+      operation 152194 "getIHM"
+	class_operation public return_type class_ref 143234 // IHM
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152322 "IHM"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "activiteActive" explicit_type "AppCompatActivity"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152450 "ajouterIHM"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "pageIHM" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Ajouter une activité lors de son lancement"
+      end
+
+      operation 152578 "getActiviteActive"
+	public explicit_return_type "AppCompatActivity"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Récupérer l'activitée actuelle"
+      end
+
+      operation 152706 "getActivite"
+	public explicit_return_type "AppCompatActivity"
+	nparams 1
+	  param inout name "typeActivite" explicit_type "Class<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Récupérer une activité active"
+      end
+
+      operation 152834 "fermerActivite"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "typeActivite" explicit_type "Class<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Quitter une activité"
+      end
+
+      operation 152962 "fermerPopups"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Fermer les DialogFragment si existants"
+      end
+
+      operation 153090 "demarrerActivite"
+	public explicit_return_type "void"
+	nparams 3
+	  param inout name "lanceur" explicit_type "Object"
+	  param inout name "contexte" explicit_type "Context"
+	  param inout name "typeActivite" explicit_type "Class<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Lancer une nouvelle activité (sans extra)"
+      end
+    end
+
+    class 143362 "SoftKeyboardInput"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 155010 "handleSoftKeyboard"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "activity" explicit_type "Activity"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  package_ref 142722 // guess
+
+  package_ref 142850 // session
+
+  deploymentview 141314 "utils"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 142466 "IHM"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.Window;
+import android.view.WindowInsetsController;
+import android.view.WindowManager;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import java.util.ArrayList;
+import java.util.List;
+import fr.red.japanlearn.activity.MainActivity;
+${definition}"
+      associated_elems
+	class_ref 143234 // IHM
+      end
+    end
+
+    artifact 142594 "Settings"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import java.util.Map;
+${definition}"
+      associated_elems
+	class_ref 142466 // Settings
+      end
+    end
+
+    artifact 142722 "SoftKeyboardInput"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.app.Activity;
+import android.view.View;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+${definition}"
+      associated_elems
+	class_ref 143362 // SoftKeyboardInput
+      end
+    end
+  end
+
+  package_ref 142978 // chars
+end

@@ -1,0 +1,91 @@
+class MainActivity
+!!!146050.java!!!	getInstance() : MainActivity
+        return instance;
+!!!146178.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        instance = this;
+
+        initLayout();
+        iniVars();
+!!!146306.java!!!	nextTry() : void
+        sessionState = SessionState.TRAINING;
+        guessAnswerData = dynamicQuestions.get(0);
+        if (!guessAnswerData.isCorrection()){
+            guessAnswerData.setReversed(new Random().nextBoolean());
+        }
+!!!146434.java!!!	setCorrect(inout guessAnswerData : GuessAnswerData) : void
+        guessAnswerData.correct();
+        dynamicQuestions.remove(guessAnswerData);
+!!!146562.java!!!	setIncorrect(inout guessAnswerData : GuessAnswerData) : void
+        guessAnswerData.requiredCorrection();
+        dynamicQuestions.remove(guessAnswerData);
+        dynamicQuestions.add(dynamicQuestions.size(), guessAnswerData);
+!!!146690.java!!!	hasNextTry() : boolean
+        return !dynamicQuestions.isEmpty();
+!!!146818.java!!!	getCurrentGuessAnswerData() : GuessAnswerData
+        return guessAnswerData;
+!!!146946.java!!!	getSessionState() : SessionState
+        return sessionState;
+!!!147074.java!!!	setSessionState(inout sessionState : SessionState) : void
+        this.sessionState = sessionState;
+!!!147202.java!!!	getMaxNumberOfQuestions() : int
+        return maxNumberOfQuestions;
+!!!147330.java!!!	getDynamicQuestions() : GuessAnswerData
+        return dynamicQuestions;
+!!!147458.java!!!	getQuestions() : GuessAnswerData
+        return questions;
+!!!147586.java!!!	iniVars() : void
+        IHM ihm = IHM.init(this);
+        ihm.ajouterIHM(this);
+        settings = Settings.getSettings();
+
+        initStartButton();
+        initSettingsButton();
+!!!147714.java!!!	initLayout() : void
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+!!!147842.java!!!	initSettingsButton() : void
+        Button settingsButton = findViewById(R.id.settings);
+        settingsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
+!!!147970.java!!!	initStartButton() : void
+        Button startButton = findViewById(R.id.start);
+        startButton.setOnClickListener(view -> {
+            dynamicQuestions.clear();
+            Hiraganas.addHiraganas(dynamicQuestions, settings.isHiragana(), settings.isHiraganaCombined());
+            Katakanas.addKatakanas(dynamicQuestions, settings.isKatakana(), settings.isKatakanaCombined());
+            Kanji.addKanji(dynamicQuestions, settings.isKanji());
+
+            if (dynamicQuestions.isEmpty()) {
+                Toast.makeText(MainActivity.this, "Sélection vide (Voir Paramètres)", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Collections.shuffle(dynamicQuestions);
+            if (settings.isNumberOfQuestionsSet()) {
+                maxNumberOfQuestions = Math.min(settings.getNumberOfQuestions(), dynamicQuestions.size());
+                dynamicQuestions = dynamicQuestions.subList(0, maxNumberOfQuestions);
+            } else {
+                maxNumberOfQuestions = dynamicQuestions.size();
+            }
+            dynamicQuestions.forEach(GuessAnswerData::reset);
+
+            questions.clear();
+            questions.addAll(dynamicQuestions);
+
+            nextTry();
+            Intent intent = new Intent(MainActivity.this, TrainActivity.class);
+            startActivity(intent);
+        });
+!!!148098.java!!!	onStart() : void
+        super.onStart();
+        sessionState = SessionState.HOME;
+!!!148226.java!!!	onResume() : void
+        super.onResume();
+        sessionState = SessionState.HOME;

@@ -1,5 +1,5 @@
 format 224
-"japanlearn" // java::fr::red::japanlearn
+"japanlearn" // fr::red::japanlearn
   revision 1
   modified_by 2 "RedEstDeRetour"
   // class settings
@@ -30,9 +30,9 @@ format 224
   activitydiagramsettings
    end
   
-  java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn - Copie/JapanLearn/app/src/main/java/fr/red/japanlearn/"
+  java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn/Application mobile/JapanLearn/app/src/main/java/fr/red/japanlearn/"
   java_package "fr.red.japanlearn"
-  package_ref 135170 // activity
+  package_ref 142338 // activity
 
-  package_ref 135426 // utils
+  package_ref 142594 // utils
 end

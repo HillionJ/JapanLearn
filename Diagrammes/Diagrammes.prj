@@ -1,6 +1,6 @@
 format 224
 "Diagrammes"
-  revision 2
+  revision 3
   modified_by 2 "RedEstDeRetour"
 
 
@@ -383,13 +383,13 @@ format 224
     
     activitydiagramsettings
      end
-    classdiagram 134658 "Diagramme de classe"
-      classdiagramsettings draw_all_relations no member_max_width 0 end
+    classdiagram 141186 "Diagramme de classe"
+      classdiagramsettings member_max_width 0 end
       size E
     end
   end
 
-  package_ref 134658 // java
+  package_ref 141954 // fr
 
-  package_ref 135298 // unknown
+  package_ref 142466 // unknown
 end

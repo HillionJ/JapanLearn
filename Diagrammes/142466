@@ -31,7 +31,7 @@ format 224
    end
   
   java_dir "<unknown>"
-  classview 134786 "unknown"
+  classview 141570 "unknown"
     
     classdiagramsettings member_max_width 0 end
     
@@ -51,7 +51,7 @@ format 224
     
     activitydiagramsettings
      end
-    class 134786 "AppCompatActivity"
+    class 142338 "AppCompatActivity"
       visibility package 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
