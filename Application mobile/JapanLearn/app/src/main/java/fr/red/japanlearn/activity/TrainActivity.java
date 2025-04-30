@@ -1,7 +1,7 @@
 package fr.red.japanlearn.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,11 +9,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +22,14 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputEditText;
 
 import fr.red.japanlearn.R;
-import fr.red.japanlearn.utils.GuessAnswerData;
-import fr.red.japanlearn.utils.SessionState;
+import fr.red.japanlearn.utils.IHM;
+import fr.red.japanlearn.utils.guess.GuessAnswerData;
+import fr.red.japanlearn.utils.session.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
 
 public class TrainActivity extends AppCompatActivity {
 
+    private IHM ihm;
     private String correctAnswer;
     private TextView guess;
     private TextInputEditText inputText;
@@ -42,7 +42,6 @@ public class TrainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         initLayout();
         initVars();
 
@@ -101,6 +100,13 @@ public class TrainActivity extends AppCompatActivity {
 
 
     public void restartActivity() {
+        if (!MainActivity.getInstance().hasNextTry()){
+            finish();
+            Intent intent = new Intent(this, StatsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            return;
+        }
         MainActivity.getInstance().nextTry();
         finish();
         startActivity(getIntent());
@@ -131,7 +137,7 @@ public class TrainActivity extends AppCompatActivity {
     private void initLayout() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_train);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.background), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -140,6 +146,8 @@ public class TrainActivity extends AppCompatActivity {
     }
 
     private void initVars() {
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
 
         guessAnswerData = MainActivity.getInstance().getCurrentGuessAnswerData();
         guess = findViewById(R.id.guess);
@@ -155,6 +163,16 @@ public class TrainActivity extends AppCompatActivity {
         errorContainer = findViewById(R.id.errorContainer);
         errorText = findViewById(R.id.errorText);
         errorTitle = findViewById(R.id.errorTitle);
+
+        TextView session_progress = findViewById(R.id.session_progress);
+        int maxNumber = MainActivity.getInstance().getMaxNumberOfQuestions();
+        int currentNumber = maxNumber - MainActivity.getInstance().getDynamicQuestions().size() + 1;
+        session_progress.setText(currentNumber + " / " + maxNumber);
+
+        TextView wrong_label = findViewById(R.id.wrong_label);
+        if (guessAnswerData.isCorrection()) {
+            wrong_label.setVisibility(View.VISIBLE);
+        }
 
         initValidationButton();
 
@@ -179,8 +197,7 @@ public class TrainActivity extends AppCompatActivity {
                     return;
                 }
                 if (inputText.getText().toString().equalsIgnoreCase(correctAnswer)) {
-                    guessAnswerData.correct();
-                    MainActivity.getInstance().removeGuessAnswerData(guessAnswerData);
+                    MainActivity.getInstance().setCorrect(guessAnswerData);
                     if (guessAnswerData.hasExplanation()) {
                         _continue = true;
                         closeKeyBoard();
@@ -196,7 +213,7 @@ public class TrainActivity extends AppCompatActivity {
                     closeKeyBoard();
                     disableEditText();
                     showErrorMessage(false);
-                    guessAnswerData.requiredCorrection();
+                    MainActivity.getInstance().setIncorrect(guessAnswerData);
                     validate.setText(R.string.continuer);
                     MainActivity.getInstance().setSessionState(SessionState.ENDING);
                 }

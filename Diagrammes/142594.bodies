@@ -1,0 +1,34 @@
+class GuessAnswerData
+!!!155522.java!!!	GuessAnswerData(in guess : String, in answer : String)
+        this(guess, answer, null);
+!!!155650.java!!!	GuessAnswerData(in guess : String, in answer : String, in explanation : String)
+        this.guess = guess;
+        this.answer = answer;
+        this.explanation = explanation;
+!!!155778.java!!!	hasExplanation() : boolean
+        return explanation != null;
+!!!155906.java!!!	getGuess() : String
+        return reversed ? answer : guess;
+!!!156034.java!!!	getAnswer() : String
+        return reversed ? guess : answer;
+!!!156162.java!!!	getExplanation() : String
+        return explanation;
+!!!156290.java!!!	requiredCorrection() : void
+        this.correction = true;
+        this.wasIncorrect = true;
+!!!156418.java!!!	isCorrection() : boolean
+        return correction;
+!!!156546.java!!!	setReversed(inout reversed : boolean) : void
+        this.reversed = reversed;
+!!!156674.java!!!	isReversed() : boolean
+        return reversed;
+!!!156802.java!!!	isCorrect() : boolean
+        return correct;
+!!!156930.java!!!	correct() : void
+        this.correct = true;
+!!!157058.java!!!	wasIncorrect() : boolean
+        return wasIncorrect;
+!!!157186.java!!!	reset() : void
+        this.correction = false;
+        this.correct = false;
+        this.wasIncorrect = false;

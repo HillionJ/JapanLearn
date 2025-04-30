@@ -1,0 +1,74 @@
+class Settings
+!!!153218.java!!!	getSettings() : Settings
+        if (instance == null)
+            instance = new Settings();
+        return instance;
+!!!153346.java!!!	Settings()
+        this.ihm = IHM.getIHM();
+        update();
+!!!153474.java!!!	update() : void
+        ihm.getActiviteActive();
+        SharedPreferences prefs =  ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
+        hiraganaCheckBox = prefs.getBoolean("hiraganaCheckBox", false);
+        hiraganaCombinedCheckBox = prefs.getBoolean("hiraganaCombinedCheckBox", false);
+        katakanaCheckBox = prefs.getBoolean("katakanaCheckBox", false);
+        katakanaCombinedCheckBox = prefs.getBoolean("katakanaCombinedCheckBox", false);
+        kanjiCheckBox = prefs.getBoolean("kanjiCheckBox", false);
+        numberOfQuestions = prefs.getString("numberOfQuestions", "");
+!!!153602.java!!!	saveSettings(inout settings : Map<String, Object>) : void
+        SharedPreferences prefs = ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        hiraganaCheckBox = ((CheckBox)settings.get("hiraganaCheckBox")).isChecked();
+        hiraganaCombinedCheckBox = ((CheckBox)settings.get("hiraganaCombinedCheckBox")).isChecked();
+        katakanaCheckBox = ((CheckBox)settings.get("katakanaCheckBox")).isChecked();
+        katakanaCombinedCheckBox = ((CheckBox)settings.get("katakanaCombinedCheckBox")).isChecked();
+        kanjiCheckBox = ((CheckBox)settings.get("kanjiCheckBox")).isChecked();
+        numberOfQuestions = ((EditText)settings.get("numberOfQuestions")).getText().toString();
+
+        editor.putBoolean("hiraganaCheckBox", hiraganaCheckBox);
+        editor.putBoolean("hiraganaCombinedCheckBox", hiraganaCombinedCheckBox);
+        editor.putBoolean("katakanaCheckBox", katakanaCheckBox);
+        editor.putBoolean("katakanaCombinedCheckBox", katakanaCombinedCheckBox);
+        editor.putBoolean("kanjiCheckBox", kanjiCheckBox);
+        editor.putString("numberOfQuestions", numberOfQuestions);
+
+        editor.apply();
+
+
+!!!153730.java!!!	isModified(inout settings : Map<String, Object>) : boolean
+        SharedPreferences prefs = ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return ((CheckBox)settings.get("hiraganaCheckBox")).isChecked() != prefs.getBoolean("hiraganaCheckBox", false)
+                || ((CheckBox)settings.get("hiraganaCombinedCheckBox")).isChecked() != prefs.getBoolean("hiraganaCombinedCheckBox", false)
+                || ((CheckBox)settings.get("katakanaCheckBox")).isChecked() != prefs.getBoolean("katakanaCheckBox", false)
+                || ((CheckBox)settings.get("katakanaCombinedCheckBox")).isChecked() != prefs.getBoolean("katakanaCombinedCheckBox", false)
+                || ((CheckBox)settings.get("kanjiCheckBox")).isChecked() != prefs.getBoolean("kanjiCheckBox", false)
+                || !((EditText)settings.get("numberOfQuestions")).getText().toString().equals(prefs.getString("numberOfQuestions", ""));
+!!!153858.java!!!	numberOfQuestionsStr() : String
+        return numberOfQuestions;
+!!!153986.java!!!	isNumberOfQuestionsSet() : boolean
+        return !numberOfQuestions.isEmpty() && getNumberOfQuestions() > 0;
+!!!154114.java!!!	getNumberOfQuestions() : int
+        return parseInt(numberOfQuestions);
+!!!154242.java!!!	isHiragana() : boolean
+        return hiraganaCheckBox;
+!!!154370.java!!!	isHiraganaCombined() : boolean
+        return hiraganaCombinedCheckBox;
+!!!154498.java!!!	isKatakana() : boolean
+        return katakanaCheckBox;
+!!!154626.java!!!	isKatakanaCombined() : boolean
+        return katakanaCombinedCheckBox;
+!!!154754.java!!!	isKanji() : boolean
+        return kanjiCheckBox;
+!!!154882.java!!!	parseInt(in string : String) : int
+        int integer = 0;
+        try {
+            integer = Integer.parseInt(string);
+        } catch (Exception ignored) {
+            try {
+                integer = (int)  Double.parseDouble(string);
+            } catch (Exception ignored1) {
+            }
+        }
+        return integer;
