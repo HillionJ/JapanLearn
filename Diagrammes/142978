@@ -1,0 +1,739 @@
+format 224
+"chars" // fr::red::japanlearn::utils::chars
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn/Application mobile/JapanLearn/app/src/main/java/fr/red/japanlearn/utils/chars/"
+  java_package "fr.red.japanlearn.utils.chars"
+  classview 142082 "chars"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 143490 "Hiraganas"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144514 // hiraganaMap (<unidirectional association>)
+	relation 144514 --->
+	  stereotype "List"
+	  a role_name "hiraganaMap" init_value " new ArrayList<>()" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 144514 // hiraganaMap (<unidirectional association>)
+	  b parent class_ref 142594 // GuessAnswerData
+      end
+
+      classrelation 144642 // hiraganaCombinedMap (<unidirectional association>)
+	relation 144642 --->
+	  stereotype "List"
+	  a role_name "hiraganaCombinedMap" init_value " new ArrayList<>()" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 144642 // hiraganaCombinedMap (<unidirectional association>)
+	  b parent class_ref 142594 // GuessAnswerData
+      end
+
+      extra_member 141570 "initialization"
+	
+	cpp "" ""
+	java "  static {
+        // voyelles
+        hiraganaMap.add(new GuessAnswerData(\"あ\", \"a\"));
+        hiraganaMap.add(new GuessAnswerData(\"い\", \"i\"));
+        hiraganaMap.add(new GuessAnswerData(\"う\", \"u\"));
+        hiraganaMap.add(new GuessAnswerData(\"え\", \"e\"));
+        hiraganaMap.add(new GuessAnswerData(\"お\", \"o\"));
+
+        // k
+        hiraganaMap.add(new GuessAnswerData(\"か\", \"ka\"));
+        hiraganaMap.add(new GuessAnswerData(\"き\", \"ki\"));
+        hiraganaMap.add(new GuessAnswerData(\"く\", \"ku\"));
+        hiraganaMap.add(new GuessAnswerData(\"け\", \"ke\"));
+        hiraganaMap.add(new GuessAnswerData(\"こ\", \"ko\"));
+
+        // g
+        hiraganaMap.add(new GuessAnswerData(\"が\", \"ga\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぎ\", \"gi\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぐ\", \"gu\"));
+        hiraganaMap.add(new GuessAnswerData(\"げ\", \"ge\"));
+        hiraganaMap.add(new GuessAnswerData(\"ご\", \"go\"));
+
+        // s
+        hiraganaMap.add(new GuessAnswerData(\"さ\", \"sa\"));
+        hiraganaMap.add(new GuessAnswerData(\"し\", \"shi\"));
+        hiraganaMap.add(new GuessAnswerData(\"す\", \"su\"));
+        hiraganaMap.add(new GuessAnswerData(\"せ\", \"se\"));
+        hiraganaMap.add(new GuessAnswerData(\"そ\", \"so\"));
+
+        // z
+        hiraganaMap.add(new GuessAnswerData(\"ざ\", \"za\"));
+        hiraganaMap.add(new GuessAnswerData(\"じ\", \"ji\"));
+        hiraganaMap.add(new GuessAnswerData(\"ず\", \"zu\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぜ\", \"ze\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぞ\", \"zo\"));
+
+        // t
+        hiraganaMap.add(new GuessAnswerData(\"た\", \"ta\"));
+        hiraganaMap.add(new GuessAnswerData(\"ち\", \"chi\"));
+        hiraganaMap.add(new GuessAnswerData(\"つ\", \"tsu\"));
+        hiraganaMap.add(new GuessAnswerData(\"て\", \"te\"));
+        hiraganaMap.add(new GuessAnswerData(\"と\", \"to\"));
+
+        // d
+        hiraganaMap.add(new GuessAnswerData(\"だ\", \"da\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぢ\", \"ji\")); // utilisé rarement
+        hiraganaMap.add(new GuessAnswerData(\"づ\", \"zu\")); // utilisé rarement
+        hiraganaMap.add(new GuessAnswerData(\"で\", \"de\"));
+        hiraganaMap.add(new GuessAnswerData(\"ど\", \"do\"));
+
+        // n
+        hiraganaMap.add(new GuessAnswerData(\"な\", \"na\"));
+        hiraganaMap.add(new GuessAnswerData(\"に\", \"ni\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぬ\", \"nu\"));
+        hiraganaMap.add(new GuessAnswerData(\"ね\", \"ne\"));
+        hiraganaMap.add(new GuessAnswerData(\"の\", \"no\"));
+
+        // h
+        hiraganaMap.add(new GuessAnswerData(\"は\", \"ha\"));
+        hiraganaMap.add(new GuessAnswerData(\"ひ\", \"hi\"));
+        hiraganaMap.add(new GuessAnswerData(\"ふ\", \"fu\"));
+        hiraganaMap.add(new GuessAnswerData(\"へ\", \"he\"));
+        hiraganaMap.add(new GuessAnswerData(\"ほ\", \"ho\"));
+
+        // b
+        hiraganaMap.add(new GuessAnswerData(\"ば\", \"ba\"));
+        hiraganaMap.add(new GuessAnswerData(\"び\", \"bi\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぶ\", \"bu\"));
+        hiraganaMap.add(new GuessAnswerData(\"べ\", \"be\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぼ\", \"bo\"));
+
+        // p
+        hiraganaMap.add(new GuessAnswerData(\"ぱ\", \"pa\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぴ\", \"pi\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぷ\", \"pu\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぺ\", \"pe\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぽ\", \"po\"));
+
+        // m
+        hiraganaMap.add(new GuessAnswerData(\"ま\", \"ma\"));
+        hiraganaMap.add(new GuessAnswerData(\"み\", \"mi\"));
+        hiraganaMap.add(new GuessAnswerData(\"む\", \"mu\"));
+        hiraganaMap.add(new GuessAnswerData(\"め\", \"me\"));
+        hiraganaMap.add(new GuessAnswerData(\"も\", \"mo\"));
+
+        // y
+        hiraganaMap.add(new GuessAnswerData(\"や\", \"ya\"));
+        hiraganaMap.add(new GuessAnswerData(\"ゆ\", \"yu\"));
+        hiraganaMap.add(new GuessAnswerData(\"よ\", \"yo\"));
+
+        // r
+        hiraganaMap.add(new GuessAnswerData(\"ら\", \"ra\"));
+        hiraganaMap.add(new GuessAnswerData(\"り\", \"ri\"));
+        hiraganaMap.add(new GuessAnswerData(\"る\", \"ru\"));
+        hiraganaMap.add(new GuessAnswerData(\"れ\", \"re\"));
+        hiraganaMap.add(new GuessAnswerData(\"ろ\", \"ro\"));
+
+        // w
+        hiraganaMap.add(new GuessAnswerData(\"わ\", \"wa\"));
+        hiraganaMap.add(new GuessAnswerData(\"を\", \"wo\")); // utilisé comme particule \"o\"
+
+        // n
+        hiraganaMap.add(new GuessAnswerData(\"ん\", \"n\"));
+
+        // petites lettres (utilisées pour créer des sons combinés)
+        hiraganaMap.add(new GuessAnswerData(\"ぁ\", \"a\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぃ\", \"i\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぅ\", \"u\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぇ\", \"e\"));
+        hiraganaMap.add(new GuessAnswerData(\"ぉ\", \"o\"));
+        hiraganaMap.add(new GuessAnswerData(\"ゃ\", \"ya\"));
+        hiraganaMap.add(new GuessAnswerData(\"ゅ\", \"yu\"));
+        hiraganaMap.add(new GuessAnswerData(\"ょ\", \"yo\"));
+    }"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      extra_member 141698 "initialization"
+	
+	cpp "" ""
+	java "  static {
+        // k+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"きゃ\", \"kya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"きゅ\", \"kyu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"きょ\", \"kyo\"));
+
+        // g+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぎゃ\", \"gya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぎゅ\", \"gyu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぎょ\", \"gyo\"));
+
+        // s+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"しゃ\", \"sha\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"しゅ\", \"shu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"しょ\", \"sho\"));
+
+        // z+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"じゃ\", \"ja\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"じゅ\", \"ju\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"じょ\", \"jo\"));
+
+        // t+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ちゃ\", \"cha\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ちゅ\", \"chu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ちょ\", \"cho\"));
+
+        // d+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぢゃ\", \"ja\")); // très rare
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぢゅ\", \"ju\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぢょ\", \"jo\"));
+
+        // n+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"にゃ\", \"nya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"にゅ\", \"nyu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"にょ\", \"nyo\"));
+
+        // h+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ひゃ\", \"hya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ひゅ\", \"hyu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ひょ\", \"hyo\"));
+
+        // b+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"びゃ\", \"bya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"びゅ\", \"byu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"びょ\", \"byo\"));
+
+        // p+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぴゃ\", \"pya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぴゅ\", \"pyu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"ぴょ\", \"pyo\"));
+
+        // m+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"みゃ\", \"mya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"みゅ\", \"myu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"みょ\", \"myo\"));
+
+        // r+ya/yu/yo
+        hiraganaCombinedMap.add(new GuessAnswerData(\"りゃ\", \"rya\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"りゅ\", \"ryu\"));
+        hiraganaCombinedMap.add(new GuessAnswerData(\"りょ\", \"ryo\"));
+    }"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 155138 "addHiraganas"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "currentSession" explicit_type "List<GuessAnswerData>"
+	  param inout name "addHiragana" explicit_type "boolean"
+	  param inout name "addComposition" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 143618 "Kanji"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144770 // kanjiMap (<unidirectional association>)
+	relation 144770 --->
+	  stereotype "List"
+	  a role_name "kanjiMap" init_value " new ArrayList<>()" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 144770 // kanjiMap (<unidirectional association>)
+	  b parent class_ref 142594 // GuessAnswerData
+      end
+
+      extra_member 141826 "initialization"
+	
+	cpp "" ""
+	java "  static {
+        // Jours / Temps
+        kanjiMap.add(new GuessAnswerData(\"日\", \"nichi\", \"jour, soleil\"));
+        kanjiMap.add(new GuessAnswerData(\"月\", \"getsu\", \"lune, mois\"));
+        kanjiMap.add(new GuessAnswerData(\"火\", \"ka\", \"feu\"));
+        kanjiMap.add(new GuessAnswerData(\"水\", \"sui\", \"eau\"));
+        kanjiMap.add(new GuessAnswerData(\"木\", \"moku\", \"arbre\"));
+        kanjiMap.add(new GuessAnswerData(\"金\", \"kin\", \"or, argent (métal)\"));
+        kanjiMap.add(new GuessAnswerData(\"土\", \"do\", \"terre, sol\"));
+
+        // Nombres
+        kanjiMap.add(new GuessAnswerData(\"一\", \"ichi\", \"un\"));
+        kanjiMap.add(new GuessAnswerData(\"二\", \"ni\", \"deux\"));
+        kanjiMap.add(new GuessAnswerData(\"三\", \"san\", \"trois\"));
+        kanjiMap.add(new GuessAnswerData(\"四\", \"shi\", \"quatre\"));
+        kanjiMap.add(new GuessAnswerData(\"五\", \"go\", \"cinq\"));
+        kanjiMap.add(new GuessAnswerData(\"六\", \"roku\", \"six\"));
+        kanjiMap.add(new GuessAnswerData(\"七\", \"shichi\", \"sept\"));
+        kanjiMap.add(new GuessAnswerData(\"八\", \"hachi\", \"huit\"));
+        kanjiMap.add(new GuessAnswerData(\"九\", \"kyuu\", \"neuf\"));
+        kanjiMap.add(new GuessAnswerData(\"十\", \"juu\", \"dix\"));
+
+        // Personnes et relations
+        kanjiMap.add(new GuessAnswerData(\"人\", \"hito\", \"personne\"));
+        kanjiMap.add(new GuessAnswerData(\"女\", \"onna\", \"femme\"));
+        kanjiMap.add(new GuessAnswerData(\"男\", \"otoko\", \"homme\"));
+        kanjiMap.add(new GuessAnswerData(\"子\", \"ko\", \"enfant\"));
+        kanjiMap.add(new GuessAnswerData(\"友\", \"tomo\", \"ami\"));
+        kanjiMap.add(new GuessAnswerData(\"家族\", \"kazoku\", \"famille\"));
+
+        // Ecole et travail
+        kanjiMap.add(new GuessAnswerData(\"学\", \"gaku\", \"apprendre, étudier\"));
+        kanjiMap.add(new GuessAnswerData(\"校\", \"kou\", \"école\"));
+        kanjiMap.add(new GuessAnswerData(\"先生\", \"sensei\", \"professeur\"));
+        kanjiMap.add(new GuessAnswerData(\"生\", \"sei\", \"vie, naître\"));
+        kanjiMap.add(new GuessAnswerData(\"仕事\", \"shigoto\", \"travail\"));
+
+        // Lieux
+        kanjiMap.add(new GuessAnswerData(\"家\", \"ie\", \"maison\"));
+        kanjiMap.add(new GuessAnswerData(\"国\", \"kuni\", \"pays\"));
+        kanjiMap.add(new GuessAnswerData(\"町\", \"machi\", \"ville\"));
+        kanjiMap.add(new GuessAnswerData(\"山\", \"yama\", \"montagne\"));
+        kanjiMap.add(new GuessAnswerData(\"川\", \"kawa\", \"rivère\"));
+
+        // Corps humain
+        kanjiMap.add(new GuessAnswerData(\"目\", \"me\", \"oeil\"));
+        kanjiMap.add(new GuessAnswerData(\"口\", \"kuchi\", \"bouche\"));
+        kanjiMap.add(new GuessAnswerData(\"耳\", \"mimi\", \"oreille\"));
+        kanjiMap.add(new GuessAnswerData(\"手\", \"te\", \"main\"));
+        kanjiMap.add(new GuessAnswerData(\"足\", \"ashi\", \"jambe, pied\"));
+
+        // Nature
+        kanjiMap.add(new GuessAnswerData(\"花\", \"hana\", \"fleur\"));
+        kanjiMap.add(new GuessAnswerData(\"草\", \"kusa\", \"herbe\"));
+        kanjiMap.add(new GuessAnswerData(\"木\", \"ki\", \"arbre\"));
+        kanjiMap.add(new GuessAnswerData(\"石\", \"ishi\", \"pierre\"));
+        kanjiMap.add(new GuessAnswerData(\"空\", \"sora\", \"ciel\"));
+
+        // Directions
+        kanjiMap.add(new GuessAnswerData(\"上\", \"ue\", \"au-dessus\"));
+        kanjiMap.add(new GuessAnswerData(\"下\", \"shita\", \"en dessous\"));
+        kanjiMap.add(new GuessAnswerData(\"中\", \"naka\", \"dedans\"));
+        kanjiMap.add(new GuessAnswerData(\"外\", \"soto\", \"dehors\"));
+        kanjiMap.add(new GuessAnswerData(\"前\", \"mae\", \"avant\"));
+        kanjiMap.add(new GuessAnswerData(\"後\", \"ushiro\", \"après\"));
+        kanjiMap.add(new GuessAnswerData(\"左\", \"hidari\", \"gauche\"));
+        kanjiMap.add(new GuessAnswerData(\"右\", \"migi\", \"droite\"));
+
+        // Couleurs
+        kanjiMap.add(new GuessAnswerData(\"赤\", \"aka\", \"rouge\"));
+        kanjiMap.add(new GuessAnswerData(\"青\", \"ao\", \"bleu\"));
+        kanjiMap.add(new GuessAnswerData(\"白\", \"shiro\", \"blanc\"));
+        kanjiMap.add(new GuessAnswerData(\"黒\", \"kuro\", \"noir\"));
+        kanjiMap.add(new GuessAnswerData(\"黄色\", \"kiiro\", \"jaune\"));
+
+        // Transport
+        kanjiMap.add(new GuessAnswerData(\"電車\", \"densha\", \"train\"));
+        kanjiMap.add(new GuessAnswerData(\"自転車\", \"jitensha\", \"vélo\"));
+        kanjiMap.add(new GuessAnswerData(\"車\", \"kuruma\", \"voiture\"));
+
+        // Objets
+        kanjiMap.add(new GuessAnswerData(\"本\", \"hon\", \"livre\"));
+        kanjiMap.add(new GuessAnswerData(\"電話\", \"denwa\", \"téléphone\"));
+        kanjiMap.add(new GuessAnswerData(\"テレビ\", \"terebi\", \"télévision\"));
+
+        // Verbes très de base
+        kanjiMap.add(new GuessAnswerData(\"食べる\", \"taberu\", \"manger\"));
+        kanjiMap.add(new GuessAnswerData(\"飲む\", \"nomu\", \"boire\"));
+        kanjiMap.add(new GuessAnswerData(\"見る\", \"miru\", \"regarder\"));
+        kanjiMap.add(new GuessAnswerData(\"聞く\", \"kiku\", \"écouter\"));
+        kanjiMap.add(new GuessAnswerData(\"言う\", \"iu\", \"dire\"));
+        kanjiMap.add(new GuessAnswerData(\"行く\", \"iku\", \"aller\"));
+        kanjiMap.add(new GuessAnswerData(\"来る\", \"kuru\", \"venir\"));
+        kanjiMap.add(new GuessAnswerData(\"帰る\", \"kaeru\", \"rentrer\"));
+
+        // Temps / Saisons
+        kanjiMap.add(new GuessAnswerData(\"春\", \"haru\", \"printemps\"));
+        kanjiMap.add(new GuessAnswerData(\"夏\", \"natsu\", \"été\"));
+        kanjiMap.add(new GuessAnswerData(\"秋\", \"aki\", \"automne\"));
+        kanjiMap.add(new GuessAnswerData(\"冬\", \"fuyu\", \"hiver\"));
+
+        // Autres utiles
+        kanjiMap.add(new GuessAnswerData(\"安い\", \"yasui\", \"bon marché\"));
+        kanjiMap.add(new GuessAnswerData(\"高い\", \"takai\", \"cher, haut\"));
+        kanjiMap.add(new GuessAnswerData(\"大きい\", \"ookii\", \"grand\"));
+        kanjiMap.add(new GuessAnswerData(\"小さい\", \"chiisai\", \"petit\"));
+        kanjiMap.add(new GuessAnswerData(\"長い\", \"nagai\", \"long\"));
+        kanjiMap.add(new GuessAnswerData(\"短い\", \"mijikai\", \"court\"));
+    }"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 155266 "addKanji"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "currentSession" explicit_type "List<GuessAnswerData>"
+	  param inout name "addKanji" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 143746 "Katakanas"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144898 // katakanaMap (<unidirectional association>)
+	relation 144898 --->
+	  stereotype "List"
+	  a role_name "katakanaMap" init_value " new ArrayList<>()" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 144898 // katakanaMap (<unidirectional association>)
+	  b parent class_ref 142594 // GuessAnswerData
+      end
+
+      classrelation 145026 // katakanaCombinedMap (<unidirectional association>)
+	relation 145026 --->
+	  stereotype "List"
+	  a role_name "katakanaCombinedMap" init_value " new ArrayList<>()" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 145026 // katakanaCombinedMap (<unidirectional association>)
+	  b parent class_ref 142594 // GuessAnswerData
+      end
+
+      extra_member 141954 "initialization"
+	
+	cpp "" ""
+	java "  static {
+        // voyelles
+        katakanaMap.add(new GuessAnswerData(\"ア\", \"a\"));
+        katakanaMap.add(new GuessAnswerData(\"イ\", \"i\"));
+        katakanaMap.add(new GuessAnswerData(\"ウ\", \"u\"));
+        katakanaMap.add(new GuessAnswerData(\"エ\", \"e\"));
+        katakanaMap.add(new GuessAnswerData(\"オ\", \"o\"));
+
+        // k
+        katakanaMap.add(new GuessAnswerData(\"カ\", \"ka\"));
+        katakanaMap.add(new GuessAnswerData(\"キ\", \"ki\"));
+        katakanaMap.add(new GuessAnswerData(\"ク\", \"ku\"));
+        katakanaMap.add(new GuessAnswerData(\"ケ\", \"ke\"));
+        katakanaMap.add(new GuessAnswerData(\"コ\", \"ko\"));
+
+        // g
+        katakanaMap.add(new GuessAnswerData(\"ガ\", \"ga\"));
+        katakanaMap.add(new GuessAnswerData(\"ギ\", \"gi\"));
+        katakanaMap.add(new GuessAnswerData(\"グ\", \"gu\"));
+        katakanaMap.add(new GuessAnswerData(\"ゲ\", \"ge\"));
+        katakanaMap.add(new GuessAnswerData(\"ゴ\", \"go\"));
+
+        // s
+        katakanaMap.add(new GuessAnswerData(\"サ\", \"sa\"));
+        katakanaMap.add(new GuessAnswerData(\"シ\", \"shi\"));
+        katakanaMap.add(new GuessAnswerData(\"ス\", \"su\"));
+        katakanaMap.add(new GuessAnswerData(\"セ\", \"se\"));
+        katakanaMap.add(new GuessAnswerData(\"ソ\", \"so\"));
+
+        // z
+        katakanaMap.add(new GuessAnswerData(\"ザ\", \"za\"));
+        katakanaMap.add(new GuessAnswerData(\"ジ\", \"ji\"));
+        katakanaMap.add(new GuessAnswerData(\"ズ\", \"zu\"));
+        katakanaMap.add(new GuessAnswerData(\"ゼ\", \"ze\"));
+        katakanaMap.add(new GuessAnswerData(\"ゾ\", \"zo\"));
+
+        // t
+        katakanaMap.add(new GuessAnswerData(\"タ\", \"ta\"));
+        katakanaMap.add(new GuessAnswerData(\"チ\", \"chi\"));
+        katakanaMap.add(new GuessAnswerData(\"ツ\", \"tsu\"));
+        katakanaMap.add(new GuessAnswerData(\"テ\", \"te\"));
+        katakanaMap.add(new GuessAnswerData(\"ト\", \"to\"));
+
+        // d
+        katakanaMap.add(new GuessAnswerData(\"ダ\", \"da\"));
+        katakanaMap.add(new GuessAnswerData(\"ヂ\", \"ji\"));
+        katakanaMap.add(new GuessAnswerData(\"ヅ\", \"zu\"));
+        katakanaMap.add(new GuessAnswerData(\"デ\", \"de\"));
+        katakanaMap.add(new GuessAnswerData(\"ド\", \"do\"));
+
+        // n
+        katakanaMap.add(new GuessAnswerData(\"ナ\", \"na\"));
+        katakanaMap.add(new GuessAnswerData(\"ニ\", \"ni\"));
+        katakanaMap.add(new GuessAnswerData(\"ヌ\", \"nu\"));
+        katakanaMap.add(new GuessAnswerData(\"ネ\", \"ne\"));
+        katakanaMap.add(new GuessAnswerData(\"ノ\", \"no\"));
+
+        // h
+        katakanaMap.add(new GuessAnswerData(\"ハ\", \"ha\"));
+        katakanaMap.add(new GuessAnswerData(\"ヒ\", \"hi\"));
+        katakanaMap.add(new GuessAnswerData(\"フ\", \"fu\"));
+        katakanaMap.add(new GuessAnswerData(\"ヘ\", \"he\"));
+        katakanaMap.add(new GuessAnswerData(\"ホ\", \"ho\"));
+
+        // b
+        katakanaMap.add(new GuessAnswerData(\"バ\", \"ba\"));
+        katakanaMap.add(new GuessAnswerData(\"ビ\", \"bi\"));
+        katakanaMap.add(new GuessAnswerData(\"ブ\", \"bu\"));
+        katakanaMap.add(new GuessAnswerData(\"ベ\", \"be\"));
+        katakanaMap.add(new GuessAnswerData(\"ボ\", \"bo\"));
+
+        // p
+        katakanaMap.add(new GuessAnswerData(\"パ\", \"pa\"));
+        katakanaMap.add(new GuessAnswerData(\"ピ\", \"pi\"));
+        katakanaMap.add(new GuessAnswerData(\"プ\", \"pu\"));
+        katakanaMap.add(new GuessAnswerData(\"ペ\", \"pe\"));
+        katakanaMap.add(new GuessAnswerData(\"ポ\", \"po\"));
+
+        // m
+        katakanaMap.add(new GuessAnswerData(\"マ\", \"ma\"));
+        katakanaMap.add(new GuessAnswerData(\"ミ\", \"mi\"));
+        katakanaMap.add(new GuessAnswerData(\"ム\", \"mu\"));
+        katakanaMap.add(new GuessAnswerData(\"メ\", \"me\"));
+        katakanaMap.add(new GuessAnswerData(\"モ\", \"mo\"));
+
+        // y
+        katakanaMap.add(new GuessAnswerData(\"ヤ\", \"ya\"));
+        katakanaMap.add(new GuessAnswerData(\"ユ\", \"yu\"));
+        katakanaMap.add(new GuessAnswerData(\"ヨ\", \"yo\"));
+
+        // r
+        katakanaMap.add(new GuessAnswerData(\"ラ\", \"ra\"));
+        katakanaMap.add(new GuessAnswerData(\"リ\", \"ri\"));
+        katakanaMap.add(new GuessAnswerData(\"ル\", \"ru\"));
+        katakanaMap.add(new GuessAnswerData(\"レ\", \"re\"));
+        katakanaMap.add(new GuessAnswerData(\"ロ\", \"ro\"));
+
+        // w
+        katakanaMap.add(new GuessAnswerData(\"ワ\", \"wa\"));
+        katakanaMap.add(new GuessAnswerData(\"ヲ\", \"wo\"));
+
+        // n
+        katakanaMap.add(new GuessAnswerData(\"ン\", \"n\"));
+
+        // petites lettres
+        katakanaMap.add(new GuessAnswerData(\"ァ\", \"a\"));
+        katakanaMap.add(new GuessAnswerData(\"ィ\", \"i\"));
+        katakanaMap.add(new GuessAnswerData(\"ゥ\", \"u\"));
+        katakanaMap.add(new GuessAnswerData(\"ェ\", \"e\"));
+        katakanaMap.add(new GuessAnswerData(\"ォ\", \"o\"));
+        katakanaMap.add(new GuessAnswerData(\"ャ\", \"ya\"));
+        katakanaMap.add(new GuessAnswerData(\"ュ\", \"yu\"));
+        katakanaMap.add(new GuessAnswerData(\"ョ\", \"yo\"));
+    }"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      extra_member 142082 "initialization"
+	
+	cpp "" ""
+	java "  static {
+        // k+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"キャ\", \"kya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"キュ\", \"kyu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"キョ\", \"kyo\"));
+
+        // g+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ギャ\", \"gya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ギュ\", \"gyu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ギョ\", \"gyo\"));
+
+        // s+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"シャ\", \"sha\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"シュ\", \"shu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ショ\", \"sho\"));
+
+        // z+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ジャ\", \"ja\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ジュ\", \"ju\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ジョ\", \"jo\"));
+
+        // t+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"チャ\", \"cha\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"チュ\", \"chu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"チョ\", \"cho\"));
+
+        // d+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ヂャ\", \"ja\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ヂュ\", \"ju\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ヂョ\", \"jo\"));
+
+        // n+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ニャ\", \"nya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ニュ\", \"nyu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ニョ\", \"nyo\"));
+
+        // h+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ヒャ\", \"hya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ヒュ\", \"hyu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ヒョ\", \"hyo\"));
+
+        // b+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ビャ\", \"bya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ビュ\", \"byu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ビョ\", \"byo\"));
+
+        // p+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ピャ\", \"pya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ピュ\", \"pyu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ピョ\", \"pyo\"));
+
+        // m+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"ミャ\", \"mya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ミュ\", \"myu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"ミョ\", \"myo\"));
+
+        // r+ya/yu/yo
+        katakanaCombinedMap.add(new GuessAnswerData(\"リャ\", \"rya\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"リュ\", \"ryu\"));
+        katakanaCombinedMap.add(new GuessAnswerData(\"リョ\", \"ryo\"));
+    }"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 155394 "addKatakanas"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "currentSession" explicit_type "List<GuessAnswerData>"
+	  param inout name "addKatakana" explicit_type "boolean"
+	  param inout name "addComposition" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 141442 "chars"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 142850 "Hiraganas"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.List;
+import fr.red.japanlearn.utils.guess.GuessAnswerData;
+${definition}"
+      associated_elems
+	class_ref 143490 // Hiraganas
+      end
+    end
+
+    artifact 142978 "Kanji"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.List;
+import fr.red.japanlearn.utils.guess.GuessAnswerData;
+${definition}"
+      associated_elems
+	class_ref 143618 // Kanji
+      end
+    end
+
+    artifact 143106 "Katakanas"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.List;
+import fr.red.japanlearn.utils.guess.GuessAnswerData;
+${definition}"
+      associated_elems
+	class_ref 143746 // Katakanas
+      end
+    end
+  end
+end
