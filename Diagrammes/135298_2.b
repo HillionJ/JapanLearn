@@ -1,8 +1,0 @@
-class Hiraganas
-!!!139138.java!!!	addHiraganas(inout currentSession : List<GuessAnswerData>, inout addHiragana : boolean, inout addComposition : boolean) : void
-        if (addHiragana) {
-            currentSession.addAll(Hiraganas.hiraganaMap);
-            if (addComposition) {
-                currentSession.addAll(Hiraganas.hiraganaCombinedMap);
-            }
-        }

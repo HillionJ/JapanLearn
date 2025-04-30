@@ -1,8 +1,0 @@
-class Katakanas
-!!!139394.java!!!	addKatakanas(inout currentSession : List<GuessAnswerData>, inout addKatakana : boolean, inout addComposition : boolean) : void
-        if (addKatakana) {
-            currentSession.addAll(Katakanas.katakanaMap);
-            if (addComposition) {
-                currentSession.addAll(Katakanas.katakanaCombinedMap);
-            }
-        }
