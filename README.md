@@ -1,8 +1,11 @@
-# JapanLearn v0.2
+# JapanLearn v1.0
 
 **Développeur** : RedEstDeRetour
+
 **Plateforme** : Android
-**Version** : 0.2 (Deuxième version)
+
+**Version** : 1.0 (Itération 3)
+
 **Nom de l'application** : JapanLearn
 
 ## 📖 Présentation
@@ -28,6 +31,19 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
   - **Mauvaise réponse**: Afficher la solution
 - Passer à la question suivante avec `Continuer` en cas de _visualisation du statut d'une réponse_
 
+
+**Version 0.2** : 
+- Paramétrer la session (Hiraganas ± Kataganas ± Kanji ± Combinaisons Hiraganas ± Combinaisions Katakanas + Nombre de quesitons)
+- Lancer une session
+- Visualiser le caractère
+- Ecrire la réponse
+- Visualiser le statut de la réponse:
+  - **Bonne réponse**: Afficher la signification (si disponible)
+  - **Mauvaise réponse**: Afficher la solution
+- Passer à la question suivante avec `Continuer` en cas de _visualisation du statut d'une réponse_
+- Visualiser les statisques à la fin de la partie
+- Visualiser la progression du questionnaire
+
 ## ✨ Fonctionnalités principales
 
 - 📚 **Sélection des modes d'apprentissage** :
@@ -39,7 +55,7 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 
 - 🔄 **Questions aléatoires** :
 
-  À chaque lancement d'exercice, un caractère est tiré aléatoirement.
+  Au lancement de la session, un questionnaire est créer aléatoirement
 
 - 🔁 **Inversion des questions** :
 
@@ -89,16 +105,14 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 **Minimum SDK recommandé** : Android 7.0 (Nougat)
 
 ## 🚧 Limitations connues
-- Pas encore de suivi de score ou de progression.
 - Aucune gestion d'historique d'erreurs.
 - Pas de personnalisation avancée de l'exercice.
 
 ## 📅 À venir dans les prochaines versions
 - Mode "révision des erreurs" pour revoir les mauvaises réponses.
-- Enregistrement de la progression de l'utilisateur.
 
 ## 💬 Remarques
 
-JapanLearn v0.2 est une version expérimentale, pensée avant tout pour aider à renforcer la mémoire visuelle et écrite du syllabaire japonais.
+JapanLearn v1.0 est une version expérimentale, pensée avant tout pour aider à renforcer la mémoire visuelle et écrite du syllabaire japonais.
 
 **Merci d'utiliser JapanLearn !**
