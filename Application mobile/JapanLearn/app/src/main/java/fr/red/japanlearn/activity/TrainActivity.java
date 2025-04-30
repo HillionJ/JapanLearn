@@ -1,5 +1,6 @@
 package fr.red.japanlearn.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -101,6 +102,9 @@ public class TrainActivity extends AppCompatActivity {
     public void restartActivity() {
         if (!MainActivity.getInstance().hasNextTry()){
             finish();
+            Intent intent = new Intent(this, StatsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             return;
         }
         MainActivity.getInstance().nextTry();
@@ -162,7 +166,7 @@ public class TrainActivity extends AppCompatActivity {
 
         TextView session_progress = findViewById(R.id.session_progress);
         int maxNumber = MainActivity.getInstance().getMaxNumberOfQuestions();
-        int currentNumber = maxNumber - MainActivity.getInstance().getCurrentSession().size() + 1;
+        int currentNumber = maxNumber - MainActivity.getInstance().getDynamicQuestions().size() + 1;
         session_progress.setText(currentNumber + " / " + maxNumber);
 
         TextView wrong_label = findViewById(R.id.wrong_label);
@@ -193,8 +197,7 @@ public class TrainActivity extends AppCompatActivity {
                     return;
                 }
                 if (inputText.getText().toString().equalsIgnoreCase(correctAnswer)) {
-                    guessAnswerData.correct();
-                    MainActivity.getInstance().removeGuessAnswerData(guessAnswerData);
+                    MainActivity.getInstance().setCorrect(guessAnswerData);
                     if (guessAnswerData.hasExplanation()) {
                         _continue = true;
                         closeKeyBoard();
@@ -210,7 +213,7 @@ public class TrainActivity extends AppCompatActivity {
                     closeKeyBoard();
                     disableEditText();
                     showErrorMessage(false);
-                    guessAnswerData.requiredCorrection();
+                    MainActivity.getInstance().setIncorrect(guessAnswerData);
                     validate.setText(R.string.continuer);
                     MainActivity.getInstance().setSessionState(SessionState.ENDING);
                 }

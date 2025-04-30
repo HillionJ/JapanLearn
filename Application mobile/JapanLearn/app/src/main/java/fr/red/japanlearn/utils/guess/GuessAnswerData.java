@@ -7,6 +7,7 @@ public class GuessAnswerData {
     private String explanation;
     private boolean correction = false;
     private boolean correct = false;
+    private boolean wasIncorrect = false;
     private boolean reversed;
 
     public GuessAnswerData(String guess, String answer) {
@@ -37,6 +38,7 @@ public class GuessAnswerData {
 
     public void requiredCorrection() {
         this.correction = true;
+        this.wasIncorrect = true;
     }
 
     public boolean isCorrection() {
@@ -59,8 +61,13 @@ public class GuessAnswerData {
         this.correct = true;
     }
 
+    public boolean wasIncorrect() {
+        return wasIncorrect;
+    }
+
     public void reset() {
-        correction = false;
-        correct = false;
+        this.correction = false;
+        this.correct = false;
+        this.wasIncorrect = false;
     }
 }

@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Settings settings;
-    private List<GuessAnswerData> currentSession = new ArrayList<>();
+    private List<GuessAnswerData> dynamicQuestions = new ArrayList<>();
+    private final List<GuessAnswerData> questions = new ArrayList<>();
     private GuessAnswerData guessAnswerData = null;
     private SessionState sessionState;
     private int maxNumberOfQuestions;
@@ -51,18 +52,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextTry() {
         sessionState = SessionState.TRAINING;
-        guessAnswerData = currentSession.get(new Random().nextInt(currentSession.size()));
+        guessAnswerData = dynamicQuestions.get(0);
         if (!guessAnswerData.isCorrection()){
             guessAnswerData.setReversed(new Random().nextBoolean());
         }
     }
 
-    public boolean hasNextTry() {
-        return !currentSession.isEmpty();
+    public void setCorrect(GuessAnswerData guessAnswerData) {
+        guessAnswerData.correct();
+        dynamicQuestions.remove(guessAnswerData);
     }
 
-    public void removeGuessAnswerData(GuessAnswerData guessAnswerData) {
-        currentSession.remove(guessAnswerData);
+    public void setIncorrect(GuessAnswerData guessAnswerData) {
+        guessAnswerData.requiredCorrection();
+        dynamicQuestions.remove(guessAnswerData);
+        dynamicQuestions.add(dynamicQuestions.size(), guessAnswerData);
+    }
+
+    public boolean hasNextTry() {
+        return !dynamicQuestions.isEmpty();
     }
 
     public GuessAnswerData getCurrentGuessAnswerData() {
@@ -81,8 +89,12 @@ public class MainActivity extends AppCompatActivity {
         return maxNumberOfQuestions;
     }
 
-    public List<GuessAnswerData> getCurrentSession() {
-        return currentSession;
+    public List<GuessAnswerData> getDynamicQuestions() {
+        return dynamicQuestions;
+    }
+
+    public List<GuessAnswerData> getQuestions() {
+        return questions;
     }
 
     private void iniVars() {
@@ -115,23 +127,26 @@ public class MainActivity extends AppCompatActivity {
     private void initStartButton() {
         Button startButton = findViewById(R.id.start);
         startButton.setOnClickListener(view -> {
-            currentSession.forEach(GuessAnswerData::reset);
-            currentSession.clear();
-            Hiraganas.addHiraganas(currentSession, settings.isHiragana(), settings.isHiraganaCombined());
-            Katakanas.addKatakanas(currentSession, settings.isKatakana(), settings.isKatakanaCombined());
-            Kanji.addKanji(currentSession, settings.isKanji());
+            dynamicQuestions.clear();
+            Hiraganas.addHiraganas(dynamicQuestions, settings.isHiragana(), settings.isHiraganaCombined());
+            Katakanas.addKatakanas(dynamicQuestions, settings.isKatakana(), settings.isKatakanaCombined());
+            Kanji.addKanji(dynamicQuestions, settings.isKanji());
 
-            if (currentSession.isEmpty()) {
-                Toast.makeText(MainActivity.this, "Sélection vide", Toast.LENGTH_SHORT).show();
+            if (dynamicQuestions.isEmpty()) {
+                Toast.makeText(MainActivity.this, "Sélection vide (Voir Paramètres)", Toast.LENGTH_SHORT).show();
                 return;
             }
+            Collections.shuffle(dynamicQuestions);
             if (settings.isNumberOfQuestionsSet()) {
-                Collections.shuffle(currentSession);
-                maxNumberOfQuestions = Math.min(settings.getNumberOfQuestions(), currentSession.size());
-                currentSession = currentSession.subList(0, maxNumberOfQuestions);
+                maxNumberOfQuestions = Math.min(settings.getNumberOfQuestions(), dynamicQuestions.size());
+                dynamicQuestions = dynamicQuestions.subList(0, maxNumberOfQuestions);
             } else {
-                maxNumberOfQuestions = currentSession.size();
+                maxNumberOfQuestions = dynamicQuestions.size();
             }
+            dynamicQuestions.forEach(GuessAnswerData::reset);
+
+            questions.clear();
+            questions.addAll(dynamicQuestions);
 
             nextTry();
             Intent intent = new Intent(MainActivity.this, TrainActivity.class);
