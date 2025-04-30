@@ -1,8 +1,9 @@
-package fr.red.japanlearn.utils;
+package fr.red.japanlearn.utils.chars;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import fr.red.japanlearn.utils.guess.GuessAnswerData;
 
 public class Kanji {
 
