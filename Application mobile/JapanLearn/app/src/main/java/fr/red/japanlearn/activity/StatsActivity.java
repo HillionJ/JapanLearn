@@ -21,7 +21,7 @@ import java.util.List;
 
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.guess.GuessAnswerData;
+import fr.red.japanlearn.utils.Question;
 
 public class StatsActivity extends AppCompatActivity {
 
@@ -53,9 +53,9 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void initPercentage() {
-        List<GuessAnswerData> questions = MainActivity.getInstance().getQuestions();
+        List<Question> questions = MainActivity.getInstance().getQuestions();
         double correct = 0;
-        for (GuessAnswerData question : questions) {
+        for (Question question : questions) {
             if (!question.wasIncorrect()) {
                 correct++;
             }
@@ -67,7 +67,7 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     public void initProgressBar() {
-        List<GuessAnswerData> questions = MainActivity.getInstance().getQuestions();
+        List<Question> questions = MainActivity.getInstance().getQuestions();
         LinearLayout progressBarLayout = findViewById(R.id.customProgressBar);
         progressBarLayout.removeAllViews();
 

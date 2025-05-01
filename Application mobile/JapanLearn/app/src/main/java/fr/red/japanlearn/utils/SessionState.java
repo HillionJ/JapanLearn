@@ -1,4 +1,4 @@
-package fr.red.japanlearn.utils.session;
+package fr.red.japanlearn.utils;
 
 public enum SessionState {
 

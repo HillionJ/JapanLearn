@@ -1,4 +1,4 @@
-package fr.red.japanlearn.utils;
+package fr.red.japanlearn.utils.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,6 +6,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.util.Map;
+
+import fr.red.japanlearn.utils.IHM;
 
 public class Settings {
 
@@ -58,8 +60,6 @@ public class Settings {
         editor.putString("numberOfQuestions", numberOfQuestions);
 
         editor.apply();
-
-
     }
 
     @SuppressWarnings("ConstantConditions")

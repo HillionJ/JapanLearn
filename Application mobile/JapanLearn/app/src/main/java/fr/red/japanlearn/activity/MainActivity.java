@@ -18,12 +18,13 @@ import java.util.Random;
 
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.Settings;
-import fr.red.japanlearn.utils.guess.GuessAnswerData;
+import fr.red.japanlearn.utils.storage.Settings;
+import fr.red.japanlearn.utils.Question;
 import fr.red.japanlearn.utils.chars.Hiraganas;
 import fr.red.japanlearn.utils.chars.Kanji;
 import fr.red.japanlearn.utils.chars.Katakanas;
-import fr.red.japanlearn.utils.session.SessionState;
+import fr.red.japanlearn.utils.SessionState;
+import fr.red.japanlearn.utils.storage.mistake.Mistakes;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Settings settings;
-    private List<GuessAnswerData> dynamicQuestions = new ArrayList<>();
-    private final List<GuessAnswerData> questions = new ArrayList<>();
-    private GuessAnswerData guessAnswerData = null;
+    private List<Question> dynamicQuestions = new ArrayList<>();
+    private final List<Question> questions = new ArrayList<>();
+    private Question question = null;
     private SessionState sessionState;
     private int maxNumberOfQuestions;
+    private Mistakes mistakes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,29 +54,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextTry() {
         sessionState = SessionState.TRAINING;
-        guessAnswerData = dynamicQuestions.get(0);
-        if (!guessAnswerData.isCorrection()){
-            guessAnswerData.setReversed(new Random().nextBoolean());
+        question = dynamicQuestions.get(0);
+        if (!question.isCorrection()){
+            question.setReversed(new Random().nextBoolean());
         }
     }
 
-    public void setCorrect(GuessAnswerData guessAnswerData) {
-        guessAnswerData.correct();
-        dynamicQuestions.remove(guessAnswerData);
+    public void setCorrect(Question question) {
+        question.correct();
+        dynamicQuestions.remove(question);
     }
 
-    public void setIncorrect(GuessAnswerData guessAnswerData) {
-        guessAnswerData.requiredCorrection();
-        dynamicQuestions.remove(guessAnswerData);
-        dynamicQuestions.add(dynamicQuestions.size(), guessAnswerData);
+    public void setIncorrect(Question question, String wrongAnswer) {
+        question.requiredCorrection();
+        dynamicQuestions.remove(question);
+        dynamicQuestions.add(dynamicQuestions.size(), question);
+        mistakes.addMistake(question, wrongAnswer);
     }
 
     public boolean hasNextTry() {
         return !dynamicQuestions.isEmpty();
     }
 
-    public GuessAnswerData getCurrentGuessAnswerData() {
-        return guessAnswerData;
+    public Question getCurrentGuessAnswerData() {
+        return question;
     }
 
     public SessionState getSessionState() {
@@ -89,21 +92,24 @@ public class MainActivity extends AppCompatActivity {
         return maxNumberOfQuestions;
     }
 
-    public List<GuessAnswerData> getDynamicQuestions() {
+    public List<Question> getDynamicQuestions() {
         return dynamicQuestions;
     }
 
-    public List<GuessAnswerData> getQuestions() {
+    public List<Question> getQuestions() {
         return questions;
     }
 
     private void iniVars() {
         IHM ihm = IHM.init(this);
         ihm.ajouterIHM(this);
+
         settings = Settings.getSettings();
+        mistakes = Mistakes.getMistakes();
 
         initStartButton();
         initSettingsButton();
+        initMistakesButton();
     }
 
     private void initLayout() {
@@ -113,6 +119,14 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+    }
+
+    public void initMistakesButton() {
+        Button mistakesButton = findViewById(R.id.mistakesReview);
+        mistakesButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, MistakeActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -143,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 maxNumberOfQuestions = dynamicQuestions.size();
             }
-            dynamicQuestions.forEach(GuessAnswerData::reset);
+            dynamicQuestions.forEach(Question::reset);
 
             questions.clear();
             questions.addAll(dynamicQuestions);

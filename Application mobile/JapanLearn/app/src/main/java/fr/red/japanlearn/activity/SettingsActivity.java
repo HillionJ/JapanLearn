@@ -23,7 +23,7 @@ import java.util.Map;
 
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.Settings;
+import fr.red.japanlearn.utils.storage.Settings;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -86,12 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void initCloseButton() {
         ImageView close = findViewById(R.id.close);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        close.setOnClickListener(view -> finish());
     }
 
     public void initApplyButton() {

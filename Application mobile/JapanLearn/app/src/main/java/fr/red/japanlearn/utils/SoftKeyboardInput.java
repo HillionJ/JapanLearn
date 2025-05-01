@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SoftKeyboardInput {
 
-    public static void handleSoftKeyboard(Activity activity) {
+    public SoftKeyboardInput(Activity activity) {
         View rootView = activity.findViewById(android.R.id.content);
 
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
