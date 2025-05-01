@@ -49,4 +49,12 @@ public class MistakeData {
     public int getCount() {
         return mistakeCount;
     }
+
+    public MistakeType getType() {
+        return type;
+    }
+
+    public List<Question> getMixUpQuestion() {
+        return mixUpQuestion;
+    }
 }

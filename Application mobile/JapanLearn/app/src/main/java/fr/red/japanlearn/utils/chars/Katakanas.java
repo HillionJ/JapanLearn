@@ -199,12 +199,8 @@ public class Katakanas {
     public static List<Question> getMixUpQuestions(String wrongAnswer, boolean reversed) {
         List<Question> mixUpQuestions = new ArrayList<>();
 
-        katakanaMap.stream().map(question -> question.getGuess(reversed)).filter(string -> string.equals(wrongAnswer)).forEach(guess -> {
-            mixUpQuestions.add(new Question(CharOrigin.HIRAGANA, guess, wrongAnswer));
-        });
-        katakanaCombinedMap.stream().map(question -> question.getGuess(reversed)).filter(string -> string.equals(wrongAnswer)).forEach(guess -> {
-            mixUpQuestions.add(new Question(CharOrigin.HIRAGANA, guess, wrongAnswer));
-        });
+        katakanaMap.stream().filter(question -> question.getAnswer(reversed).equals(wrongAnswer)).forEach(mixUpQuestions::add);
+        katakanaCombinedMap.stream().filter(question -> question.getAnswer(reversed).equals(wrongAnswer)).forEach(mixUpQuestions::add);
 
         return mixUpQuestions;
     }

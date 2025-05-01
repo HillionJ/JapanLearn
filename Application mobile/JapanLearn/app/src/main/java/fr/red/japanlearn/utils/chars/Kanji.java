@@ -128,9 +128,7 @@ public class Kanji {
     public static List<Question> getMixUpQuestions(String wrongAnswer, boolean reversed) {
         List<Question> mixUpQuestions = new ArrayList<>();
 
-        kanjiMap.stream().map(question -> question.getGuess(reversed)).filter(string -> string.equals(wrongAnswer)).forEach(guess -> {
-            mixUpQuestions.add(new Question(CharOrigin.HIRAGANA, guess, wrongAnswer));
-        });
+        kanjiMap.stream().filter(question -> question.getAnswer(reversed).equals(wrongAnswer)).forEach(mixUpQuestions::add);
 
         return mixUpQuestions;
     }
