@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import fr.red.japanlearn.R;
+import fr.red.japanlearn.database.DataBase;
 import fr.red.japanlearn.utils.IHM;
 import fr.red.japanlearn.utils.session.Session;
 import fr.red.japanlearn.utils.SessionState;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private void iniVars() {
         ihm = IHM.init(this);
         ihm.ajouterIHM(this);
+
+        DataBase.init(this);
 
         initStartButton();
         initSettingsButton();

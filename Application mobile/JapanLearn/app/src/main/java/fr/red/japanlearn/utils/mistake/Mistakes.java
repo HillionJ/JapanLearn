@@ -1,9 +1,12 @@
 package fr.red.japanlearn.utils.mistake;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.red.japanlearn.database.DataBase;
 import fr.red.japanlearn.utils.Question;
 
 public class Mistakes {
@@ -16,39 +19,59 @@ public class Mistakes {
         return instance;
     }
 
-    private final List<MistakeData> mistakes = new ArrayList<>();
+    private final DataBase dataBase;
+    private final List<MistakeData> mistakes;
 
-    public void addMistake(Question question, String wrongAnswer) {
-        MistakeData mistakeData = null;
-        for (MistakeData data : mistakes) {
-            if (data.getQuestion().isReversed() == question.isReversed() && data.getQuestion().getGuess().equals(question.getGuess()) && data.getWrongAnswer().equals(wrongAnswer)) {
-                mistakeData = data;
-                break;
-            }
-        }
-        if (mistakeData == null) {
-            mistakeData = new MistakeData(question, wrongAnswer);
-            mistakes.add(mistakeData);
-        }
-        mistakeData.addMistake();
+    private Mistakes() {
+        dataBase = DataBase.getDataBase();
+        mistakes = dataBase.getMistakes();
     }
 
-    public void remove(Question question) {
-        for (MistakeData data : mistakes) {
-            if (data.getQuestion().isReversed() == question.isReversed() && data.getQuestion().getGuess().equals(question.getGuess())) {
-                data.removeMistake();
-                break;
-            }
+    public void addCount(Question question, String wrongAnswer) {
+        MistakeData data = getMistakeFrom(question, wrongAnswer);
+        if (data == null) {
+            mistakes.add(dataBase.addMistake(question, wrongAnswer));
+        } else {
+            data.addMistake();
+            dataBase.updateCount(data);
         }
     }
 
-    public boolean isMistake(Question question) {
+    public void removeCount(Question question) {
+        MistakeData data = getMistakeFrom(question);
+        if (data == null) {
+            return;
+        }
+        data.removeMistake();
+        if (data.getCount() == 0) {
+            dataBase.removeMistake(data);
+            mistakes.remove(data);
+        } else {
+            dataBase.updateCount(data);
+        }
+    }
+
+    @Nullable
+    private MistakeData getMistakeFrom(Question question, String wrongAnswer) {
         for (MistakeData data : mistakes) {
-            if (data.getQuestion().isReversed() == question.isReversed() && data.getQuestion().getGuess().equals(question.getGuess())) {
-                return true;
+            if (data.getQuestion().isReversed() == question.isReversed()
+                    && data.getQuestion().getIDQuestion() == question.getIDQuestion()
+                    && data.getWrongAnswer().equals(wrongAnswer)) {
+                return data;
             }
         }
-        return false;
+        return null;
+    }
+
+    @Nullable
+    private MistakeData getMistakeFrom(Question question) {
+        for (MistakeData data : mistakes) {
+            if (data.getQuestion().isReversed() == question.isReversed()
+                    && data.getQuestion().getIDQuestion() == question.getIDQuestion()) {
+                return data;
+            }
+        }
+        return null;
     }
 
     public List<Question> getMistakesQuiz() {
@@ -62,5 +85,9 @@ public class Mistakes {
 
     public List<MistakeData> getMistakesData() {
         return mistakes;
+    }
+
+    public boolean isMistake(Question question) {
+        return getMistakeFrom(question) != null;
     }
 }

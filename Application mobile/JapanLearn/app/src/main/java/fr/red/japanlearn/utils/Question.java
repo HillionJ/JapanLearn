@@ -1,65 +1,49 @@
 package fr.red.japanlearn.utils;
 
-import androidx.annotation.NonNull;
-
-import fr.red.japanlearn.utils.chars.CharOrigin;
-
 public class Question {
 
-    private final CharOrigin charOrigin;
-    private final String guess;
-    private final String answer;
+    private final int idQuestion;
+    private final int idCharType;
+    private final String character;
+    private final String romaji;
     private final String explanation;
+    private final boolean reversed;
+
     private boolean correction = false;
     private boolean correct = false;
     private boolean wasIncorrect = false;
-    private boolean reversed;
 
-    public Question(CharOrigin charOrigin, String guess, String answer) {
-        this(charOrigin, guess, answer, null);
-    }
-
-    public Question(CharOrigin charOrigin, String guess, String answer, String explanation) {
-        this.charOrigin = charOrigin;
-        this.guess = guess;
-        this.answer = answer;
+    public Question(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed) {
+        this.idQuestion = idQuestion;
+        this.idCharType = idCharType;
+        this.character = character;
+        this.romaji = romaji;
         this.explanation = explanation;
+        this.reversed = reversed;
     }
 
-    private Question(@NonNull Question question) {
-        this.charOrigin = question.charOrigin;
-        this.guess = question.guess;
-        this.answer = question.answer;
-        this.explanation = question.explanation;
-        this.correction = question.correction;
-        this.correct = question.correct;
-        this.wasIncorrect = question.wasIncorrect;
-        this.reversed = question.reversed;
+    public int getIDQuestion() {
+        return idQuestion;
     }
 
-    @NonNull
-    public Question clone() {
-        return new Question(this);
+    public int getIDCharType() {
+        return idCharType;
     }
 
     public boolean hasExplanation() {
         return explanation != null;
     }
 
-    public String getGuess(boolean reversed) {
-        return reversed ? answer : guess;
+    public String getQuestion(boolean reversed) {
+        return reversed ? romaji : character;
     }
 
-    public String getGuess() {
-        return reversed ? answer : guess;
-    }
-
-    public String getAnswer(boolean reversed) {
-        return reversed ? guess : answer;
+    public String getQuestion() {
+        return reversed ? romaji : character;
     }
 
     public String getAnswer() {
-        return reversed ? guess : answer;
+        return reversed ? character : romaji;
     }
 
     public String getExplanation() {
@@ -73,10 +57,6 @@ public class Question {
 
     public boolean isCorrection() {
         return correction;
-    }
-
-    public void setReversed(boolean reversed) {
-        this.reversed = reversed;
     }
 
     public boolean isReversed() {
@@ -93,15 +73,5 @@ public class Question {
 
     public boolean wasIncorrect() {
         return wasIncorrect;
-    }
-
-    public void reset() {
-        this.correction = false;
-        this.correct = false;
-        this.wasIncorrect = false;
-    }
-
-    public CharOrigin getOrigin() {
-        return charOrigin;
     }
 }

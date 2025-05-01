@@ -163,8 +163,8 @@ public class TrainActivity extends AppCompatActivity {
         Mistakes mistakes = Mistakes.getMistakes();
 
         question = Session.getCurrentSession().getCurrentGuessAnswerData();
-        TextView guess = findViewById(R.id.guess);
-        guess.setText(question.getGuess());
+        TextView questionText = findViewById(R.id.guess);
+        questionText.setText(question.getQuestion());
 
         inputText = findViewById(R.id.textInput);
         inputText.setText("");

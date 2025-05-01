@@ -72,7 +72,6 @@ public class StatsActivity extends AppCompatActivity {
         }
         int percentage = (int) (correct / (double) questions.size() * 100.0);
         TextView progressPercent = findViewById(R.id.progress_percent);
-        Log.d("_RED", "initPercentage: " + percentage);
         progressPercent.setText(MessageFormat.format("{0}%", percentage));
     }
 
