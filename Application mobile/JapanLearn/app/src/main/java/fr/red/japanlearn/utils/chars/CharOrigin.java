@@ -1,5 +1,8 @@
 package fr.red.japanlearn.utils.chars;
 
+import androidx.annotation.NonNull;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.red.japanlearn.utils.Question;
@@ -8,6 +11,7 @@ public enum CharOrigin {
 
     HIRAGANA, KATAKANA, KANJI;
 
+    @NonNull
     public List<Question> getMixUpQuestions(String wrongAnswer, boolean reversed) {
         switch (this) {
             case HIRAGANA:
@@ -17,7 +21,7 @@ public enum CharOrigin {
             case KANJI:
                 return Kanji.getMixUpQuestions(wrongAnswer, reversed);
             default:
-                return null;
+                return new ArrayList<>();
         }
     }
 }

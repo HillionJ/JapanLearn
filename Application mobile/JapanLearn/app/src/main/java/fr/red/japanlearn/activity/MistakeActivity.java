@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,14 +14,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.List;
+
 import fr.red.japanlearn.R;
-import fr.red.japanlearn.utils.storage.mistake.MistakeData;
-import fr.red.japanlearn.utils.storage.mistake.MistakeType;
-import fr.red.japanlearn.utils.storage.mistake.Mistakes;
+import fr.red.japanlearn.utils.IHM;
+import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.Session;
+import fr.red.japanlearn.utils.session.SessionType;
+import fr.red.japanlearn.utils.mistake.MistakeData;
+import fr.red.japanlearn.utils.mistake.MistakeType;
+import fr.red.japanlearn.utils.mistake.Mistakes;
 
 public class MistakeActivity extends AppCompatActivity {
 
     private Mistakes mistakes;
+    private IHM ihm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,13 @@ public class MistakeActivity extends AppCompatActivity {
 
         initLayout();
         initVars();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+        updateMistakesList();
     }
 
     private void initLayout() {
@@ -42,6 +57,8 @@ public class MistakeActivity extends AppCompatActivity {
 
     public void initVars() {
         mistakes = Mistakes.getMistakes();
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
 
         updateMistakesList();
 
@@ -51,7 +68,14 @@ public class MistakeActivity extends AppCompatActivity {
 
     private void initReviewButton() {
         Button reviewbButton = findViewById(R.id.mistake_review);
-        //TODO
+        reviewbButton.setOnClickListener(view -> {
+            List<Question> quiz = mistakes.getMistakesQuiz();
+            if (quiz.isEmpty()) {
+                Toast.makeText(this, "Rien à corriger", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Session.newSession(mistakes.getMistakesQuiz(), SessionType.CORRECTION);
+        });
     }
 
     private void initCloseButton() {
@@ -72,7 +96,7 @@ public class MistakeActivity extends AppCompatActivity {
 
     private void displayEmptyMistakesList(LinearLayout mistakesList) {
         TextView textView = new TextView(this);
-        textView.setText("Aucune erreur trouvée");
+        textView.setText(R.string.error_not_found);
         textView.setLayoutParams(new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)));
         textView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
         mistakesList.addView(textView);
@@ -85,7 +109,7 @@ public class MistakeActivity extends AppCompatActivity {
 
         TextView title = new TextView(this);
         title.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
-        title.setText(data.getQuestion().getGuess() + "->" + data.getWrongAnswer());
+        title.setText(String.format("%s->%s", data.getQuestion().getGuess(), data.getWrongAnswer()));
 
         TextView count = new TextView(this);
         count.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -97,7 +121,7 @@ public class MistakeActivity extends AppCompatActivity {
 
         if (data.getType() == MistakeType.MIX_UP) {
             TextView textView = new TextView(this);
-            textView.setText("  Confondu avec " + craftMixUpStr(data));
+            textView.setText(String.format("%s%s", getString(R.string.mixup_with), craftMixUpStr(data)));
             mistakesList.addView(textView);
         }
     }

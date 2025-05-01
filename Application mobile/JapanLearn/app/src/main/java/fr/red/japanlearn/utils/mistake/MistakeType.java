@@ -1,4 +1,4 @@
-package fr.red.japanlearn.utils.storage.mistake;
+package fr.red.japanlearn.utils.mistake;
 
 public enum MistakeType {
 

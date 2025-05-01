@@ -17,19 +17,29 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
 import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.Session;
 
 public class StatsActivity extends AppCompatActivity {
+
+    private IHM ihm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initLayout();
         initVars();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
     }
 
     private void initLayout() {
@@ -43,7 +53,7 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     public void initVars() {
-        IHM ihm = IHM.getIHM();
+        ihm = IHM.getIHM();
         ihm.ajouterIHM(this);
 
         initCloseButton();
@@ -53,7 +63,7 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     private void initPercentage() {
-        List<Question> questions = MainActivity.getInstance().getQuestions();
+        List<Question> questions = Session.getCurrentSession().getQuestions();
         double correct = 0;
         for (Question question : questions) {
             if (!question.wasIncorrect()) {
@@ -63,11 +73,11 @@ public class StatsActivity extends AppCompatActivity {
         int percentage = (int) (correct / (double) questions.size() * 100.0);
         TextView progressPercent = findViewById(R.id.progress_percent);
         Log.d("_RED", "initPercentage: " + percentage);
-        progressPercent.setText(percentage + "%");
+        progressPercent.setText(MessageFormat.format("{0}%", percentage));
     }
 
     public void initProgressBar() {
-        List<Question> questions = MainActivity.getInstance().getQuestions();
+        List<Question> questions = Session.getCurrentSession().getQuestions();
         LinearLayout progressBarLayout = findViewById(R.id.customProgressBar);
         progressBarLayout.removeAllViews();
 

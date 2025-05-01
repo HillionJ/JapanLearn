@@ -1,8 +1,7 @@
-package fr.red.japanlearn.utils.storage.mistake;
-
-import android.util.Log;
+package fr.red.japanlearn.utils.mistake;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.red.japanlearn.utils.Question;
@@ -34,8 +33,13 @@ public class Mistakes {
         mistakeData.addMistake();
     }
 
-    public void remove(MistakeData mistakeData) {
-        mistakes.remove(mistakeData);
+    public void remove(Question question) {
+        for (MistakeData data : mistakes) {
+            if (data.getQuestion().isReversed() == question.isReversed() && data.getQuestion().getGuess().equals(question.getGuess())) {
+                data.removeMistake();
+                break;
+            }
+        }
     }
 
     public boolean isMistake(Question question) {
@@ -52,6 +56,7 @@ public class Mistakes {
         for (MistakeData data : mistakes) {
             questions.add(data.getQuestion());
         }
+        Collections.shuffle(questions);
         return questions;
     }
 

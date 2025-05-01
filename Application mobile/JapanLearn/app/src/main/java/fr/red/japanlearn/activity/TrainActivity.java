@@ -26,12 +26,14 @@ import com.google.android.material.textfield.TextInputEditText;
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
 import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.Session;
 import fr.red.japanlearn.utils.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
-import fr.red.japanlearn.utils.storage.mistake.Mistakes;
+import fr.red.japanlearn.utils.mistake.Mistakes;
 
 public class TrainActivity extends AppCompatActivity {
 
+    private IHM ihm;
     private String correctAnswer;
     private TextInputEditText inputText;
     private LinearLayout errorContainer;
@@ -39,7 +41,6 @@ public class TrainActivity extends AppCompatActivity {
     private TextView errorTitle;
     private Button validate;
     private Question question;
-    private Mistakes mistakes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class TrainActivity extends AppCompatActivity {
         initVars();
 
         closeKeyBoard();
-        if (MainActivity.getInstance().getSessionState() == SessionState.ENDING) {
+        if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
             if (question.isCorrect() && question.hasExplanation()) {
                 showInfoMessage(true);
                 disableEditText();
@@ -62,6 +63,12 @@ public class TrainActivity extends AppCompatActivity {
                 openKeyboard();
             }
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
     }
 
     private void disableEditText() {
@@ -92,6 +99,7 @@ public class TrainActivity extends AppCompatActivity {
         }, 150);
     }
 
+    @SuppressWarnings("deprecation")
     private void displayLayout(String message, boolean goodAnswer) {
         errorContainer.setBackgroundColor(getResources().getColor(goodAnswer ? R.color.good_answer : R.color.wrong_answer));
         errorText.setText(message);
@@ -102,14 +110,14 @@ public class TrainActivity extends AppCompatActivity {
 
 
     public void restartActivity() {
-        if (!MainActivity.getInstance().hasNextTry()){
+        if (!Session.getCurrentSession().hasNextTry()){
             finish();
             Intent intent = new Intent(this, StatsActivity.class);
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             return;
         }
-        MainActivity.getInstance().nextTry();
+        Session.getCurrentSession().nextTry();
         finish();
         startActivity(getIntent());
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -147,13 +155,14 @@ public class TrainActivity extends AppCompatActivity {
         new SoftKeyboardInput(this);
     }
 
+    @SuppressWarnings("deprecation")
     private void initVars() {
-        IHM ihm = IHM.getIHM();
+        ihm = IHM.getIHM();
         ihm.ajouterIHM(this);
 
-        mistakes = Mistakes.getMistakes();
+        Mistakes mistakes = Mistakes.getMistakes();
 
-        question = MainActivity.getInstance().getCurrentGuessAnswerData();
+        question = Session.getCurrentSession().getCurrentGuessAnswerData();
         TextView guess = findViewById(R.id.guess);
         guess.setText(question.getGuess());
 
@@ -169,8 +178,8 @@ public class TrainActivity extends AppCompatActivity {
         errorTitle = findViewById(R.id.errorTitle);
 
         TextView session_progress = findViewById(R.id.session_progress);
-        int maxNumber = MainActivity.getInstance().getMaxNumberOfQuestions();
-        int currentNumber = maxNumber - MainActivity.getInstance().getDynamicQuestions().size() + 1;
+        int maxNumber = Session.getCurrentSession().getMaxNumberOfQuestions();
+        int currentNumber = maxNumber - Session.getCurrentSession().getDynamicQuestions().size() + 1;
         session_progress.setText(format(getString(R.string.quiz_progress_format), currentNumber, maxNumber));
 
         TextView wrong_label = findViewById(R.id.wrong_label);
@@ -179,6 +188,7 @@ public class TrainActivity extends AppCompatActivity {
             wrong_label.setVisibility(View.VISIBLE);
         } else if (mistakes.isMistake(question)) {
             wrong_label.setText(R.string.frequent_label);
+            wrong_label.setTextColor(getResources().getColor(R.color.frequent_mistake));
             wrong_label.setVisibility(View.VISIBLE);
         }
 
@@ -190,12 +200,12 @@ public class TrainActivity extends AppCompatActivity {
     private void initValidationButton() {
 
         validate = findViewById(R.id.validate);
-        if (MainActivity.getInstance().getSessionState() == SessionState.ENDING) {
+        if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
             validate.setText(R.string.continuer);
         }
 
         validate.setOnClickListener(new View.OnClickListener() {
-            boolean _continue = MainActivity.getInstance().getSessionState() == SessionState.ENDING;
+            boolean _continue = Session.getCurrentSession().getSessionState() == SessionState.ENDING;
             @Override
             public void onClick(View view) {
                 if (_continue) {
@@ -207,14 +217,14 @@ public class TrainActivity extends AppCompatActivity {
                     return;
                 }
                 if (inputText.getText().toString().equalsIgnoreCase(correctAnswer)) {
-                    MainActivity.getInstance().setCorrect(question);
+                    Session.getCurrentSession().setCorrect(question);
                     if (question.hasExplanation()) {
                         _continue = true;
                         closeKeyBoard();
                         disableEditText();
                         showInfoMessage(false);
                         validate.setText(R.string.continuer);
-                        MainActivity.getInstance().setSessionState(SessionState.ENDING);
+                        Session.getCurrentSession().setSessionState(SessionState.ENDING);
                     } else {
                         restartActivity();
                     }
@@ -223,9 +233,9 @@ public class TrainActivity extends AppCompatActivity {
                     closeKeyBoard();
                     disableEditText();
                     showErrorMessage(false);
-                    MainActivity.getInstance().setIncorrect(question, inputText.getText().toString());
+                    Session.getCurrentSession().setIncorrect(question, inputText.getText().toString());
                     validate.setText(R.string.continuer);
-                    MainActivity.getInstance().setSessionState(SessionState.ENDING);
+                    Session.getCurrentSession().setSessionState(SessionState.ENDING);
                 }
             }
         });

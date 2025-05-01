@@ -23,10 +23,11 @@ import java.util.Map;
 
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.storage.Settings;
+import fr.red.japanlearn.utils.Settings;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private IHM ihm;
     private Settings settings;
     private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, hiraganaCombinedCheckBox, katakanaCombinedCheckBox;
     private EditText numberOfQuestions;
@@ -41,6 +42,12 @@ public class SettingsActivity extends AppCompatActivity {
         restoreSettings();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+    }
+
     public void restoreSettings() {
         hiraganaCheckBox.setChecked(settings.isHiragana());
         hiraganaCombinedCheckBox.setChecked(settings.isHiraganaCombined());
@@ -51,7 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initVars() {
-        IHM ihm = IHM.getIHM();
+        ihm = IHM.getIHM();
         ihm.ajouterIHM(this);
         settings = Settings.getSettings();
 

@@ -1,4 +1,4 @@
-package fr.red.japanlearn.utils.storage.mistake;
+package fr.red.japanlearn.utils.mistake;
 
 import java.util.List;
 
@@ -19,12 +19,10 @@ public class MistakeData {
         this.type = mixUpQuestion.isEmpty() ? MistakeType.UNKOWN_ANSWER : MistakeType.MIX_UP;
     }
 
+    @SuppressWarnings("unused")
+    //TODO Utiliser dans le future
     public boolean isFrequent() {
         return mistakeCount >= 3;
-    }
-
-    public boolean isReverseMode() {
-        return question.isReversed();
     }
 
     public void addMistake() {
@@ -34,7 +32,7 @@ public class MistakeData {
     public void removeMistake() {
         mistakeCount--;
         if (mistakeCount <= 0) {
-            Mistakes.getMistakes().remove(this);
+            Mistakes.getMistakes().getMistakesData().remove(this);
         }
     }
 

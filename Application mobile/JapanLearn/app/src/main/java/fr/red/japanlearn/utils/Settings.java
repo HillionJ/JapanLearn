@@ -1,4 +1,4 @@
-package fr.red.japanlearn.utils.storage;
+package fr.red.japanlearn.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,8 +6,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.util.Map;
-
-import fr.red.japanlearn.utils.IHM;
 
 public class Settings {
 
@@ -60,17 +58,6 @@ public class Settings {
         editor.putString("numberOfQuestions", numberOfQuestions);
 
         editor.apply();
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    public boolean isModified(Map<String, Object> settings) {
-        SharedPreferences prefs = ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        return ((CheckBox)settings.get("hiraganaCheckBox")).isChecked() != prefs.getBoolean("hiraganaCheckBox", false)
-                || ((CheckBox)settings.get("hiraganaCombinedCheckBox")).isChecked() != prefs.getBoolean("hiraganaCombinedCheckBox", false)
-                || ((CheckBox)settings.get("katakanaCheckBox")).isChecked() != prefs.getBoolean("katakanaCheckBox", false)
-                || ((CheckBox)settings.get("katakanaCombinedCheckBox")).isChecked() != prefs.getBoolean("katakanaCombinedCheckBox", false)
-                || ((CheckBox)settings.get("kanjiCheckBox")).isChecked() != prefs.getBoolean("kanjiCheckBox", false)
-                || !((EditText)settings.get("numberOfQuestions")).getText().toString().equals(prefs.getString("numberOfQuestions", ""));
     }
 
     public String numberOfQuestionsStr() {
