@@ -1,5 +1,7 @@
 package fr.red.japanlearn.activity;
 
+import static java.lang.String.*;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -23,21 +25,22 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.guess.GuessAnswerData;
-import fr.red.japanlearn.utils.session.SessionState;
+import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.Session;
+import fr.red.japanlearn.utils.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
+import fr.red.japanlearn.utils.mistake.Mistakes;
 
 public class TrainActivity extends AppCompatActivity {
 
     private IHM ihm;
     private String correctAnswer;
-    private TextView guess;
     private TextInputEditText inputText;
     private LinearLayout errorContainer;
     private TextView errorText;
     private TextView errorTitle;
     private Button validate;
-    private GuessAnswerData guessAnswerData;
+    private Question question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +49,26 @@ public class TrainActivity extends AppCompatActivity {
         initVars();
 
         closeKeyBoard();
-        if (MainActivity.getInstance().getSessionState() == SessionState.ENDING) {
-            if (guessAnswerData.isCorrect() && guessAnswerData.hasExplanation()) {
+        if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
+            if (question.isCorrect() && question.hasExplanation()) {
                 showInfoMessage(true);
                 disableEditText();
-            } else if (!guessAnswerData.isCorrect()) {
+            } else if (!question.isCorrect()) {
                 showErrorMessage(true);
                 disableEditText();
             }
         } else {
             updateKeyboardLang();
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                openKeyboardAfter(200);
+                openKeyboard();
             }
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
     }
 
     private void disableEditText() {
@@ -71,7 +80,7 @@ public class TrainActivity extends AppCompatActivity {
     }
 
     private void showInfoMessage(boolean instantDisplay) {
-        showMessage(guessAnswerData.getExplanation(), true, instantDisplay);
+        showMessage(question.getExplanation(), true, instantDisplay);
     }
 
     private void showMessage(String message, boolean goodAnswer,boolean instantDisplay) {
@@ -90,6 +99,7 @@ public class TrainActivity extends AppCompatActivity {
         }, 150);
     }
 
+    @SuppressWarnings("deprecation")
     private void displayLayout(String message, boolean goodAnswer) {
         errorContainer.setBackgroundColor(getResources().getColor(goodAnswer ? R.color.good_answer : R.color.wrong_answer));
         errorText.setText(message);
@@ -100,21 +110,21 @@ public class TrainActivity extends AppCompatActivity {
 
 
     public void restartActivity() {
-        if (!MainActivity.getInstance().hasNextTry()){
+        if (!Session.getCurrentSession().hasNextTry()){
             finish();
             Intent intent = new Intent(this, StatsActivity.class);
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             return;
         }
-        MainActivity.getInstance().nextTry();
+        Session.getCurrentSession().nextTry();
         finish();
         startActivity(getIntent());
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    private boolean openKeyboardAfter(int delayMillis) {
-        return inputText.postDelayed(() -> {
+    private void openKeyboard() {
+        inputText.postDelayed(() -> {
             inputText.requestFocus();
             InputMethodManager imm2 = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
@@ -122,11 +132,11 @@ public class TrainActivity extends AppCompatActivity {
             if (imm2 != null) {
                 imm2.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
             }
-        }, delayMillis);
+        }, 200);
     }
 
     private void updateKeyboardLang() {
-        inputText.setImeHintLocales(new android.os.LocaleList(new java.util.Locale(!guessAnswerData.isReversed() ? "fr" : "ja")));
+        inputText.setImeHintLocales(new android.os.LocaleList(new java.util.Locale(!question.isReversed() ? "fr" : "ja")));
     }
 
     private void closeKeyBoard() {
@@ -142,22 +152,25 @@ public class TrainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        SoftKeyboardInput.handleSoftKeyboard(this);
+        new SoftKeyboardInput(this);
     }
 
+    @SuppressWarnings("deprecation")
     private void initVars() {
         ihm = IHM.getIHM();
         ihm.ajouterIHM(this);
 
-        guessAnswerData = MainActivity.getInstance().getCurrentGuessAnswerData();
-        guess = findViewById(R.id.guess);
-        guess.setText(guessAnswerData.getGuess());
+        Mistakes mistakes = Mistakes.getMistakes();
+
+        question = Session.getCurrentSession().getCurrentGuessAnswerData();
+        TextView guess = findViewById(R.id.guess);
+        guess.setText(question.getGuess());
 
         inputText = findViewById(R.id.textInput);
         inputText.setText("");
         inputText.requestFocus();
 
-        correctAnswer = guessAnswerData.getAnswer();
+        correctAnswer = question.getAnswer();
         Log.d("_RED", "correctAnswer: " + correctAnswer);
 
         errorContainer = findViewById(R.id.errorContainer);
@@ -165,12 +178,17 @@ public class TrainActivity extends AppCompatActivity {
         errorTitle = findViewById(R.id.errorTitle);
 
         TextView session_progress = findViewById(R.id.session_progress);
-        int maxNumber = MainActivity.getInstance().getMaxNumberOfQuestions();
-        int currentNumber = maxNumber - MainActivity.getInstance().getDynamicQuestions().size() + 1;
-        session_progress.setText(currentNumber + " / " + maxNumber);
+        int maxNumber = Session.getCurrentSession().getMaxNumberOfQuestions();
+        int currentNumber = maxNumber - Session.getCurrentSession().getDynamicQuestions().size() + 1;
+        session_progress.setText(format(getString(R.string.quiz_progress_format), currentNumber, maxNumber));
 
         TextView wrong_label = findViewById(R.id.wrong_label);
-        if (guessAnswerData.isCorrection()) {
+        if (question.isCorrection()) {
+            wrong_label.setText(R.string.error_label);
+            wrong_label.setVisibility(View.VISIBLE);
+        } else if (mistakes.isMistake(question)) {
+            wrong_label.setText(R.string.frequent_label);
+            wrong_label.setTextColor(getResources().getColor(R.color.frequent_mistake));
             wrong_label.setVisibility(View.VISIBLE);
         }
 
@@ -180,31 +198,33 @@ public class TrainActivity extends AppCompatActivity {
     }
 
     private void initValidationButton() {
+
         validate = findViewById(R.id.validate);
-        if (MainActivity.getInstance().getSessionState() == SessionState.ENDING) {
+        if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
             validate.setText(R.string.continuer);
         }
 
         validate.setOnClickListener(new View.OnClickListener() {
-            boolean _continue = MainActivity.getInstance().getSessionState() == SessionState.ENDING;
+            boolean _continue = Session.getCurrentSession().getSessionState() == SessionState.ENDING;
             @Override
             public void onClick(View view) {
                 if (_continue) {
                     restartActivity();
                     return;
                 }
+                assert inputText.getText() != null;
                 if (inputText.getText().length() == 0) {
                     return;
                 }
                 if (inputText.getText().toString().equalsIgnoreCase(correctAnswer)) {
-                    MainActivity.getInstance().setCorrect(guessAnswerData);
-                    if (guessAnswerData.hasExplanation()) {
+                    Session.getCurrentSession().setCorrect(question);
+                    if (question.hasExplanation()) {
                         _continue = true;
                         closeKeyBoard();
                         disableEditText();
                         showInfoMessage(false);
                         validate.setText(R.string.continuer);
-                        MainActivity.getInstance().setSessionState(SessionState.ENDING);
+                        Session.getCurrentSession().setSessionState(SessionState.ENDING);
                     } else {
                         restartActivity();
                     }
@@ -213,9 +233,9 @@ public class TrainActivity extends AppCompatActivity {
                     closeKeyBoard();
                     disableEditText();
                     showErrorMessage(false);
-                    MainActivity.getInstance().setIncorrect(guessAnswerData);
+                    Session.getCurrentSession().setIncorrect(question, inputText.getText().toString());
                     validate.setText(R.string.continuer);
-                    MainActivity.getInstance().setSessionState(SessionState.ENDING);
+                    Session.getCurrentSession().setSessionState(SessionState.ENDING);
                 }
             }
         });
@@ -223,11 +243,6 @@ public class TrainActivity extends AppCompatActivity {
 
     private void initCloseButton() {
         ImageView close = findViewById(R.id.close);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        close.setOnClickListener(view -> finish());
     }
 }

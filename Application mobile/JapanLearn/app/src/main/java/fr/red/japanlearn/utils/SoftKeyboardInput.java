@@ -3,12 +3,13 @@ package fr.red.japanlearn.utils;
 import android.app.Activity;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class SoftKeyboardInput {
 
-    public static void handleSoftKeyboard(Activity activity) {
+    public SoftKeyboardInput(@NonNull Activity activity) {
         View rootView = activity.findViewById(android.R.id.content);
 
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {

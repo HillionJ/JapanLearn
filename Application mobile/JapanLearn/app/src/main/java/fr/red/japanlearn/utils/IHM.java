@@ -2,11 +2,6 @@ package fr.red.japanlearn.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.Window;
-import android.view.WindowInsetsController;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,11 +13,12 @@ import java.util.List;
 
 import fr.red.japanlearn.activity.MainActivity;
 
+@SuppressWarnings("unused")
 public class IHM {
 
     private static IHM ihm;
-    private List<Object> ihmActives = new ArrayList<>();
-    private AppCompatActivity activiteActive = null;
+    private final List<Object> ihmActives = new ArrayList<>();
+    private AppCompatActivity activiteActive;
 
     public static IHM init(MainActivity mainActivity) {
         if (ihm == null)
