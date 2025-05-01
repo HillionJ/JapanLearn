@@ -94,7 +94,7 @@ public class MistakeActivity extends AppCompatActivity {
         }
     }
 
-    private void displayEmptyMistakesList(LinearLayout mistakesList) {
+    private void displayEmptyMistakesList(@NonNull LinearLayout mistakesList) {
         TextView textView = new TextView(this);
         textView.setText(R.string.error_not_found);
         textView.setLayoutParams(new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)));
@@ -102,7 +102,7 @@ public class MistakeActivity extends AppCompatActivity {
         mistakesList.addView(textView);
     }
 
-    private void addMistakeIntoList(LinearLayout mistakesList, MistakeData data) {
+    private void addMistakeIntoList(@NonNull LinearLayout mistakesList, @NonNull MistakeData data) {
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -127,7 +127,7 @@ public class MistakeActivity extends AppCompatActivity {
     }
 
     @NonNull
-    private static String craftMixUpStr(MistakeData data) {
+    private static String craftMixUpStr(@NonNull MistakeData data) {
         StringBuilder mixUpStr = new StringBuilder();
         for (int i = 0; i < data.getMixUpQuestion().size(); i++) {
             mixUpStr.append(data.getMixUpQuestion().get(i).getGuess(data.getQuestion().isReversed()));

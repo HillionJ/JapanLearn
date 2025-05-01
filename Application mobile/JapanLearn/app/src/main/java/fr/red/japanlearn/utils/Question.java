@@ -26,7 +26,7 @@ public class Question {
         this.explanation = explanation;
     }
 
-    private Question(Question question) {
+    private Question(@NonNull Question question) {
         this.charOrigin = question.charOrigin;
         this.guess = question.guess;
         this.answer = question.answer;

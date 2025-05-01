@@ -3,6 +3,8 @@ package fr.red.japanlearn.utils.session;
 import android.content.Intent;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,7 +62,7 @@ public class Session {
     private final Mistakes mistakes;
     private final SessionType type;
 
-    public Session(List<Question> questions, SessionType type) {
+    public Session(@NonNull List<Question> questions, SessionType type) {
         questions.forEach(Question::reset);
         this.questions = questions;
         this.dynamicQuestions.addAll(questions);
@@ -83,7 +85,7 @@ public class Session {
         }
     }
 
-    public void setCorrect(Question question) {
+    public void setCorrect(@NonNull Question question) {
         question.correct();
         dynamicQuestions.remove(question);
         if (type == SessionType.CORRECTION) {
@@ -91,7 +93,7 @@ public class Session {
         }
     }
 
-    public void setIncorrect(Question question, String wrongAnswer) {
+    public void setIncorrect(@NonNull Question question, String wrongAnswer) {
         question.requiredCorrection();
         dynamicQuestions.remove(question);
         dynamicQuestions.add(dynamicQuestions.size(), question);

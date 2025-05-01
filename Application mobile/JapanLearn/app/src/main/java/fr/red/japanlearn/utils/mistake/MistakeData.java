@@ -1,5 +1,7 @@
 package fr.red.japanlearn.utils.mistake;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 import fr.red.japanlearn.utils.Question;
@@ -12,7 +14,7 @@ public class MistakeData {
     private final MistakeType type;
     private final List<Question> mixUpQuestion;
 
-    public MistakeData(Question question, String wrongAnswer) {
+    public MistakeData(@NonNull Question question, String wrongAnswer) {
         this.question = question.clone();
         this.wrongAnswer = wrongAnswer;
         this.mixUpQuestion = question.getOrigin().getMixUpQuestions(wrongAnswer, question.isReversed());

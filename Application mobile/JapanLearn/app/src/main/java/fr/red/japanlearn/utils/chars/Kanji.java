@@ -1,5 +1,7 @@
 package fr.red.japanlearn.utils.chars;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,6 +127,7 @@ public class Kanji {
         }
     }
 
+    @NonNull
     public static List<Question> getMixUpQuestions(String wrongAnswer, boolean reversed) {
         List<Question> mixUpQuestions = new ArrayList<>();
 
