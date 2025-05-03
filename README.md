@@ -1,14 +1,21 @@
 ![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=plastic)
 
-[![android-build](https://github.com/HillionJ/JapanLearn/actions/workflows/android.yml/badge.svg)](https://github.com/HillionJ/JapanLearn/actions/workflows/android.yml)
+![android-build](https://github.com/HillionJ/JapanLearn/actions/workflows/android.yml/badge.svg)
 
-# JapanLearn v1.0
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/HillionJ/JapanLearn)
+![GitHub last commit](https://img.shields.io/github/last-commit/HillionJ/JapanLearn)
+![GitHub contributors](https://img.shields.io/github/contributors/HillionJ/JapanLearn)
+
+![GitHub pull requests](https://img.shields.io/github/issues-pr/HillionJ/JapanLearn)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/HillionJ/JapanLearn)
+
+# JapanLearn v2.0
 
 **Développeur** : RedEstDeRetour
 
 **Plateforme** : Android
 
-**Version** : 1.0 (Itération 3)
+**Version** : 2.0 (Itération 4)
 
 **Nom de l'application** : JapanLearn
 
@@ -60,14 +67,39 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
   - **Portait**: Afficher automatiquement à chaque question
   - **Paysage**: Laisser le clavier masqué le temps que l'utilisateur visualise la question
 
+**Version 2.0** : 
+- Paramétrer la session (Hiraganas ± Kataganas ± Kanji ± Combinaisons Hiraganas ± Combinaisions Katakanas + Nombre de quesitons)
+- Lancer une session
+- Visualiser le caractère
+- Ecrire la réponse
+- Visualiser le statut de la réponse:
+  - **Bonne réponse**: Afficher la signification (si disponible)
+  - **Mauvaise réponse**: Afficher la solution
+- Passer à la question suivante avec `Continuer` en cas de _visualisation du statut d'une réponse_
+- Visualiser les statisques à la fin de la partie
+- Visualiser la progression du questionnaire
+- Sauvegarder et appliquer les paramètres
+- Faire sortir le clavier automatiquement en fonction de l'orientation:
+  - **Portait**: Afficher automatiquement à chaque question
+  - **Paysage**: Laisser le clavier masqué le temps que l'utilisateur visualise la question
+- Visualiser ses erreurs fréquentes
+- Corriger ses erreurs fréquentes
+- Données enregistrées dans une base de données SQLite:
+  - **Caractères**: Enregistrer les caractères Hiragana, Katakana et Kanji
+  - **Questions**: Enregistrer les questions constituées de caractères et de leur transcription en romaji
+  - **Erreurs fréquentes**: Enregistrer les erreurs fréquentes de l'utilisateur
+
 ## ✨ Fonctionnalités principales
 
 - 📚 **Sélection des modes d'apprentissage** :
-  - Hiragana simple (あ, い, う, え, お, etc.)
-  - Hiragana combinés (きゃ, きゅ, きょ, etc.)
-  - Katakanas simple (ア, イ, ウ, エ, オ, etc.)
-  - Katakanas combinés (キャ, ショ, チョ, etc.)
-  - Kanji (日, 月, 火, 水, 木, etc.)
+  - **Hiragana**
+    - Hiragana simple (あ, い, う, え, お, etc.)
+    - Hiragana combinés (きゃ, きゅ, きょ, etc.)
+  - **Katakanas**
+    - Katakanas simple (ア, イ, ウ, エ, オ, etc.)
+    - Katakanas combinés (キャ, ショ, チョ, etc.)
+  - **Kanji**
+    - Kanji simple (日, 月, 火, 水, 木, etc.)
 
 - 🔄 **Questions aléatoires** :
 
@@ -92,6 +124,13 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 
     Après chaque réponse ou continuation, l'application enchaîne directement sur un nouveau caractère.
 
+- ❌ **Révision des erreur** :
+  
+  L'application mémorise les erreurs fréquentes de l'utilisateur et lui propose de les corriger à la fin de la session.
+
+  Elle lui permet de revoir les caractères qu'il a le plus souvent mal identifiés dans une activité dédiée.
+
+
 - 🖐️ **Fermeture facile** :
 
     Un bouton `Fermer` permet de quitter rapidement l'entraînement.
@@ -112,6 +151,9 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 ### Diagramme de classes
 ![Cas d'utilisation](Sources/Diagrammes%20de%20classes.png)
 
+### Diagramme de base de données relationnelle
+![Cas d'utilisation](Sources/Diagramme%20de%20base%20de%20données%20relationnelle.png)
+
 ## 🛠️ Installation et lancement
 
 1. Cloner ou télécharger le projet.
@@ -121,14 +163,10 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 **Minimum SDK recommandé** : Android 7.0 (Nougat)
 
 ## 🚧 Limitations connues
-- Aucune gestion d'historique d'erreurs.
 - Pas de personnalisation avancée de l'exercice.
-
-## 📅 À venir dans les prochaines versions
-- Mode "révision des erreurs" pour revoir les mauvaises réponses.
 
 ## 💬 Remarques
 
-JapanLearn v1.0 est une version expérimentale, pensée avant tout pour aider à renforcer la mémoire visuelle et écrite du syllabaire japonais.
+JapanLearn v2.0 est une version expérimentale, pensée avant tout pour aider à renforcer la mémoire visuelle et écrite du syllabaire japonais.
 
 **Merci d'utiliser JapanLearn !**
