@@ -87,9 +87,11 @@ public class MistakeActivity extends AppCompatActivity {
         LinearLayout mistakesList = findViewById(R.id.mistakesList);
         mistakesList.removeAllViews();
         for (MistakeData data : mistakes.getMistakesData()) {
-            addMistakeIntoList(mistakesList, data);
+            //if (data.isFrequent()) {// TODO Utiliser dans le future
+                addMistakeIntoList(mistakesList, data);
+            //}
         }
-        if (mistakes.getMistakesData().isEmpty()) {
+        if (mistakesList.getChildCount() == 0) {
             displayEmptyMistakesList(mistakesList);
         }
     }
