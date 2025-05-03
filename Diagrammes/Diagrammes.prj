@@ -1,6 +1,6 @@
 format 224
 "Diagrammes"
-  revision 3
+  revision 5
   modified_by 2 "RedEstDeRetour"
 
 
@@ -139,50 +139,6 @@ format 224
 	-_->
 	  stereotype "extend"
 	  on usecase_ref 134530 // Paramétrer une session
-      end
-    end
-
-    usecase 134786 "Inclure les Commbinaisons"
-      
-      usecasediagramsettings end
-      
-      sequencediagramsettings end
-      
-      collaborationdiagramsettings end
-      
-      classdiagramsettings member_max_width 0 end
-      
-      classcompositediagramsettings end
-      
-      objectdiagramsettings end
-      
-      objectcompositediagramsettings end
-      
-      statediagramsettings
-       end
-      
-      activitydiagramsettings
-       end
-      simplerelation 134914
-	-_->
-	  on usecase_ref 134658 // Inclure les Hiraganas
-      end
-
-      simplerelation 135042
-	-_->
-	  on usecase_ref 134914 // Inclure les Katakanas
-      end
-
-      simplerelation 143746
-	-_->
-	  stereotype "extend"
-	  on usecase_ref 134658 // Inclure les Hiraganas
-      end
-
-      simplerelation 143874
-	-_->
-	  stereotype "extend"
-	  on usecase_ref 134914 // Inclure les Katakanas
       end
     end
 
@@ -478,9 +434,66 @@ format 224
       activitydiagramsettings
        end
     end
+
+    usecase 148866 "Visualiser ses erreurs fréquentes"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 148994 "Corriger ses erreurs"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 150402
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 148866 // Visualiser ses erreurs fréquentes
+      end
+
+      simplerelation 150530
+	-_->
+	  stereotype "include"
+	  on usecase_ref 135170 // Lancer une session
+      end
+    end
   end
 
-  classview 134530 "Diagramme de classes"
+  classview 148738 "japanlean"
     
     classdiagramsettings member_max_width 0 end
     
@@ -500,13 +513,331 @@ format 224
     
     activitydiagramsettings
      end
-    classdiagram 141186 "Diagramme de classe"
-      classdiagramsettings member_max_width 0 end
-      size E
+    class 150658 "characterType"
+      visibility package stereotype "table"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl "DROP TABLE IF EXISTS ${name};
+CREATE TABLE ${name} ${definition};
+"
+      
+      attribute 156290 "idCharType"
+	default explicit_type "INT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn autoincr_btree notnull_hash
+      end
+
+      attribute 156418 "typeName"
+	default explicit_type "TEXT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 156546 "key1"
+	default explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}
+"
+	MysqlPrimaryKey
+	columns
+	  attribute_ref 156290 // idCharType
+	end
+      end
+
+      classrelation 151554 // <generalisation>
+	relation 151554 ---|>
+	  a public
+	    classrelation_ref 151554 // <generalisation>
+	  b parent class_ref 150786 // mistakes
+      end
+
+      classrelation 151682 // <unidirectional association>
+	relation 151682 --->
+	  a role_name "" public
+	    classrelation_ref 151682 // <unidirectional association>
+	  b parent class_ref 150786 // mistakes
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}${comment}"
+      end
+
+      classrelation 152194 // <unidirectional association>
+	relation 152194 --->
+	  a role_name "" public
+	    classrelation_ref 152194 // <unidirectional association>
+	  b parent class_ref 150786 // mistakes
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}${comment}"
+      end
+    end
+
+    class 150786 "mistakes"
+      visibility package stereotype "table"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl "DROP TABLE IF EXISTS ${name};
+CREATE TABLE ${name} ${definition};
+"
+      
+      ncouples 1
+      key "" value ""
+      attribute 156674 "idMistake"
+	default explicit_type "INT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn autoincr_btree notnull_hash
+      end
+
+      attribute 156802 "idQuestion"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 156930 "idMixUpQuestions"
+	default explicit_type "TEXT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 157058 "wrongAnswer"
+	default explicit_type "TEXT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 157186 "count"
+	default explicit_type "INTEGER"
+	init_value "1"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 157314 "reversed"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 157442 "key1"
+	default explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}
+"
+	MysqlPrimaryKey
+	columns
+	  attribute_ref 156674 // idMistake
+	end
+      end
+
+      classrelation 151810 // <unidirectional association>
+	relation 151810 --->
+	  a role_name "" public
+	    classrelation_ref 151810 // <unidirectional association>
+	  b parent class_ref 150914 // questions
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}${comment}"
+      end
+
+      classrelation 152066 // <unidirectional association>
+	relation 152066 --->
+	  a role_name "" public
+	    classrelation_ref 152066 // <unidirectional association>
+	  b parent class_ref 150658 // characterType
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}${comment}"
+      end
+    end
+
+    class 150914 "questions"
+      visibility package stereotype "table"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl "DROP TABLE IF EXISTS ${name};
+CREATE TABLE ${name} ${definition};
+"
+      
+      attribute 157570 "idQuestion"
+	default explicit_type "INT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn autoincr_btree notnull_hash
+      end
+
+      attribute 157698 "idCharType"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 157826 "character"
+	default explicit_type "TEXT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 157954 "romaji"
+	default explicit_type "TEXT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 158082 "explanation"
+	default explicit_type "TEXT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 158210 "key1"
+	default explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}
+"
+	MysqlPrimaryKey
+	columns
+	  attribute_ref 157570 // idQuestion
+	end
+      end
+
+      classrelation 151938 // <unidirectional association>
+	relation 151938 --->
+	  a role_name "" public
+	    classrelation_ref 151938 // <unidirectional association>
+	  b parent class_ref 150658 // characterType
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}${comment}"
+      end
+    end
+
+    classdiagram 147714 "Base de données relationnelle"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size A4
     end
   end
 
-  package_ref 141954 // fr
+  deploymentview 148354 "japanlean"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 150018 "japanlean"
+      stereotype "database"
+      mysql_src "${definition}"
+      associated_elems
+	class_ref 150658 // characterType
+	class_ref 150786 // mistakes
+	class_ref 150914 // questions
+      end
+    end
+  end
 
-  package_ref 142466 // unknown
+  classview 155266 "Diagramme de classes"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 154242 "Diagrammes de classes"
+      classdiagramsettings member_max_width 0 end
+      size D
+    end
+  end
+
+  package_ref 128002 // fr
+
+  package_ref 128514 // unknown
 end

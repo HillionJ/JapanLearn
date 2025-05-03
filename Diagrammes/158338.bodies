@@ -1,0 +1,63 @@
+class Settings
+!!!140290.java!!!	getSettings() : Settings
+        if (instance == null)
+            instance = new Settings();
+        return instance;
+!!!140418.java!!!	Settings()
+        this.ihm = IHM.getIHM();
+        update();
+!!!140546.java!!!	update() : void
+        ihm.getActiviteActive();
+        SharedPreferences prefs =  ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
+        hiraganaCheckBox = prefs.getBoolean("hiraganaCheckBox", false);
+        katakanaCheckBox = prefs.getBoolean("katakanaCheckBox", false);
+        kanjiCheckBox = prefs.getBoolean("kanjiCheckBox", false);
+        numberOfQuestions = prefs.getString("numberOfQuestions", "");
+!!!140674.java!!!	saveSettings(inout settings : Map<String, Object>) : void
+        SharedPreferences prefs = ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        hiraganaCheckBox = ((CheckBox)settings.get("hiraganaCheckBox")).isChecked();
+        katakanaCheckBox = ((CheckBox)settings.get("katakanaCheckBox")).isChecked();
+        kanjiCheckBox = ((CheckBox)settings.get("kanjiCheckBox")).isChecked();
+        numberOfQuestions = ((EditText)settings.get("numberOfQuestions")).getText().toString();
+
+        editor.putBoolean("hiraganaCheckBox", hiraganaCheckBox);
+        editor.putBoolean("katakanaCheckBox", katakanaCheckBox);
+        editor.putBoolean("kanjiCheckBox", kanjiCheckBox);
+        editor.putString("numberOfQuestions", numberOfQuestions);
+
+        editor.apply();
+!!!140802.java!!!	numberOfQuestionsStr() : String
+        return numberOfQuestions;
+!!!140930.java!!!	isNumberOfQuestionsSet() : boolean
+        return !numberOfQuestions.isEmpty() && getNumberOfQuestions() > 0;
+!!!141058.java!!!	getNumberOfQuestions() : int
+        return parseInt(numberOfQuestions);
+!!!141186.java!!!	isHiragana() : boolean
+        return hiraganaCheckBox;
+!!!141314.java!!!	isKatakana() : boolean
+        return katakanaCheckBox;
+!!!141442.java!!!	isKanji() : boolean
+        return kanjiCheckBox;
+!!!141570.java!!!	parseInt(in string : String) : int
+        int integer = 0;
+        try {
+            integer = Integer.parseInt(string);
+        } catch (Exception ignored) {
+            try {
+                integer = (int)  Double.parseDouble(string);
+            } catch (Exception ignored1) {
+            }
+        }
+        return integer;
+!!!141698.java!!!	getCharTypes() : CharType
+        List<CharType> charTypes = new ArrayList<>();
+        if (isHiragana())
+            charTypes.add(CharType.HIRAGANA);
+        if (isKatakana())
+            charTypes.add(CharType.KATAKANA);
+        if (isKanji())
+            charTypes.add(CharType.KANJI);
+        return charTypes;

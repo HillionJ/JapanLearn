@@ -1,0 +1,509 @@
+format 224
+"session" // fr::red::japanlearn::utils::session
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn/Application mobile/JapanLearn/app/src/main/java/fr/red/japanlearn/utils/session/"
+  java_package "fr.red.japanlearn.utils.session"
+  classview 156034 "session"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 159362 "CharType"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 161794 // HIRAGANA (<unidirectional association>)
+	relation 161794 --->
+	  a role_name "HIRAGANA" init_value " new CharType(1, \"Hiragana\")" class_relation const_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161794 // HIRAGANA (<unidirectional association>)
+	  b parent class_ref 159362 // CharType
+      end
+
+      classrelation 161922 // KATAKANA (<unidirectional association>)
+	relation 161922 --->
+	  a role_name "KATAKANA" init_value " new CharType(2, \"Katakana\")" class_relation const_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161922 // KATAKANA (<unidirectional association>)
+	  b parent class_ref 159362 // CharType
+      end
+
+      classrelation 162050 // KANJI (<unidirectional association>)
+	relation 162050 --->
+	  a role_name "KANJI" init_value " new CharType(3, \"Kanji\")" class_relation const_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162050 // KANJI (<unidirectional association>)
+	  b parent class_ref 159362 // CharType
+      end
+
+      attribute 169730 "idChar"
+	const_attribute private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169858 "name"
+	const_attribute private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 144386 "CharType"
+	private explicit_return_type ""
+	nparams 2
+	  param in name "idChar" explicit_type "int"
+	  param in name "name" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144514 "getID"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144642 "getName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 159746 "Session"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 162178 // currentSession (<unidirectional association>)
+	relation 162178 --->
+	  a role_name "currentSession" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162178 // currentSession (<unidirectional association>)
+	  b parent class_ref 159746 // Session
+      end
+
+      operation 144770 "getCurrentSession"
+	class_operation public return_type class_ref 159746 // Session
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144898 "newSession"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145026 "newSession"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "questions" explicit_type "List<Question>"
+	  param inout name "type" type class_ref 159874 // SessionType
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 162306 // dynamicQuestions (<unidirectional association>)
+	relation 162306 --->
+	  stereotype "List"
+	  a role_name "dynamicQuestions" init_value " new ArrayList<>()" const_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 162306 // dynamicQuestions (<unidirectional association>)
+	  b parent class_ref 158722 // Question
+      end
+
+      classrelation 162434 // questions (<unidirectional association>)
+	relation 162434 --->
+	  stereotype "List"
+	  a role_name "questions" const_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 162434 // questions (<unidirectional association>)
+	  b parent class_ref 158722 // Question
+      end
+
+      classrelation 162562 // question (<unidirectional association>)
+	relation 162562 --->
+	  a role_name "question" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162562 // question (<unidirectional association>)
+	  b parent class_ref 158722 // Question
+      end
+
+      classrelation 162690 // sessionState (<unidirectional association>)
+	relation 162690 --->
+	  a role_name "sessionState" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162690 // sessionState (<unidirectional association>)
+	  b parent class_ref 159234 // SessionState
+      end
+
+      attribute 169986 "maxNumberOfQuestions"
+	const_attribute private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 162818 // mistakes (<unidirectional association>)
+	relation 162818 --->
+	  a role_name "mistakes" const_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162818 // mistakes (<unidirectional association>)
+	  b parent class_ref 157954 // Mistakes
+      end
+
+      classrelation 162946 // type (<unidirectional association>)
+	relation 162946 --->
+	  a role_name "type" const_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162946 // type (<unidirectional association>)
+	  b parent class_ref 159874 // SessionType
+      end
+
+      operation 145154 "Session"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "questions" explicit_type "List<Question>"
+	  param inout name "type" type class_ref 159874 // SessionType
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}@NonNull ${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145282 "nextTry"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145410 "setCorrect"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "question" type class_ref 158722 // Question
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145538 "setIncorrect"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "question" type class_ref 158722 // Question
+	  param in name "wrongAnswer" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145666 "hasNextTry"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145794 "getCurrentGuessAnswerData"
+	public return_type class_ref 158722 // Question
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145922 "getSessionState"
+	public return_type class_ref 159234 // SessionState
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 146050 "setSessionState"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "sessionState" type class_ref 159234 // SessionState
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 146178 "getMaxNumberOfQuestions"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 146306 "getDynamicQuestions"
+	public return_type class_ref 158722 // Question
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 146434 "getQuestions"
+	public return_type class_ref 158722 // Question
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 159874 "SessionType"
+      visibility public stereotype "enum"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 170114 "NORMAL"
+	public type class_ref 159874 // SessionType
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170242 "CORRECTION"
+	public type class_ref 159874 // SessionType
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+  end
+
+  deploymentview 155394 "session"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 158466 "CharType"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 159362 // CharType
+      end
+    end
+
+    artifact 158594 "Session"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Intent;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import java.util.ArrayList;
+import java.util.List;
+import fr.red.japanlearn.activity.TrainActivity;
+import fr.red.japanlearn.database.DataBase;
+import fr.red.japanlearn.utils.IHM;
+import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.SessionState;
+import fr.red.japanlearn.utils.Settings;
+import fr.red.japanlearn.utils.mistake.Mistakes;
+${definition}"
+      associated_elems
+	class_ref 159746 // Session
+      end
+    end
+
+    artifact 158722 "SessionType"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 159874 // SessionType
+      end
+    end
+  end
+end

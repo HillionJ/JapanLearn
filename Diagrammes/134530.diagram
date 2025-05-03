@@ -2,16 +2,13 @@ format 224
 
 classcanvas 128002 class_ref 134530 // Utilisateur
   simpleclassdiagramsettings end
-  xyz 42 303 2000
+  xyz 41 440 2000
 end
 usecasecanvas 128130 usecase_ref 134530 // Paramétrer une session
-  xyzwh 252 165 3005 64 32 label_xy 215 197
+  xyzwh 240 165 3005 64 32 label_xy 203 197
 end
 usecasecanvas 128258 usecase_ref 134658 // Inclure les Hiraganas
   xyzwh 646 101 3005 64 32 label_xy 618 133
-end
-usecasecanvas 128386 usecase_ref 134786 // Inclure les Commbinaisons
-  xyzwh 907 101 3005 64 32 label_xy 861 133
 end
 usecasecanvas 128514 usecase_ref 134914 // Inclure les Katakanas
   xyzwh 646 176 3005 64 32 label_xy 616 208
@@ -19,14 +16,11 @@ end
 usecasecanvas 128642 usecase_ref 135042 // Inclure les Kanji
   xyzwh 646 261 3005 64 32 label_xy 632 293
 end
-usecasecanvas 128770 usecase_ref 134786 // Inclure les Commbinaisons
-  xyzwh 907 176 3005 64 32 label_xy 861 208
-end
 usecasecanvas 128898 usecase_ref 135170 // Lancer une session
-  xyzwh 252 455 3005 64 32 label_xy 228 487
+  xyzwh 240 456 3005 64 32 label_xy 216 488
 end
 usecasecanvas 129026 usecase_ref 135298 // Répondre à une question
-  xyzwh 532 455 3005 64 32 label_xy 492 487
+  xyzwh 532 456 3005 64 32 label_xy 492 488
 end
 usecasecanvas 129154 usecase_ref 135426 // Quitter la session
   xyzwh 532 597 3005 64 32 label_xy 513 629
@@ -35,7 +29,7 @@ usecasecanvas 129282 usecase_ref 135554 // Visualiser l'erreur
   xyzwh 782 328 3005 64 32 label_xy 765 360
 end
 usecasecanvas 129410 usecase_ref 135682 // Visualiser la signification
-  xyzwh 782 455 3005 64 32 label_xy 743 487
+  xyzwh 782 456 3005 64 32 label_xy 743 488
 end
 usecasecanvas 131970 usecase_ref 142210 // Choisir le nombre de questions
   xyzwh 646 5 3005 64 32 label_xy 589 37
@@ -43,44 +37,52 @@ end
 usecasecanvas 132098 usecase_ref 142338 // Voir les statistiques
   xyzwh 782 597 3005 64 32 label_xy 759 629
 end
+usecasecanvas 134018 usecase_ref 148866 // Visualiser ses erreurs fréquentes
+  xyzwh 240 746 3005 64 32 label_xy 177 778
+end
+usecasecanvas 134146 usecase_ref 148994 // Corriger ses erreurs
+  xyzwh 509 746 3005 64 32 label_xy 484 778
+end
 line 129538 ----
   from ref 128002 z 3006 to ref 128898
 line 132226 ----
   from ref 128002 z 3006 to ref 128130
 simplerelationcanvas 132354 simplerelation_ref 142466
-  from ref 128898 z 3006 stereotype "<<include>>" xyz 387 470 3000 to ref 129026
+  from ref 128898 z 3006 stereotype "<<include>>" xyz 381 471 3000 to ref 129026
 end
 simplerelationcanvas 132482 simplerelation_ref 142594
-  from ref 129026 z 3006 stereotype "<<include>>" xyz 653 541 3000 to ref 132098
+  from ref 129026 z 3006 stereotype "<<include>>" xyz 653 541.5 3000 to ref 132098
 end
 simplerelationcanvas 132610 simplerelation_ref 142722
-  from ref 129282 z 3006 stereotype "<<extend>>" xyz 650 405 3000 to ref 129026
+  from ref 129282 z 3006 stereotype "<<extend>>" xyz 650 406 3000 to ref 129026
 end
 simplerelationcanvas 132738 simplerelation_ref 142850
-  from ref 129410 z 3006 stereotype "<<extend>>" xyz 653 470 3000 to ref 129026
+  from ref 129410 z 3006 stereotype "<<extend>>" xyz 653 471 3000 to ref 129026
 end
 simplerelationcanvas 132866 simplerelation_ref 142978
   from ref 129154 z 3006 stereotype "<<extend>>" xyz 653 612 3000 to ref 132098
 end
 simplerelationcanvas 133122 simplerelation_ref 143106
-  from ref 129154 z 3006 stereotype "<<extend>>" xyz 528 541 3000 to ref 129026
+  from ref 129154 z 3006 stereotype "<<extend>>" xyz 528 541.5 3000 to ref 129026
 end
 simplerelationcanvas 133250 simplerelation_ref 143234
-  from ref 131970 z 3006 stereotype "<<extend>>" xyz 445 98 3000 to ref 128130
+  from ref 131970 z 3006 stereotype "<<extend>>" xyz 439 98 3000 to ref 128130
 end
 simplerelationcanvas 133378 simplerelation_ref 143362
-  from ref 128258 z 3006 stereotype "<<extend>>" xyz 445 147 3000 to ref 128130
+  from ref 128258 z 3006 stereotype "<<extend>>" xyz 439 147 3000 to ref 128130
 end
 simplerelationcanvas 133506 simplerelation_ref 143490
-  from ref 128514 z 3006 stereotype "<<extend>>" xyz 445 184 3000 to ref 128130
+  from ref 128514 z 3006 stereotype "<<extend>>" xyz 439 184 3000 to ref 128130
 end
 simplerelationcanvas 133634 simplerelation_ref 143618
-  from ref 128642 z 3006 stereotype "<<extend>>" xyz 445 227 3000 to ref 128130
+  from ref 128642 z 3006 stereotype "<<extend>>" xyz 439 227 3000 to ref 128130
 end
-simplerelationcanvas 133762 simplerelation_ref 143746
-  from ref 128386 z 3006 stereotype "<<extend>>" xyz 772 116 3000 to ref 128258
+line 134274 ----
+  from ref 128002 z 3006 to ref 134018
+simplerelationcanvas 134402 simplerelation_ref 150402
+  from ref 134146 z 3006 stereotype "<<extend>>" xyz 370 761 3000 to ref 134018
 end
-simplerelationcanvas 133890 simplerelation_ref 143874
-  from ref 128770 z 3006 stereotype "<<extend>>" xyz 772 191 3000 to ref 128514
+simplerelationcanvas 134658 simplerelation_ref 150530
+  from ref 134146 z 3006 stereotype "<<include>>" xyz 369 616 3000 to ref 128898
 end
 end

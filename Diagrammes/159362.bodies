@@ -1,0 +1,8 @@
+class CharType
+!!!144386.java!!!	CharType(in idChar : int, in name : String)
+        this.idChar = idChar;
+        this.name = name;
+!!!144514.java!!!	getID() : int
+        return idChar;
+!!!144642.java!!!	getName() : String
+        return name;

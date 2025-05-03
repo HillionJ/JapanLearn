@@ -32,7 +32,7 @@ format 224
   
   java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn/Application mobile/JapanLearn/app/src/main/java/fr/red/japanlearn/activity/"
   java_package "fr.red.japanlearn.activity"
-  classview 141442 "activity"
+  classview 155394 "activity"
     
     classdiagramsettings member_max_width 0 end
     
@@ -52,7 +52,7 @@ format 224
     
     activitydiagramsettings
      end
-    class 142210 "MainActivity"
+    class 157442 "MainActivity"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -64,95 +64,24 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 142466 // <generalisation>
-	relation 142466 ---|>
+      classrelation 158722 // <generalisation>
+	relation 158722 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 142466 // <generalisation>
-	  b parent class_ref 142338 // AppCompatActivity
+	    classrelation_ref 158722 // <generalisation>
+	  b parent class_ref 157570 // AppCompatActivity
       end
 
-      classrelation 142594 // instance (<unidirectional association>)
-	relation 142594 --->
-	  a role_name "instance" class_relation private
+      classrelation 158850 // ihm (<unidirectional association>)
+	relation 158850 --->
+	  a role_name "ihm" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 142594 // instance (<unidirectional association>)
-	  b parent class_ref 142210 // MainActivity
+	    classrelation_ref 158850 // ihm (<unidirectional association>)
+	  b parent class_ref 157698 // IHM
       end
 
-      operation 146050 "getInstance"
-	class_operation public return_type class_ref 142210 // MainActivity
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      classrelation 142722 // settings (<unidirectional association>)
-	relation 142722 --->
-	  a role_name "settings" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 142722 // settings (<unidirectional association>)
-	  b parent class_ref 142466 // Settings
-      end
-
-      classrelation 142850 // dynamicQuestions (<unidirectional association>)
-	relation 142850 --->
-	  stereotype "List"
-	  a role_name "dynamicQuestions" init_value " new ArrayList<>()" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	    classrelation_ref 142850 // dynamicQuestions (<unidirectional association>)
-	  b parent class_ref 142594 // GuessAnswerData
-      end
-
-      classrelation 142978 // questions (<unidirectional association>)
-	relation 142978 --->
-	  stereotype "List"
-	  a role_name "questions" init_value " new ArrayList<>()" const_relation private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	    classrelation_ref 142978 // questions (<unidirectional association>)
-	  b parent class_ref 142594 // GuessAnswerData
-      end
-
-      classrelation 143106 // guessAnswerData (<unidirectional association>)
-	relation 143106 --->
-	  a role_name "guessAnswerData" init_value " null" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 143106 // guessAnswerData (<unidirectional association>)
-	  b parent class_ref 142594 // GuessAnswerData
-      end
-
-      classrelation 143234 // sessionState (<unidirectional association>)
-	relation 143234 --->
-	  a role_name "sessionState" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 143234 // sessionState (<unidirectional association>)
-	  b parent class_ref 142722 // SessionState
-      end
-
-      attribute 143618 "maxNumberOfQuestions"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      operation 146178 "onCreate"
+      operation 128002 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -167,178 +96,7 @@ ${members}}
 	
       end
 
-      operation 146306 "nextTry"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 146434 "setCorrect"
-	public explicit_return_type "void"
-	nparams 1
-	  param inout name "guessAnswerData" type class_ref 142594 // GuessAnswerData
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 146562 "setIncorrect"
-	public explicit_return_type "void"
-	nparams 1
-	  param inout name "guessAnswerData" type class_ref 142594 // GuessAnswerData
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 146690 "hasNextTry"
-	public explicit_return_type "boolean"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 146818 "getCurrentGuessAnswerData"
-	public return_type class_ref 142594 // GuessAnswerData
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 146946 "getSessionState"
-	public return_type class_ref 142722 // SessionState
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147074 "setSessionState"
-	public explicit_return_type "void"
-	nparams 1
-	  param inout name "sessionState" type class_ref 142722 // SessionState
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147202 "getMaxNumberOfQuestions"
-	public explicit_return_type "int"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147330 "getDynamicQuestions"
-	public return_type class_ref 142594 // GuessAnswerData
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147458 "getQuestions"
-	public return_type class_ref 142594 // GuessAnswerData
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147586 "iniVars"
-	private explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147714 "initLayout"
-	private explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147842 "initSettingsButton"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 147970 "initStartButton"
-	private explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 148098 "onStart"
+      operation 128130 "onRestart"
 	protected explicit_return_type "void"
 	nparams 0
 	
@@ -352,7 +110,81 @@ ${members}}
 	
       end
 
-      operation 148226 "onResume"
+      operation 128258 "iniVars"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128386 "initLayout"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128514 "initMistakesButton"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128642 "initSettingsButton"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128770 "initStartButton"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128898 "onStart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 129026 "onResume"
 	protected explicit_return_type "void"
 	nparams 0
 	
@@ -367,7 +199,7 @@ ${members}}
       end
     end
 
-    class 142850 "SettingsActivity"
+    class 157826 "MistakeActivity"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -379,24 +211,203 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 143362 // <generalisation>
-	relation 143362 ---|>
+      classrelation 158978 // <generalisation>
+	relation 158978 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 143362 // <generalisation>
-	  b parent class_ref 142338 // AppCompatActivity
+	    classrelation_ref 158978 // <generalisation>
+	  b parent class_ref 157570 // AppCompatActivity
       end
 
-      classrelation 143490 // settings (<unidirectional association>)
-	relation 143490 --->
+      classrelation 159106 // mistakes (<unidirectional association>)
+	relation 159106 --->
+	  a role_name "mistakes" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159106 // mistakes (<unidirectional association>)
+	  b parent class_ref 157954 // Mistakes
+      end
+
+      classrelation 159234 // ihm (<unidirectional association>)
+	relation 159234 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159234 // ihm (<unidirectional association>)
+	  b parent class_ref 157698 // IHM
+      end
+
+      operation 129154 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 129282 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 129410 "initLayout"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129538 "initVars"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129666 "initReviewButton"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129794 "initCloseButton"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129922 "updateMistakesList"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130050 "displayEmptyMistakesList"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "mistakesList" explicit_type "LinearLayout"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130178 "addMistakeIntoList"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "mistakesList" explicit_type "LinearLayout"
+	  param inout name "data" type class_ref 158082 // MistakeData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}, @NonNull ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130306 "craftMixUpStr"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "data" type class_ref 158082 // MistakeData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@NonNull
+"
+	
+	
+	
+      end
+    end
+
+    class 158210 "SettingsActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 159362 // <generalisation>
+	relation 159362 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 159362 // <generalisation>
+	  b parent class_ref 157570 // AppCompatActivity
+      end
+
+      classrelation 159490 // ihm (<unidirectional association>)
+	relation 159490 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159490 // ihm (<unidirectional association>)
+	  b parent class_ref 157698 // IHM
+      end
+
+      classrelation 159618 // settings (<unidirectional association>)
+	relation 159618 --->
 	  a role_name "settings" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 143490 // settings (<unidirectional association>)
-	  b parent class_ref 142466 // Settings
+	    classrelation_ref 159618 // settings (<unidirectional association>)
+	  b parent class_ref 158338 // Settings
       end
 
-      attribute 143746 "hiraganaCheckBox"
+      attribute 164738 "hiraganaCheckBox"
 	private explicit_type "CheckBox"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -408,7 +419,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 143874 "katakanaCheckBox"
+      attribute 164866 "katakanaCheckBox"
 	private explicit_type "CheckBox"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -420,7 +431,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 144002 "kanjiCheckBox"
+      attribute 164994 "kanjiCheckBox"
 	private explicit_type "CheckBox"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -432,31 +443,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 144130 "hiraganaCombinedCheckBox"
-	private explicit_type "CheckBox"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144258 "katakanaCombinedCheckBox"
-	private explicit_type "CheckBox"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144386 "numberOfQuestions"
+      attribute 165122 "numberOfQuestions"
 	private explicit_type "EditText"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -468,7 +455,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 144514 "settingsMap"
+      attribute 165250 "settingsMap"
 	const_attribute private explicit_type "String, Object"
 	init_value " new HashMap<>()"
 	stereotype "Map"
@@ -482,7 +469,7 @@ ${members}}
 	MysqlColumn
       end
 
-      operation 148354 "onCreate"
+      operation 130434 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -497,105 +484,11 @@ ${members}}
 	
       end
 
-      operation 148482 "restoreSettings"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 148610 "initVars"
-	private explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 148738 "initLayout"
-	private explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 148866 "initCloseButton"
-	private explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 148994 "initApplyButton"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 149122 "initMaxQuestionNumberInput"
-	private explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-    end
-
-    class 142978 "StatsActivity"
-      visibility public 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      classrelation 143618 // <generalisation>
-	relation 143618 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 143618 // <generalisation>
-	  b parent class_ref 142338 // AppCompatActivity
-      end
-
-      operation 149250 "onCreate"
+      operation 130562 "onRestart"
 	protected explicit_return_type "void"
-	nparams 1
-	  param inout name "savedInstanceState" explicit_type "Bundle"
+	nparams 0
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
   ${body}}
 "
 	java_annotation "@Override
@@ -605,7 +498,19 @@ ${members}}
 	
       end
 
-      operation 149378 "initLayout"
+      operation 130690 "restoreSettings"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130818 "initVars"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -617,19 +522,7 @@ ${members}}
 	
       end
 
-      operation 149506 "initVars"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 149634 "initPercentage"
+      operation 130946 "initLayout"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -641,7 +534,19 @@ ${members}}
 	
       end
 
-      operation 149762 "initProgressBar"
+      operation 131074 "initCloseButton"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131202 "initApplyButton"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -653,19 +558,7 @@ ${members}}
 	
       end
 
-      operation 149890 "initContinueButton"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 150018 "initCloseButton"
+      operation 131330 "initMaxQuestionNumberInput"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -678,7 +571,7 @@ ${members}}
       end
     end
 
-    class 143106 "TrainActivity"
+    class 158466 "StatsActivity"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -690,24 +583,155 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 143746 // <generalisation>
-	relation 143746 ---|>
+      classrelation 159746 // <generalisation>
+	relation 159746 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 143746 // <generalisation>
-	  b parent class_ref 142338 // AppCompatActivity
+	    classrelation_ref 159746 // <generalisation>
+	  b parent class_ref 157570 // AppCompatActivity
       end
 
-      classrelation 143874 // ihm (<unidirectional association>)
-	relation 143874 --->
+      classrelation 159874 // ihm (<unidirectional association>)
+	relation 159874 --->
 	  a role_name "ihm" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 143874 // ihm (<unidirectional association>)
-	  b parent class_ref 143234 // IHM
+	    classrelation_ref 159874 // ihm (<unidirectional association>)
+	  b parent class_ref 157698 // IHM
       end
 
-      attribute 144642 "correctAnswer"
+      operation 131458 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 131586 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 131714 "initLayout"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131842 "initVars"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131970 "initPercentage"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132098 "initProgressBar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132226 "initContinueButton"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132354 "initCloseButton"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 158594 "TrainActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 160002 // <generalisation>
+	relation 160002 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 160002 // <generalisation>
+	  b parent class_ref 157570 // AppCompatActivity
+      end
+
+      classrelation 160130 // ihm (<unidirectional association>)
+	relation 160130 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 160130 // ihm (<unidirectional association>)
+	  b parent class_ref 157698 // IHM
+      end
+
+      attribute 165378 "correctAnswer"
 	private explicit_type "String"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -719,19 +743,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 144770 "guess"
-	private explicit_type "TextView"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144898 "inputText"
+      attribute 165506 "inputText"
 	private explicit_type "TextInputEditText"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -743,7 +755,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 145026 "errorContainer"
+      attribute 165634 "errorContainer"
 	private explicit_type "LinearLayout"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -755,7 +767,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 145154 "errorText"
+      attribute 165762 "errorText"
 	private explicit_type "TextView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -767,7 +779,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 145282 "errorTitle"
+      attribute 165890 "errorTitle"
 	private explicit_type "TextView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -779,7 +791,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 145410 "validate"
+      attribute 166018 "validate"
 	private explicit_type "Button"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -791,16 +803,16 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 144002 // guessAnswerData (<unidirectional association>)
-	relation 144002 --->
-	  a role_name "guessAnswerData" private
+      classrelation 160258 // question (<unidirectional association>)
+	relation 160258 --->
+	  a role_name "question" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 144002 // guessAnswerData (<unidirectional association>)
-	  b parent class_ref 142594 // GuessAnswerData
+	    classrelation_ref 160258 // question (<unidirectional association>)
+	  b parent class_ref 158722 // Question
       end
 
-      operation 150146 "onCreate"
+      operation 132482 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -815,7 +827,21 @@ ${members}}
 	
       end
 
-      operation 150274 "disableEditText"
+      operation 132610 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 132738 "disableEditText"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -827,7 +853,7 @@ ${members}}
 	
       end
 
-      operation 150402 "showErrorMessage"
+      operation 132866 "showErrorMessage"
 	private explicit_return_type "void"
 	nparams 1
 	  param inout name "instantDisplay" explicit_type "boolean"
@@ -840,7 +866,7 @@ ${members}}
 	
       end
 
-      operation 150530 "showInfoMessage"
+      operation 132994 "showInfoMessage"
 	private explicit_return_type "void"
 	nparams 1
 	  param inout name "instantDisplay" explicit_type "boolean"
@@ -853,7 +879,7 @@ ${members}}
 	
       end
 
-      operation 150658 "showMessage"
+      operation 133122 "showMessage"
 	private explicit_return_type "void"
 	nparams 3
 	  param in name "message" explicit_type "String"
@@ -868,7 +894,7 @@ ${members}}
 	
       end
 
-      operation 150786 "displayLayout"
+      operation 133250 "displayLayout"
 	private explicit_return_type "void"
 	nparams 2
 	  param in name "message" explicit_type "String"
@@ -877,12 +903,14 @@ ${members}}
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
 "
+	java_annotation "@SuppressWarnings(\"deprecation\")
+"
 	
 	
 	
       end
 
-      operation 150914 "restartActivity"
+      operation 133378 "restartActivity"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -894,20 +922,7 @@ ${members}}
 	
       end
 
-      operation 151042 "openKeyboardAfter"
-	private explicit_return_type "boolean"
-	nparams 1
-	  param in name "delayMillis" explicit_type "int"
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 151170 "updateKeyboardLang"
+      operation 133506 "openKeyboard"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -919,7 +934,7 @@ ${members}}
 	
       end
 
-      operation 151298 "closeKeyBoard"
+      operation 133634 "updateKeyboardLang"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -931,7 +946,7 @@ ${members}}
 	
       end
 
-      operation 151426 "initLayout"
+      operation 133762 "closeKeyBoard"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -943,7 +958,7 @@ ${members}}
 	
       end
 
-      operation 151554 "initVars"
+      operation 133890 "initLayout"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -955,7 +970,21 @@ ${members}}
 	
       end
 
-      operation 151682 "initValidationButton"
+      operation 134018 "initVars"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"deprecation\")
+"
+	
+	
+	
+      end
+
+      operation 134146 "initValidationButton"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -967,7 +996,7 @@ ${members}}
 	
       end
 
-      operation 151810 "initCloseButton"
+      operation 134274 "initCloseButton"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -981,11 +1010,11 @@ ${members}}
     end
   end
 
-  deploymentview 141186 "activity"
+  deploymentview 154882 "activity"
     //deployment diagram settings
     deploymentdiagramsettings
      end
-    artifact 141954 "MainActivity"
+    artifact 156546 "MainActivity"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -993,31 +1022,55 @@ ${imports}
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 import fr.red.japanlearn.R;
+import fr.red.japanlearn.database.DataBase;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.Settings;
-import fr.red.japanlearn.utils.guess.GuessAnswerData;
-import fr.red.japanlearn.utils.chars.Hiraganas;
-import fr.red.japanlearn.utils.chars.Kanji;
-import fr.red.japanlearn.utils.chars.Katakanas;
-import fr.red.japanlearn.utils.session.SessionState;
+import fr.red.japanlearn.utils.session.Session;
+import fr.red.japanlearn.utils.SessionState;
 ${definition}"
       associated_elems
-	class_ref 142210 // MainActivity
+	class_ref 157442 // MainActivity
       end
     end
 
-    artifact 142082 "SettingsActivity"
+    artifact 156674 "MistakeActivity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import java.util.List;
+import fr.red.japanlearn.R;
+import fr.red.japanlearn.utils.IHM;
+import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.Session;
+import fr.red.japanlearn.utils.session.SessionType;
+import fr.red.japanlearn.utils.mistake.MistakeData;
+import fr.red.japanlearn.utils.mistake.MistakeType;
+import fr.red.japanlearn.utils.mistake.Mistakes;
+${definition}"
+      associated_elems
+	class_ref 157826 // MistakeActivity
+      end
+    end
+
+    artifact 156802 "SettingsActivity"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -1045,11 +1098,11 @@ import fr.red.japanlearn.utils.IHM;
 import fr.red.japanlearn.utils.Settings;
 ${definition}"
       associated_elems
-	class_ref 142850 // SettingsActivity
+	class_ref 158210 // SettingsActivity
       end
     end
 
-    artifact 142210 "StatsActivity"
+    artifact 156930 "StatsActivity"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -1057,7 +1110,6 @@ ${imports}
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -1069,17 +1121,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.text.MessageFormat;
 import java.util.List;
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.guess.GuessAnswerData;
+import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.Session;
 ${definition}"
       associated_elems
-	class_ref 142978 // StatsActivity
+	class_ref 158466 // StatsActivity
       end
     end
 
-    artifact 142338 "TrainActivity"
+    artifact 157058 "TrainActivity"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -1104,12 +1158,15 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputEditText;
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.guess.GuessAnswerData;
-import fr.red.japanlearn.utils.session.SessionState;
+import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.Session;
+import fr.red.japanlearn.utils.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
+import fr.red.japanlearn.utils.mistake.Mistakes;
+import static java.lang.String.*;
 ${definition}"
       associated_elems
-	class_ref 143106 // TrainActivity
+	class_ref 158594 // TrainActivity
       end
     end
   end

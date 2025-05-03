@@ -1,0 +1,92 @@
+class MistakeActivity
+!!!129154.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+
+        initLayout();
+        initVars();
+!!!129282.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+        updateMistakesList();
+!!!129410.java!!!	initLayout() : void
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_mistake);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+!!!129538.java!!!	initVars() : void
+        mistakes = Mistakes.getMistakes();
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+
+        updateMistakesList();
+
+        initReviewButton();
+        initCloseButton();
+!!!129666.java!!!	initReviewButton() : void
+        Button reviewbButton = findViewById(R.id.mistake_review);
+        reviewbButton.setOnClickListener(view -> {
+            List<Question> quiz = mistakes.getMistakesQuiz();
+            if (quiz.isEmpty()) {
+                Toast.makeText(this, "Rien à corriger", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Session.newSession(mistakes.getMistakesQuiz(), SessionType.CORRECTION);
+        });
+!!!129794.java!!!	initCloseButton() : void
+        ImageView close = findViewById(R.id.close);
+        close.setOnClickListener(view -> finish());
+!!!129922.java!!!	updateMistakesList() : void
+        LinearLayout mistakesList = findViewById(R.id.mistakesList);
+        mistakesList.removeAllViews();
+        for (MistakeData data : mistakes.getMistakesData()) {
+            //if (data.isFrequent()) {// TODO Utiliser dans le future
+                addMistakeIntoList(mistakesList, data);
+            //}
+        }
+        if (mistakesList.getChildCount() == 0) {
+            displayEmptyMistakesList(mistakesList);
+        }
+!!!130050.java!!!	displayEmptyMistakesList(inout mistakesList : LinearLayout) : void
+        TextView textView = new TextView(this);
+        textView.setText(R.string.error_not_found);
+        textView.setLayoutParams(new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)));
+        textView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+        mistakesList.addView(textView);
+!!!130178.java!!!	addMistakeIntoList(inout mistakesList : LinearLayout, inout data : MistakeData) : void
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        TextView title = new TextView(this);
+        title.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        title.setText(String.format("%s->%s", data.getQuestion().getAnswer(), data.getWrongAnswer()));
+
+        TextView count = new TextView(this);
+        count.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        count.setText(String.valueOf(data.getCount()));
+
+        linearLayout.addView(title);
+        linearLayout.addView(count);
+        mistakesList.addView(linearLayout);
+
+        if (data.getType() == MistakeType.MIX_UP) {
+            TextView textView = new TextView(this);
+            textView.setText(String.format("%s%s", getString(R.string.mixup_with), craftMixUpStr(data)));
+            mistakesList.addView(textView);
+        }
+!!!130306.java!!!	craftMixUpStr(inout data : MistakeData) : String
+        StringBuilder mixUpStr = new StringBuilder();
+        for (int i = 0; i < data.getMixUpQuestion().size(); i++) {
+            mixUpStr.append(data.getMixUpQuestion().get(i).getQuestion(data.getQuestion().isReversed()));
+            if (i != data.getMixUpQuestion().size() - 1) {
+                if (i == data.getMixUpQuestion().size() - 2) {
+                    mixUpStr.append(" ou ");
+                } else {
+                    mixUpStr.append(", ");
+                }
+            }
+        }
+        return mixUpStr.toString();

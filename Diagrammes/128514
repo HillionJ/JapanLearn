@@ -31,7 +31,7 @@ format 224
    end
   
   java_dir "<unknown>"
-  classview 141570 "unknown"
+  classview 155522 "unknown"
     
     classdiagramsettings member_max_width 0 end
     
@@ -51,7 +51,21 @@ format 224
     
     activitydiagramsettings
      end
-    class 142338 "AppCompatActivity"
+    class 157570 "AppCompatActivity"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 158978 "SQLiteOpenHelper"
       visibility package 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {

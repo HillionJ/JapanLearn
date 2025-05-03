@@ -1,0 +1,51 @@
+class MainActivity
+!!!128002.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+
+        initLayout();
+        iniVars();
+!!!128130.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!128258.java!!!	iniVars() : void
+        ihm = IHM.init(this);
+        ihm.ajouterIHM(this);
+
+        DataBase.init(this);
+
+        initStartButton();
+        initSettingsButton();
+        initMistakesButton();
+!!!128386.java!!!	initLayout() : void
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+!!!128514.java!!!	initMistakesButton() : void
+        Button mistakesButton = findViewById(R.id.mistakesReview);
+        mistakesButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, MistakeActivity.class);
+            startActivity(intent);
+        });
+!!!128642.java!!!	initSettingsButton() : void
+        Button settingsButton = findViewById(R.id.settings);
+        settingsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
+!!!128770.java!!!	initStartButton() : void
+        Button startButton = findViewById(R.id.start);
+        startButton.setOnClickListener(view -> Session.newSession());
+!!!128898.java!!!	onStart() : void
+        super.onStart();
+        Session session = Session.getCurrentSession();
+        if (session != null)
+            session.setSessionState(SessionState.HOME);
+!!!129026.java!!!	onResume() : void
+        super.onResume();
+        Session session = Session.getCurrentSession();
+        if (session != null)
+            session.setSessionState(SessionState.HOME);
