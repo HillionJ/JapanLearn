@@ -1,0 +1,123 @@
+class DataBase
+!!!134402.java!!!	init(inout context : Context) : void
+        dataBase = new DataBase(context);
+!!!134530.java!!!	getDataBase() : DataBase
+        return dataBase;
+!!!134658.java!!!	DataBase(inout context : Context)
+        super(context, fileName, null, 1);
+        new DBCopier(fileName, context).checkDatabase();
+        this.sqlite = this.getWritableDatabase();
+!!!134786.java!!!	addMistake(inout question : Question, in wrongAnswer : String) : MistakeData
+        String reversedFlag = question.isReversed() ? "1" : "0";
+        String idMixUp = getQuestionsIDFrom(wrongAnswer, question.isReversed());
+
+        String query = "INSERT INTO mistakes (idQuestion, idMixUpQuestions, wrongAnswer, reversed) VALUES (" + question.getIDQuestion() + ", ?, ?, " + reversedFlag + ")";
+        sqlite.execSQL(query, new Object[]{ idMixUp, wrongAnswer });
+
+        Cursor cursor = sqlite.rawQuery("SELECT * FROM mistakes ORDER BY idMistake DESC LIMIT 1", null);
+        cursor.moveToNext();
+        int idMistake = cursor.getInt(cursor.getColumnIndexOrThrow("idMistake"));
+        int idQuestion = cursor.getInt(cursor.getColumnIndexOrThrow("idQuestion"));
+        String idMixUpQuestionsStr = cursor.getString(cursor.getColumnIndexOrThrow("idMixUpQuestions"));
+        int count = cursor.getInt(cursor.getColumnIndexOrThrow("count"));
+        boolean reversed = cursor.getInt(cursor.getColumnIndexOrThrow("reversed")) == 1;
+        cursor.close();
+
+        return new MistakeData(idMistake, getQuestion(idQuestion, reversed), getMixUpQuestions(idMixUpQuestionsStr, reversed), wrongAnswer, count);
+!!!134914.java!!!	formatMixUpQuestionsID(inout mixUpQuestions : List<Question>) : String
+        StringBuilder idMixUpQuestions = new StringBuilder();
+        for (int i = 0; i < mixUpQuestions.size(); i++) {
+            idMixUpQuestions.append(mixUpQuestions.get(i).getIDQuestion());
+            if (i > 0 && i < mixUpQuestions.size() - 1) {
+                idMixUpQuestions.append(",");
+            }
+        }
+        return idMixUpQuestions.toString();
+!!!135042.java!!!	updateCount(inout mistakeData : MistakeData) : void
+        sqlite.execSQL("UPDATE mistakes SET count = " + mistakeData.getCount() + " WHERE idMistake = " + mistakeData.getID());
+!!!135170.java!!!	removeMistake(inout mistakeData : MistakeData) : void
+        sqlite.execSQL("DELETE FROM mistakes WHERE idMistake = " + mistakeData.getID());
+!!!135298.java!!!	getMistakes() : MistakeData
+        String query = "SELECT * FROM mistakes";
+        Cursor cursor = sqlite.rawQuery(query, null);
+        List<MistakeData> mistakes = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            int idMistake = cursor.getInt(cursor.getColumnIndexOrThrow("idMistake"));
+            int idQuestion = cursor.getInt(cursor.getColumnIndexOrThrow("idQuestion"));
+            String idMixUpQuestionsStr = cursor.getString(cursor.getColumnIndexOrThrow("idMixUpQuestions"));
+            String wrongAnswer = cursor.getString(cursor.getColumnIndexOrThrow("wrongAnswer"));
+            int count = cursor.getInt(cursor.getColumnIndexOrThrow("count"));
+            boolean reversed = cursor.getInt(cursor.getColumnIndexOrThrow("reversed")) == 1;
+            mistakes.add(new MistakeData(idMistake, getQuestion(idQuestion, reversed), getMixUpQuestions(idMixUpQuestionsStr, reversed), wrongAnswer, count));
+        }
+        cursor.close();
+        return mistakes;
+!!!135426.java!!!	getMixUpQuestions(in idMixUpQuestionsStr : String, inout reversed : boolean) : Question
+        if (idMixUpQuestionsStr == null) {
+            return null;
+        }
+        List<Question> questions = new ArrayList<>();
+        String[] idMixUpQuestions = idMixUpQuestionsStr.split(",");
+        for (String idMixUpQuestion : idMixUpQuestions) {
+            questions.add(getQuestion(Integer.parseInt(idMixUpQuestion), reversed));
+        }
+        return questions;
+!!!135554.java!!!	getQuestion(in idQuestion : int, inout reversed : boolean) : Question
+        String query = "SELECT * FROM questions WHERE idQuestion = " + idQuestion;
+        Cursor cursor = sqlite.rawQuery(query, null);
+        cursor.moveToNext();
+        return craftQuestion(cursor, reversed);
+!!!135682.java!!!	generateNewQuiz(inout types : List<CharType>, inout numberOfQuestions : Integer) : Question
+        String query = "SELECT * FROM questions WHERE idCharType IN (" + buildCharTypeQuery(types) + ") ORDER BY RANDOM() ";
+        if (numberOfQuestions != null) {
+            query += " LIMIT " + numberOfQuestions;
+        }
+        Cursor cursor = sqlite.rawQuery(query, null);
+        List<Question> questions = new ArrayList<>();
+        while(cursor.moveToNext())
+        {
+            questions.add(craftQuestion(cursor, new Random().nextBoolean()));
+        }
+        cursor.close();
+        return questions;
+!!!135810.java!!!	buildCharTypeQuery(inout types : List<CharType>) : String
+        StringBuilder query = new StringBuilder();
+        for (int i = 0; i < types.size(); i++) {
+            query.append(types.get(i).getID());
+            if (i > 0 && i < types.size() - 1) {
+                query.append(" OR ");
+            }
+        }
+        return query.toString();
+!!!135938.java!!!	getQuestionsIDFrom(in wrongAnswer : String, inout reversed : boolean) : String
+        String query = "SELECT idQuestion FROM questions WHERE " + (reversed ? "character" : "romaji") + " = ?";
+
+        Cursor cursor = sqlite.rawQuery(query, new String[]{ wrongAnswer });
+        StringBuilder idQuestions = new StringBuilder();
+        while(cursor.moveToNext())
+        {
+            idQuestions.append(cursor.getInt(cursor.getColumnIndexOrThrow("idQuestion")));
+            if (cursor.moveToNext()) {
+                idQuestions.append(",");
+            }
+        }
+        cursor.close();
+        return idQuestions.length() == 0 ? null : idQuestions.toString();
+!!!136066.java!!!	getQuestionsFrom(in wrongAnswer : String, inout reversed : boolean) : Question
+        String query = "SELECT * FROM questions WHERE " + (reversed ? "character" : "romaji") + " = ?";
+
+        Cursor cursor = sqlite.rawQuery(query, new String[]{ wrongAnswer });
+        List<Question> questions = new ArrayList<>();
+        while(cursor.moveToNext())
+        {
+            questions.add(craftQuestion(cursor, reversed));
+        }
+        cursor.close();
+        return questions;
+!!!136194.java!!!	craftQuestion(inout cursor : Cursor, inout reversed : boolean) : Question
+        int idQuestion = cursor.getInt(cursor.getColumnIndexOrThrow("idQuestion"));
+        int idCharType = cursor.getInt(cursor.getColumnIndexOrThrow("idCharType"));
+        String character = cursor.getString(cursor.getColumnIndexOrThrow("character"));
+        String romaji = cursor.getString(cursor.getColumnIndexOrThrow("romaji"));
+        String explanation = cursor.getString(cursor.getColumnIndexOrThrow("explanation"));
+        return new Question(idQuestion,idCharType, character, romaji, explanation, reversed);

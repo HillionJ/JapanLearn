@@ -1,0 +1,86 @@
+class SettingsActivity
+!!!130434.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        initLayout();
+        initVars();
+
+        restoreSettings();
+!!!130562.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!130690.java!!!	restoreSettings() : void
+        hiraganaCheckBox.setChecked(settings.isHiragana());
+        katakanaCheckBox.setChecked(settings.isKatakana());
+        kanjiCheckBox.setChecked(settings.isKanji());
+        numberOfQuestions.setText(settings.numberOfQuestionsStr());
+!!!130818.java!!!	initVars() : void
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+        settings = Settings.getSettings();
+
+        hiraganaCheckBox = findViewById(R.id.hiraganaCheckBox);
+        katakanaCheckBox = findViewById(R.id.katakanaCheckBox);
+        kanjiCheckBox = findViewById(R.id.kanjiCheckBox);
+
+        initMaxQuestionNumberInput();
+        initApplyButton();
+        initCloseButton();
+
+        settingsMap.put("hiraganaCheckBox", hiraganaCheckBox);
+        settingsMap.put("katakanaCheckBox", katakanaCheckBox);
+        settingsMap.put("kanjiCheckBox", kanjiCheckBox);
+        settingsMap.put("numberOfQuestions", numberOfQuestions);
+!!!130946.java!!!	initLayout() : void
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_settings);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+!!!131074.java!!!	initCloseButton() : void
+        ImageView close = findViewById(R.id.close);
+        close.setOnClickListener(view -> finish());
+!!!131202.java!!!	initApplyButton() : void
+        Button applySettings = findViewById(R.id.apply_settings);
+        applySettings.setOnClickListener(view -> {
+            settings.saveSettings(settingsMap);
+            finish();
+        });
+!!!131330.java!!!	initMaxQuestionNumberInput() : void
+        numberOfQuestions = findViewById(R.id.numberOfQuestions);
+        numberOfQuestions.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_GO || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                // Fermer le clavier
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                // Enlever le focus
+                v.clearFocus();
+
+                return true;
+            }
+            return false;
+        });
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            View rootView = findViewById(android.R.id.content);
+            rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                Rect r = new Rect();
+                rootView.getWindowVisibleDisplayFrame(r);
+                int screenHeight = rootView.getRootView().getHeight();
+                int keypadHeight = screenHeight - r.bottom;
+
+                // Clavier fermé si height < 15% de l'écran
+                if (keypadHeight < screenHeight * 0.15) {
+                    // Enlève le focus de l'EditText si le clavier est fermé
+                    numberOfQuestions.clearFocus();
+                }
+            });
+        }
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            view.clearFocus(); // enlève le focus de l'EditText en plus
+        }

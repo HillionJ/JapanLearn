@@ -1,0 +1,58 @@
+class DBCopier
+!!!136578.java!!!	DBCopier(in fileName : String, in context : Context)
+        this.fileName = fileName;
+        this.path = "/data/data/" + context.getPackageName() + "/databases/";
+        this.context  = context;
+!!!136706.java!!!	copyStream(inout input : InputStream, inout output : OutputStream) : void
+        byte[] buffer = new byte[1024];
+        int length;
+        while((length = input.read(buffer)) > 0)
+        {
+            output.write(buffer, 0, length);
+        }
+!!!136834.java!!!	closeStreams(inout output : OutputStream, inout input : InputStream) : void
+        if(output != null)
+        {
+            try
+            {
+                output.close();
+            }
+            catch(IOException ignored)
+            {
+            }
+        }
+        if(input != null)
+        {
+            try
+            {
+                input.close();
+            }
+            catch(IOException ignored) {
+            }
+        }
+!!!136962.java!!!	checkDatabase() : void
+        File fichierBaseDeDonnes = new File(path + fileName);
+        try
+        {
+            if(!fichierBaseDeDonnes.exists())
+            {
+                copyDatabase(context.getAssets().open(fileName), fichierBaseDeDonnes);
+            }
+        }
+        catch(Exception ignored)
+        {
+        }
+!!!137090.java!!!	copyDatabase(inout source : InputStream, inout destination : File) : void
+        InputStream  input  = null;
+        OutputStream output = null;
+        try
+        {
+            new File(path).mkdirs();
+            input  = new BufferedInputStream(source);
+            output = new BufferedOutputStream(new FileOutputStream(destination));
+            copyStream(input, output);
+        }
+        finally
+        {
+            closeStreams(output, input);
+        }

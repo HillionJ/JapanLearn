@@ -1,0 +1,35 @@
+class Question
+!!!138498.java!!!	Question(in idQuestion : int, in idCharType : int, in character : String, in romaji : String, in explanation : String, inout reversed : boolean)
+        this.idQuestion = idQuestion;
+        this.idCharType = idCharType;
+        this.character = character;
+        this.romaji = romaji;
+        this.explanation = explanation;
+        this.reversed = reversed;
+!!!138626.java!!!	getIDQuestion() : int
+        return idQuestion;
+!!!138754.java!!!	getIDCharType() : int
+        return idCharType;
+!!!138882.java!!!	hasExplanation() : boolean
+        return explanation != null;
+!!!139010.java!!!	getQuestion(inout reversed : boolean) : String
+        return reversed ? romaji : character;
+!!!139138.java!!!	getQuestion() : String
+        return reversed ? romaji : character;
+!!!139266.java!!!	getAnswer() : String
+        return reversed ? character : romaji;
+!!!139394.java!!!	getExplanation() : String
+        return explanation;
+!!!139522.java!!!	requiredCorrection() : void
+        this.correction = true;
+        this.wasIncorrect = true;
+!!!139650.java!!!	isCorrection() : boolean
+        return correction;
+!!!139778.java!!!	isReversed() : boolean
+        return reversed;
+!!!139906.java!!!	isCorrect() : boolean
+        return correct;
+!!!140034.java!!!	correct() : void
+        this.correct = true;
+!!!140162.java!!!	wasIncorrect() : boolean
+        return wasIncorrect;
