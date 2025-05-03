@@ -140,9 +140,6 @@ JapanLearn est une application Android d'entraînement simple et rapide pour app
 ### Format portrait
 ![Video portrait](Sources/portrait.gif)
 
-### Format paysage
-![Video paysage](Sources/paysage.gif)
-
 ## ⚙️ Diagrammes
 
 ### Cas d'utilisation
