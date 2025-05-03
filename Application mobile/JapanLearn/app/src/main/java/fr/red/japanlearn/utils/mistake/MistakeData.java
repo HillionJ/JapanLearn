@@ -8,17 +8,20 @@ import fr.red.japanlearn.utils.Question;
 
 public class MistakeData {
 
-    private int mistakeCount = 0;
+    private final int idMistake;
     private final Question question;
-    private final String wrongAnswer;
-    private final MistakeType type;
     private final List<Question> mixUpQuestion;
+    private final String wrongAnswer;
+    private int mistakeCount;
+    private final MistakeType type;
 
-    public MistakeData(@NonNull Question question, String wrongAnswer) {
-        this.question = question.clone();
+    public MistakeData(int idMistake, @NonNull Question question, List<Question> mixUpQuestion, String wrongAnswer, int count) {
+        this.idMistake = idMistake;
+        this.question = question;
+        this.mixUpQuestion = mixUpQuestion;
         this.wrongAnswer = wrongAnswer;
-        this.mixUpQuestion = question.getOrigin().getMixUpQuestions(wrongAnswer, question.isReversed());
-        this.type = mixUpQuestion.isEmpty() ? MistakeType.UNKOWN_ANSWER : MistakeType.MIX_UP;
+        this.mistakeCount = count;
+        this.type = mixUpQuestion == null ? MistakeType.UNKOWN_ANSWER : MistakeType.MIX_UP;
     }
 
     @SuppressWarnings("unused")
@@ -33,9 +36,10 @@ public class MistakeData {
 
     public void removeMistake() {
         mistakeCount--;
-        if (mistakeCount <= 0) {
-            Mistakes.getMistakes().getMistakesData().remove(this);
-        }
+    }
+
+    public int getID() {
+        return idMistake;
     }
 
     public Question getQuestion() {

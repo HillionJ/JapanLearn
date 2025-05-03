@@ -87,9 +87,11 @@ public class MistakeActivity extends AppCompatActivity {
         LinearLayout mistakesList = findViewById(R.id.mistakesList);
         mistakesList.removeAllViews();
         for (MistakeData data : mistakes.getMistakesData()) {
-            addMistakeIntoList(mistakesList, data);
+            //if (data.isFrequent()) {// TODO Utiliser dans le future
+                addMistakeIntoList(mistakesList, data);
+            //}
         }
-        if (mistakes.getMistakesData().isEmpty()) {
+        if (mistakesList.getChildCount() == 0) {
             displayEmptyMistakesList(mistakesList);
         }
     }
@@ -109,7 +111,7 @@ public class MistakeActivity extends AppCompatActivity {
 
         TextView title = new TextView(this);
         title.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
-        title.setText(String.format("%s->%s", data.getQuestion().getGuess(), data.getWrongAnswer()));
+        title.setText(String.format("%s->%s", data.getQuestion().getAnswer(), data.getWrongAnswer()));
 
         TextView count = new TextView(this);
         count.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -130,7 +132,7 @@ public class MistakeActivity extends AppCompatActivity {
     private static String craftMixUpStr(@NonNull MistakeData data) {
         StringBuilder mixUpStr = new StringBuilder();
         for (int i = 0; i < data.getMixUpQuestion().size(); i++) {
-            mixUpStr.append(data.getMixUpQuestion().get(i).getGuess(data.getQuestion().isReversed()));
+            mixUpStr.append(data.getMixUpQuestion().get(i).getQuestion(data.getQuestion().isReversed()));
             if (i != data.getMixUpQuestion().size() - 1) {
                 if (i == data.getMixUpQuestion().size() - 2) {
                     mixUpStr.append(" ou ");

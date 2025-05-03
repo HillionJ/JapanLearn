@@ -3,7 +3,6 @@ package fr.red.japanlearn.activity;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -72,7 +71,6 @@ public class StatsActivity extends AppCompatActivity {
         }
         int percentage = (int) (correct / (double) questions.size() * 100.0);
         TextView progressPercent = findViewById(R.id.progress_percent);
-        Log.d("_RED", "initPercentage: " + percentage);
         progressPercent.setText(MessageFormat.format("{0}%", percentage));
     }
 

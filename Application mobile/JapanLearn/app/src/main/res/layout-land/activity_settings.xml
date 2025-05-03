@@ -57,40 +57,12 @@
                 android:buttonTint="@color/black"
                 android:text="Hiragana" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="35dp">
-
-                <CheckBox
-                    android:id="@+id/hiraganaCombinedCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/black"
-                    android:text="Inclure les Combinaisons" />
-            </LinearLayout>
-
             <CheckBox
                 android:id="@+id/katakanaCheckBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/black"
                 android:text="Katakana" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="35dp">
-
-                <CheckBox
-                    android:id="@+id/katakanaCombinedCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/black"
-                    android:text="Inclure les Combinaisons" />
-            </LinearLayout>
 
             <CheckBox
                 android:id="@+id/kanjiCheckBox"
