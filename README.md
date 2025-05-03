@@ -1,3 +1,7 @@
+![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=plastic)
+
+[![android-build](https://github.com/HillionJ/JapanLearn/actions/workflows/android-build.yml/badge.svg)](https://github.com/HillionJ/JapanLearn/actions/workflows/android-build.yml)
+
 # JapanLearn v1.0
 
 **Développeur** : RedEstDeRetour
