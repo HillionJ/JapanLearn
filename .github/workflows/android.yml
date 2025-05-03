@@ -38,4 +38,6 @@ jobs:
         #if: runner.os == 'ubuntu'
         run: |
           echo sdk.dir=/usr/local/lib/android/sdk >> Application\ mobile/JapanLearn/local.properties
-          cd Application\ mobile/JapanLearn/ && ./gradlew --no-daemon build
+          cd Application\ mobile/JapanLearn/
+          chmod +x gradlew
+          ./gradlew --no-daemon build
