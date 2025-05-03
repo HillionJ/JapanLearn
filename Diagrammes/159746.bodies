@@ -1,0 +1,56 @@
+class Session
+!!!144770.java!!!	getCurrentSession() : Session
+        return currentSession;
+!!!144898.java!!!	newSession() : void
+        Settings settings = Settings.getSettings();
+        DataBase dataBase = DataBase.getDataBase();
+        IHM ihm = IHM.getIHM();
+
+        if (settings.getCharTypes().isEmpty()) {
+            Toast.makeText(ihm.getActiviteActive(), "Sélection vide (Voir Paramètres)", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        List<Question> questions = dataBase.generateNewQuiz(settings.getCharTypes(), settings.isNumberOfQuestionsSet() ? settings.getNumberOfQuestions() : null);
+
+        newSession(questions, SessionType.NORMAL);
+!!!145026.java!!!	newSession(inout questions : List<Question>, inout type : SessionType) : void
+        currentSession = new Session(questions, type);
+!!!145154.java!!!	Session(inout questions : List<Question>, inout type : SessionType)
+        this.questions = questions;
+        this.dynamicQuestions.addAll(questions);
+        this.maxNumberOfQuestions = questions.size();
+        this.type = type;
+
+        mistakes = Mistakes.getMistakes();
+
+        nextTry();
+        Intent intent = new Intent(IHM.getIHM().getActiviteActive(), TrainActivity.class);
+        IHM.getIHM().getActiviteActive().startActivity(intent);
+!!!145282.java!!!	nextTry() : void
+        sessionState = SessionState.TRAINING;
+        question = dynamicQuestions.get(0);
+!!!145410.java!!!	setCorrect(inout question : Question) : void
+        question.correct();
+        dynamicQuestions.remove(question);
+        if (type == SessionType.CORRECTION) {
+            mistakes.removeCount(question);
+        }
+!!!145538.java!!!	setIncorrect(inout question : Question, in wrongAnswer : String) : void
+        question.requiredCorrection();
+        dynamicQuestions.remove(question);
+        dynamicQuestions.add(dynamicQuestions.size(), question);
+        mistakes.addCount(question, wrongAnswer);
+!!!145666.java!!!	hasNextTry() : boolean
+        return !dynamicQuestions.isEmpty();
+!!!145794.java!!!	getCurrentGuessAnswerData() : Question
+        return question;
+!!!145922.java!!!	getSessionState() : SessionState
+        return sessionState;
+!!!146050.java!!!	setSessionState(inout sessionState : SessionState) : void
+        this.sessionState = sessionState;
+!!!146178.java!!!	getMaxNumberOfQuestions() : int
+        return maxNumberOfQuestions;
+!!!146306.java!!!	getDynamicQuestions() : Question
+        return dynamicQuestions;
+!!!146434.java!!!	getQuestions() : Question
+        return questions;

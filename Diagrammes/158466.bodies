@@ -1,0 +1,71 @@
+class StatsActivity
+!!!131458.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        initLayout();
+        initVars();
+!!!131586.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!131714.java!!!	initLayout() : void
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_stats);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+!!!131842.java!!!	initVars() : void
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+
+        initCloseButton();
+        initContinueButton();
+        initProgressBar();
+        initPercentage();
+!!!131970.java!!!	initPercentage() : void
+        List<Question> questions = Session.getCurrentSession().getQuestions();
+        double correct = 0;
+        for (Question question : questions) {
+            if (!question.wasIncorrect()) {
+                correct++;
+            }
+        }
+        int percentage = (int) (correct / (double) questions.size() * 100.0);
+        TextView progressPercent = findViewById(R.id.progress_percent);
+        progressPercent.setText(MessageFormat.format("{0}%", percentage));
+!!!132098.java!!!	initProgressBar() : void
+        List<Question> questions = Session.getCurrentSession().getQuestions();
+        LinearLayout progressBarLayout = findViewById(R.id.customProgressBar);
+        progressBarLayout.removeAllViews();
+
+        for (int i = 0; i < questions.size(); i++) {
+            View segment = new View(this);
+
+            // Déterminer le background selon la position
+            if (questions.size() == 1) {
+                segment.setBackgroundResource(R.drawable.progress_segment_single);
+            } else if (i == 0) {
+                segment.setBackgroundResource(R.drawable.progress_segment_left);
+            } else if (i == questions.size() - 1) {
+                segment.setBackgroundResource(R.drawable.progress_segment_right);
+            } else {
+                segment.setBackgroundResource(R.drawable.progress_segment_middle);
+            }
+
+            int couleur = questions.get(i).wasIncorrect() ? Color.RED : Color.GREEN;
+            segment.getBackground().setColorFilter(couleur, PorterDuff.Mode.SRC_IN);
+
+            // Ajouter avec poids égal
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
+            if (i != questions.size() - 1) params.setMarginEnd(2); // petit espacement visuel
+            segment.setLayoutParams(params);
+
+            progressBarLayout.addView(segment);
+        }
+
+!!!132226.java!!!	initContinueButton() : void
+        Button continueButton = findViewById(R.id.stats_continue);
+        continueButton.setOnClickListener(view -> finish());
+!!!132354.java!!!	initCloseButton() : void
+        ImageView close = findViewById(R.id.close);
+        close.setOnClickListener(view -> finish());

@@ -27,8 +27,9 @@ import fr.red.japanlearn.utils.Settings;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private IHM ihm;
     private Settings settings;
-    private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, hiraganaCombinedCheckBox, katakanaCombinedCheckBox;
+    private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox;
     private EditText numberOfQuestions;
     private final Map<String, Object> settingsMap = new HashMap<>();
 
@@ -41,17 +42,21 @@ public class SettingsActivity extends AppCompatActivity {
         restoreSettings();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+    }
+
     public void restoreSettings() {
         hiraganaCheckBox.setChecked(settings.isHiragana());
-        hiraganaCombinedCheckBox.setChecked(settings.isHiraganaCombined());
         katakanaCheckBox.setChecked(settings.isKatakana());
-        katakanaCombinedCheckBox.setChecked(settings.isKatakanaCombined());
         kanjiCheckBox.setChecked(settings.isKanji());
         numberOfQuestions.setText(settings.numberOfQuestionsStr());
     }
 
     private void initVars() {
-        IHM ihm = IHM.getIHM();
+        ihm = IHM.getIHM();
         ihm.ajouterIHM(this);
         settings = Settings.getSettings();
 
@@ -59,17 +64,12 @@ public class SettingsActivity extends AppCompatActivity {
         katakanaCheckBox = findViewById(R.id.katakanaCheckBox);
         kanjiCheckBox = findViewById(R.id.kanjiCheckBox);
 
-        hiraganaCombinedCheckBox = findViewById(R.id.hiraganaCombinedCheckBox);
-        katakanaCombinedCheckBox = findViewById(R.id.katakanaCombinedCheckBox);
-
         initMaxQuestionNumberInput();
         initApplyButton();
         initCloseButton();
 
         settingsMap.put("hiraganaCheckBox", hiraganaCheckBox);
-        settingsMap.put("hiraganaCombinedCheckBox", hiraganaCombinedCheckBox);
         settingsMap.put("katakanaCheckBox", katakanaCheckBox);
-        settingsMap.put("katakanaCombinedCheckBox", katakanaCombinedCheckBox);
         settingsMap.put("kanjiCheckBox", kanjiCheckBox);
         settingsMap.put("numberOfQuestions", numberOfQuestions);
     }
@@ -86,12 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void initCloseButton() {
         ImageView close = findViewById(R.id.close);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        close.setOnClickListener(view -> finish());
     }
 
     public void initApplyButton() {

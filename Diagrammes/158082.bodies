@@ -1,0 +1,26 @@
+class MistakeData
+!!!141954.java!!!	MistakeData(in idMistake : int, inout question : Question, inout mixUpQuestion : List<Question>, in wrongAnswer : String, in count : int)
+        this.idMistake = idMistake;
+        this.question = question;
+        this.mixUpQuestion = mixUpQuestion;
+        this.wrongAnswer = wrongAnswer;
+        this.mistakeCount = count;
+        this.type = mixUpQuestion == null ? MistakeType.UNKOWN_ANSWER : MistakeType.MIX_UP;
+!!!142082.java!!!	isFrequent() : boolean
+        return mistakeCount >= 3;
+!!!142210.java!!!	addMistake() : void
+        mistakeCount++;
+!!!142338.java!!!	removeMistake() : void
+        mistakeCount--;
+!!!142466.java!!!	getID() : int
+        return idMistake;
+!!!142594.java!!!	getQuestion() : Question
+        return question;
+!!!142722.java!!!	getWrongAnswer() : String
+        return wrongAnswer;
+!!!142850.java!!!	getCount() : int
+        return mistakeCount;
+!!!142978.java!!!	getType() : MistakeType
+        return type;
+!!!143106.java!!!	getMixUpQuestion() : Question
+        return mixUpQuestion;

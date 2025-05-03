@@ -1,0 +1,525 @@
+format 224
+"database" // fr::red::japanlearn::database
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:/Users/RedEstDeRetour/AndroidStudioProjects/JapanLearn/Application mobile/JapanLearn/app/src/main/java/fr/red/japanlearn/database/"
+  java_package "fr.red.japanlearn.database"
+  classview 155906 "database"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 158850 "DataBase"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      java_annotation "@SuppressWarnings({ \"SpellCheckingInspection\", \"unused\", \"SdCardPath\" })
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 160386 // <generalisation>
+	relation 160386 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 160386 // <generalisation>
+	  b parent class_ref 158978 // SQLiteOpenHelper
+      end
+
+      attribute 166146 "fileName"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"japanlearn.db\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 160514 // dataBase (<unidirectional association>)
+	relation 160514 --->
+	  a role_name "dataBase" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 160514 // dataBase (<unidirectional association>)
+	  b parent class_ref 158850 // DataBase
+      end
+
+      operation 134402 "init"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134530 "getDataBase"
+	class_operation public return_type class_ref 158850 // DataBase
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 166274 "sqlite"
+	const_attribute private explicit_type "SQLiteDatabase"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 134658 "DataBase"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "context" explicit_type "Context"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134786 "addMistake"
+	public return_type class_ref 158082 // MistakeData
+	nparams 2
+	  param inout name "question" type class_ref 158722 // Question
+	  param in name "wrongAnswer" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134914 "formatMixUpQuestionsID"
+	private explicit_return_type "String"
+	nparams 1
+	  param inout name "mixUpQuestions" explicit_type "List<Question>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@NonNull
+"
+	
+	
+	
+      end
+
+      operation 135042 "updateCount"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "mistakeData" type class_ref 158082 // MistakeData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135170 "removeMistake"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "mistakeData" type class_ref 158082 // MistakeData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135298 "getMistakes"
+	public return_type class_ref 158082 // MistakeData
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135426 "getMixUpQuestions"
+	private return_type class_ref 158722 // Question
+	nparams 2
+	  param in name "idMixUpQuestionsStr" explicit_type "String"
+	  param inout name "reversed" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135554 "getQuestion"
+	public return_type class_ref 158722 // Question
+	nparams 2
+	  param in name "idQuestion" explicit_type "int"
+	  param inout name "reversed" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135682 "generateNewQuiz"
+	public return_type class_ref 158722 // Question
+	nparams 2
+	  param inout name "types" explicit_type "List<CharType>"
+	  param inout name "numberOfQuestions" explicit_type "Integer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135810 "buildCharTypeQuery"
+	private explicit_return_type "String"
+	nparams 1
+	  param inout name "types" explicit_type "List<CharType>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@NonNull
+"
+	
+	
+	
+      end
+
+      operation 135938 "getQuestionsIDFrom"
+	public explicit_return_type "String"
+	nparams 2
+	  param in name "wrongAnswer" explicit_type "String"
+	  param inout name "reversed" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136066 "getQuestionsFrom"
+	public return_type class_ref 158722 // Question
+	nparams 2
+	  param in name "wrongAnswer" explicit_type "String"
+	  param inout name "reversed" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136194 "craftQuestion"
+	private return_type class_ref 158722 // Question
+	nparams 2
+	  param inout name "cursor" explicit_type "Cursor"
+	  param inout name "reversed" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@NonNull
+"
+	
+	
+	
+      end
+
+      operation 136322 "onCreate"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "db" explicit_type "SQLiteDatabase"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 136450 "onUpgrade"
+	public explicit_return_type "void"
+	nparams 3
+	  param inout name "db" explicit_type "SQLiteDatabase"
+	  param in name "oldVersion" explicit_type "int"
+	  param in name "newVersion" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 159106 "DBCopier"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      java_annotation "@SuppressWarnings({ \"SpellCheckingInspection\", \"unused\", \"SdCardPath\" })
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 166402 "path"
+	const_attribute private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 166530 "fileName"
+	const_attribute private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 166658 "context"
+	const_attribute private explicit_type "Context"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 136578 "DBCopier"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "fileName" explicit_type "String"
+	  param in name "context" explicit_type "Context"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}final ${t0} ${p0}, @NonNull final ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136706 "copyStream"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "input" explicit_type "InputStream"
+	  param inout name "output" explicit_type "OutputStream"
+	nexceptions 1
+	  explicit_exception "IOException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136834 "closeStreams"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "output" explicit_type "OutputStream"
+	  param inout name "input" explicit_type "InputStream"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136962 "checkDatabase"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137090 "copyDatabase"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "source" explicit_type "InputStream"
+	  param inout name "destination" explicit_type "File"
+	nexceptions 1
+	  explicit_exception "IOException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 155010 "database"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 157186 "DataBase"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import androidx.annotation.NonNull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.mistake.MistakeData;
+import fr.red.japanlearn.utils.session.CharType;
+${definition}"
+      associated_elems
+	class_ref 158850 // DataBase
+      end
+      comment "@author Thierry VAIRA
+@author Jules HILLION
+@file BaseDeDonnees.java
+@brief La classe assurant la gestion de la base de données SQLite
+"
+    end
+
+    artifact 157314 "DBCopier"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Context;
+import androidx.annotation.NonNull;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+${definition}"
+      associated_elems
+	class_ref 159106 // DBCopier
+      end
+    end
+  end
+end

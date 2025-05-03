@@ -1,0 +1,170 @@
+class TrainActivity
+!!!132482.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        initLayout();
+        initVars();
+
+        closeKeyBoard();
+        if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
+            if (question.isCorrect() && question.hasExplanation()) {
+                showInfoMessage(true);
+                disableEditText();
+            } else if (!question.isCorrect()) {
+                showErrorMessage(true);
+                disableEditText();
+            }
+        } else {
+            updateKeyboardLang();
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                openKeyboard();
+            }
+        }
+!!!132610.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!132738.java!!!	disableEditText() : void
+        inputText.setEnabled(false);
+!!!132866.java!!!	showErrorMessage(inout instantDisplay : boolean) : void
+        showMessage(correctAnswer, false, instantDisplay);
+!!!132994.java!!!	showInfoMessage(inout instantDisplay : boolean) : void
+        showMessage(question.getExplanation(), true, instantDisplay);
+!!!133122.java!!!	showMessage(in message : String, inout goodAnswer : boolean, inout instantDisplay : boolean) : void
+        if (instantDisplay) {
+            displayLayout(message, goodAnswer);
+            return;
+        }
+        Animation slideIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom);
+        validate.setVisibility(View.INVISIBLE);
+
+        errorContainer.postDelayed(() -> {
+            displayLayout(message, goodAnswer);
+
+            errorContainer.startAnimation(slideIn);
+            validate.startAnimation(slideIn);
+        }, 150);
+!!!133250.java!!!	displayLayout(in message : String, inout goodAnswer : boolean) : void
+        errorContainer.setBackgroundColor(getResources().getColor(goodAnswer ? R.color.good_answer : R.color.wrong_answer));
+        errorText.setText(message);
+        errorTitle.setText(goodAnswer ? "Signification : " : "Bonne réponse : ");
+        errorContainer.setVisibility(View.VISIBLE);
+        validate.setVisibility(View.VISIBLE);
+!!!133378.java!!!	restartActivity() : void
+        if (!Session.getCurrentSession().hasNextTry()){
+            finish();
+            Intent intent = new Intent(this, StatsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            return;
+        }
+        Session.getCurrentSession().nextTry();
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+!!!133506.java!!!	openKeyboard() : void
+        inputText.postDelayed(() -> {
+            inputText.requestFocus();
+            InputMethodManager imm2 = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
+            // Force vraiment l'ouverture du clavier
+            if (imm2 != null) {
+                imm2.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+            }
+        }, 200);
+!!!133634.java!!!	updateKeyboardLang() : void
+        inputText.setImeHintLocales(new android.os.LocaleList(new java.util.Locale(!question.isReversed() ? "fr" : "ja")));
+!!!133762.java!!!	closeKeyBoard() : void
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(inputText.getWindowToken(), 0);
+!!!133890.java!!!	initLayout() : void
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_train);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        new SoftKeyboardInput(this);
+!!!134018.java!!!	initVars() : void
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+
+        Mistakes mistakes = Mistakes.getMistakes();
+
+        question = Session.getCurrentSession().getCurrentGuessAnswerData();
+        TextView questionText = findViewById(R.id.guess);
+        questionText.setText(question.getQuestion());
+
+        inputText = findViewById(R.id.textInput);
+        inputText.setText("");
+        inputText.requestFocus();
+
+        correctAnswer = question.getAnswer();
+        Log.d("_RED", "correctAnswer: " + correctAnswer);
+
+        errorContainer = findViewById(R.id.errorContainer);
+        errorText = findViewById(R.id.errorText);
+        errorTitle = findViewById(R.id.errorTitle);
+
+        TextView session_progress = findViewById(R.id.session_progress);
+        int maxNumber = Session.getCurrentSession().getMaxNumberOfQuestions();
+        int currentNumber = maxNumber - Session.getCurrentSession().getDynamicQuestions().size() + 1;
+        session_progress.setText(format(getString(R.string.quiz_progress_format), currentNumber, maxNumber));
+
+        TextView wrong_label = findViewById(R.id.wrong_label);
+        if (question.isCorrection()) {
+            wrong_label.setText(R.string.error_label);
+            wrong_label.setVisibility(View.VISIBLE);
+        } else if (mistakes.isMistake(question)) {
+            wrong_label.setText(R.string.frequent_label);
+            wrong_label.setTextColor(getResources().getColor(R.color.frequent_mistake));
+            wrong_label.setVisibility(View.VISIBLE);
+        }
+
+        initValidationButton();
+
+        initCloseButton();
+!!!134146.java!!!	initValidationButton() : void
+
+        validate = findViewById(R.id.validate);
+        if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
+            validate.setText(R.string.continuer);
+        }
+
+        validate.setOnClickListener(new View.OnClickListener() {
+            boolean _continue = Session.getCurrentSession().getSessionState() == SessionState.ENDING;
+            @Override
+            public void onClick(View view) {
+                if (_continue) {
+                    restartActivity();
+                    return;
+                }
+                assert inputText.getText() != null;
+                if (inputText.getText().length() == 0) {
+                    return;
+                }
+                if (inputText.getText().toString().equalsIgnoreCase(correctAnswer)) {
+                    Session.getCurrentSession().setCorrect(question);
+                    if (question.hasExplanation()) {
+                        _continue = true;
+                        closeKeyBoard();
+                        disableEditText();
+                        showInfoMessage(false);
+                        validate.setText(R.string.continuer);
+                        Session.getCurrentSession().setSessionState(SessionState.ENDING);
+                    } else {
+                        restartActivity();
+                    }
+                } else {
+                    _continue = true;
+                    closeKeyBoard();
+                    disableEditText();
+                    showErrorMessage(false);
+                    Session.getCurrentSession().setIncorrect(question, inputText.getText().toString());
+                    validate.setText(R.string.continuer);
+                    Session.getCurrentSession().setSessionState(SessionState.ENDING);
+                }
+            }
+        });
+!!!134274.java!!!	initCloseButton() : void
+        ImageView close = findViewById(R.id.close);
+        close.setOnClickListener(view -> finish());

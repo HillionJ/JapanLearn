@@ -1,0 +1,56 @@
+class Mistakes
+!!!143234.java!!!	getMistakes() : Mistakes
+        if (instance == null)
+            instance = new Mistakes();
+        return instance;
+!!!143362.java!!!	Mistakes()
+        dataBase = DataBase.getDataBase();
+        mistakes = dataBase.getMistakes();
+!!!143490.java!!!	addCount(inout question : Question, in wrongAnswer : String) : void
+        MistakeData data = getMistakeFrom(question, wrongAnswer);
+        if (data == null) {
+            mistakes.add(dataBase.addMistake(question, wrongAnswer));
+        } else {
+            data.addMistake();
+            dataBase.updateCount(data);
+        }
+!!!143618.java!!!	removeCount(inout question : Question) : void
+        MistakeData data = getMistakeFrom(question);
+        if (data == null) {
+            return;
+        }
+        data.removeMistake();
+        if (data.getCount() == 0) {
+            dataBase.removeMistake(data);
+            mistakes.remove(data);
+        } else {
+            dataBase.updateCount(data);
+        }
+!!!143746.java!!!	getMistakeFrom(inout question : Question, in wrongAnswer : String) : MistakeData
+        for (MistakeData data : mistakes) {
+            if (data.getQuestion().isReversed() == question.isReversed()
+                    && data.getQuestion().getIDQuestion() == question.getIDQuestion()
+                    && data.getWrongAnswer().equals(wrongAnswer)) {
+                return data;
+            }
+        }
+        return null;
+!!!143874.java!!!	getMistakeFrom(inout question : Question) : MistakeData
+        for (MistakeData data : mistakes) {
+            if (data.getQuestion().isReversed() == question.isReversed()
+                    && data.getQuestion().getIDQuestion() == question.getIDQuestion()) {
+                return data;
+            }
+        }
+        return null;
+!!!144002.java!!!	getMistakesQuiz() : Question
+        List<Question> questions = new ArrayList<>();
+        for (MistakeData data : mistakes) {
+            questions.add(data.getQuestion());
+        }
+        Collections.shuffle(questions);
+        return questions;
+!!!144130.java!!!	getMistakesData() : MistakeData
+        return mistakes;
+!!!144258.java!!!	isMistake(inout question : Question) : boolean
+        return getMistakeFrom(question) != null;

@@ -1,0 +1,35 @@
+format 224
+
+classcanvas 128002 class_ref 150658 // characterType
+  classdiagramsettings show_members_full_definition yes show_members_initialization yes member_max_width 0 end
+  xyz 478 59 2000
+end
+classcanvas 128130 class_ref 150786 // mistakes
+  classdiagramsettings show_members_full_definition yes show_members_initialization yes member_max_width 0 end
+  xyz 131 319 2000
+end
+classcanvas 128258 class_ref 150914 // questions
+  classdiagramsettings show_members_full_definition yes show_members_initialization yes member_max_width 0 end
+  xyz 462 337 2005
+end
+textcanvas 129666 "*"
+  xyzwh 531 319 2000 15 15
+textcanvas 129794 "*"
+  xyzwh 316 403 2000 15 15
+textcanvas 130306 "1"
+  xyzwh 529.5 205 2000 18 17
+textcanvas 130434 "1"
+  xyzwh 449.5 398 2000 15 16
+relationcanvas 128642 relation_ref 151810 // <unidirectional association>
+  from ref 128130 z 2006 to ref 128258
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128770 relation_ref 151938 // <unidirectional association>
+  decenter_begin 467
+  decenter_end 456
+  from ref 128258 z 2006 to ref 128002
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

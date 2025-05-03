@@ -5,7 +5,11 @@ import android.content.SharedPreferences;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import fr.red.japanlearn.utils.session.CharType;
 
 public class Settings {
 
@@ -17,7 +21,7 @@ public class Settings {
         return instance;
     }
 
-    private boolean hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, hiraganaCombinedCheckBox, katakanaCombinedCheckBox;
+    private boolean hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox;
     private String numberOfQuestions;
     private final IHM ihm;
 
@@ -31,9 +35,7 @@ public class Settings {
         SharedPreferences prefs =  ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
 
         hiraganaCheckBox = prefs.getBoolean("hiraganaCheckBox", false);
-        hiraganaCombinedCheckBox = prefs.getBoolean("hiraganaCombinedCheckBox", false);
         katakanaCheckBox = prefs.getBoolean("katakanaCheckBox", false);
-        katakanaCombinedCheckBox = prefs.getBoolean("katakanaCombinedCheckBox", false);
         kanjiCheckBox = prefs.getBoolean("kanjiCheckBox", false);
         numberOfQuestions = prefs.getString("numberOfQuestions", "");
     }
@@ -44,33 +46,16 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         hiraganaCheckBox = ((CheckBox)settings.get("hiraganaCheckBox")).isChecked();
-        hiraganaCombinedCheckBox = ((CheckBox)settings.get("hiraganaCombinedCheckBox")).isChecked();
         katakanaCheckBox = ((CheckBox)settings.get("katakanaCheckBox")).isChecked();
-        katakanaCombinedCheckBox = ((CheckBox)settings.get("katakanaCombinedCheckBox")).isChecked();
         kanjiCheckBox = ((CheckBox)settings.get("kanjiCheckBox")).isChecked();
         numberOfQuestions = ((EditText)settings.get("numberOfQuestions")).getText().toString();
 
         editor.putBoolean("hiraganaCheckBox", hiraganaCheckBox);
-        editor.putBoolean("hiraganaCombinedCheckBox", hiraganaCombinedCheckBox);
         editor.putBoolean("katakanaCheckBox", katakanaCheckBox);
-        editor.putBoolean("katakanaCombinedCheckBox", katakanaCombinedCheckBox);
         editor.putBoolean("kanjiCheckBox", kanjiCheckBox);
         editor.putString("numberOfQuestions", numberOfQuestions);
 
         editor.apply();
-
-
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    public boolean isModified(Map<String, Object> settings) {
-        SharedPreferences prefs = ihm.getActiviteActive().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        return ((CheckBox)settings.get("hiraganaCheckBox")).isChecked() != prefs.getBoolean("hiraganaCheckBox", false)
-                || ((CheckBox)settings.get("hiraganaCombinedCheckBox")).isChecked() != prefs.getBoolean("hiraganaCombinedCheckBox", false)
-                || ((CheckBox)settings.get("katakanaCheckBox")).isChecked() != prefs.getBoolean("katakanaCheckBox", false)
-                || ((CheckBox)settings.get("katakanaCombinedCheckBox")).isChecked() != prefs.getBoolean("katakanaCombinedCheckBox", false)
-                || ((CheckBox)settings.get("kanjiCheckBox")).isChecked() != prefs.getBoolean("kanjiCheckBox", false)
-                || !((EditText)settings.get("numberOfQuestions")).getText().toString().equals(prefs.getString("numberOfQuestions", ""));
     }
 
     public String numberOfQuestionsStr() {
@@ -89,16 +74,8 @@ public class Settings {
         return hiraganaCheckBox;
     }
 
-    public boolean isHiraganaCombined() {
-        return hiraganaCombinedCheckBox;
-    }
-
     public boolean isKatakana() {
         return katakanaCheckBox;
-    }
-
-    public boolean isKatakanaCombined() {
-        return katakanaCombinedCheckBox;
     }
 
     public boolean isKanji() {
@@ -116,5 +93,16 @@ public class Settings {
             }
         }
         return integer;
+    }
+
+    public List<CharType> getCharTypes() {
+        List<CharType> charTypes = new ArrayList<>();
+        if (isHiragana())
+            charTypes.add(CharType.HIRAGANA);
+        if (isKatakana())
+            charTypes.add(CharType.KATAKANA);
+        if (isKanji())
+            charTypes.add(CharType.KANJI);
+        return charTypes;
     }
 }

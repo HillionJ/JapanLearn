@@ -1,15 +1,11 @@
 window_sizes 1920 1001 450 1464 819 128
 
 diagrams
-  classdiagram_ref 141186 // Diagramme de classe
-    1171 655 100 E 0 0
   active  usecasediagram_ref 134530 // Cas d'utilisations
-    1464 819 100 A3 0 0
+    1464 819 100 A3 48 0
 end
 show_stereotypes
-selected usecasediagram_ref 134530 // Cas d'utilisations
 open
   usecaseview_ref 134530 // Cas d'utilisation
-  classview_ref 134530 // Diagramme de classes
 end
 end

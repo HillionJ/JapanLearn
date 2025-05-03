@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Japan Learn</string>
     <string name="continuer">CONTINUER</string>
+    <string name="quiz_progress_format">%d / %d</string>
+    <string name="error_label">Erreur précédente</string>
+    <string name="frequent_label">Erreur fréquente</string>
+    <string name="error_not_found">Aucune erreur trouvée</string>
+    <string name="mixup_with">"  Confondu avec "</string>
 </resources>
