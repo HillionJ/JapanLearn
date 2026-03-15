@@ -11,6 +11,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -111,7 +112,7 @@ public class DataBase extends SQLiteOpenHelper
     }
 
     private List<Question> getAllDatabaseQuestions(List<CharType> types) {
-        String query = "SELECT * FROM questions WHERE idCharType IN (" + buildCharTypeQuery(types) + ")";
+        String query = "SELECT * FROM questions WHERE idCharType IN (" + listJoinCharType(types, ",") + ")";
         Cursor cursor = sqlite.rawQuery(query, null);
         List<Question> questions = new ArrayList<>();
         while(cursor.moveToNext())
@@ -125,23 +126,28 @@ public class DataBase extends SQLiteOpenHelper
     public List<Question> generateNewQuiz(List<CharType> types, Integer numberOfQuestions) {
         List<Question> questions = getAllDatabaseQuestions(types);
 
-        int n = types.size();
-        int countPerCategory = (numberOfQuestions + n - 1) / n;
-
         List<Question> limitedQuiz = new ArrayList<>();
-        for (CharType ct : types) {
-            List<Question> charQuestion = new ArrayList<>();
-            for (Question question : questions) {
-                if (question.getIDCharType() == ct.getID()) {
-                    charQuestion.add(question);
+        if (numberOfQuestions == null) {
+            limitedQuiz.addAll(questions);
+            Collections.shuffle(limitedQuiz);
+        } else {
+            int n = types.size();
+            int countPerCategory = (numberOfQuestions + n - 1) / n;
+
+            for (CharType ct : types) {
+                List<Question> charQuestion = new ArrayList<>();
+                for (Question question : questions) {
+                    if (question.getIDCharType() == ct.getID()) {
+                        charQuestion.add(question);
+                    }
                 }
+                Collections.shuffle(charQuestion);
+                charQuestion = charQuestion.subList(0, countPerCategory);
+                limitedQuiz.addAll(charQuestion);
             }
-            Collections.shuffle(charQuestion);
-            charQuestion = charQuestion.subList(0, countPerCategory);
-            limitedQuiz.addAll(charQuestion);
+            Collections.shuffle(limitedQuiz);
+            limitedQuiz = limitedQuiz.subList(0, numberOfQuestions);
         }
-        Collections.shuffle(limitedQuiz);
-        limitedQuiz = limitedQuiz.subList(0, numberOfQuestions);
 
         for (Question question : limitedQuiz) {
             question.updateSimilarity(questions);
@@ -151,11 +157,21 @@ public class DataBase extends SQLiteOpenHelper
     }
 
     @NonNull
-    private String buildCharTypeQuery(@NonNull List<CharType> types) {
+    public static String listJoin(@NonNull List<String> list, String joinStr) {
         StringBuilder query = new StringBuilder();
-        for (int i = 0; i < types.size(); i++) {
-            query.append(types.get(i).getID());
-            if (i < types.size() - 1) query.append(",");
+        for (int i = 0; i < list.size(); i++) {
+            query.append(list.get(i));
+            if (i < list.size() - 1) query.append(joinStr);
+        }
+        return query.toString();
+    }
+
+    @NonNull
+    public static String listJoinCharType(@NonNull List<CharType> list, String joinStr) {
+        StringBuilder query = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            query.append(list.get(i).getID());
+            if (i < list.size() - 1) query.append(joinStr);
         }
         return query.toString();
     }

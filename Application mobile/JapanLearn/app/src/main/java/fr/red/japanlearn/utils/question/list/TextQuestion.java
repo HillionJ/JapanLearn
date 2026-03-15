@@ -1,5 +1,9 @@
 package fr.red.japanlearn.utils.question.list;
 
+import static fr.red.japanlearn.database.DataBase.listJoin;
+
+import android.util.Log;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,5 +36,26 @@ public class TextQuestion extends Question {
     @Override
     public boolean isValidAnswer(String answer) {
         return possibleAnswers.contains(answer);
+    }
+
+    @Override
+    public boolean hasExplanation() {
+        return getExplanation() != null;
+    }
+
+    @Override
+    public String getExplanation() {
+        if (explanation != null) {
+            return explanation;
+        }
+        if (possibleAnswers.size() > 1) {
+            return listJoin(possibleAnswers, ", ");
+        }
+        return null;
+    }
+
+    @Override
+    public String getInfoTitle() {
+        return explanation != null ? "Signification : " : "Réponses possible : ";
     }
 }

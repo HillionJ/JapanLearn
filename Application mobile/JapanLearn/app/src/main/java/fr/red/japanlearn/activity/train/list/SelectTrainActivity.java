@@ -38,7 +38,7 @@ public class SelectTrainActivity extends TrainActivity {
 
         if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
             if (question.isCorrect() && question.hasExplanation()) {
-                showInfoMessage(true);
+                showInfoMessage(question, true);
                 disableAnswerEdit();
             } else if (!question.isCorrect()) {
                 showErrorMessage(true);
@@ -93,7 +93,6 @@ public class SelectTrainActivity extends TrainActivity {
         }
 
         correctAnswer = question.getAnswer();
-        Log.d("_RED", "correctAnswer: " + correctAnswer);
 
         errorContainer = findViewById(R.id.errorContainer);
         errorText = findViewById(R.id.errorText);
@@ -157,7 +156,7 @@ android:layout_height="wrap_content"
     }
 
     protected AnswerType isValidInput() {
-        if (selectedOption == null) return AnswerType.INCORRECT;
+        if (selectedOption == null) return AnswerType.INVALID;
         if (Session.getCurrentSession().getCurrentGuessAnswerData().isValidAnswer(selectedOption.getText().toString())) {
             Session.getCurrentSession().setCorrect(question);
             return AnswerType.CORRECT;

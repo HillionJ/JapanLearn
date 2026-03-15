@@ -53,23 +53,23 @@ public abstract class TrainActivity extends AppCompatActivity {
     }
 
     protected void showErrorMessage(boolean instantDisplay) {
-        showMessage(correctAnswer, false, instantDisplay);
+        showMessage("Bonne réponse : ", correctAnswer, false, instantDisplay);
     }
 
-    protected void showInfoMessage(boolean instantDisplay) {
-        showMessage(question.getExplanation(), true, instantDisplay);
+    protected void showInfoMessage(Question question, boolean instantDisplay) {
+        showMessage(question.getInfoTitle(), question.getExplanation(), true, instantDisplay);
     }
 
-    protected void showMessage(String message, boolean goodAnswer,boolean instantDisplay) {
+    protected void showMessage(String title, String message, boolean goodAnswer,boolean instantDisplay) {
         if (instantDisplay) {
-            displayLayout(message, goodAnswer);
+            displayLayout(title, message, goodAnswer);
             return;
         }
         Animation slideIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom);
         validate.setVisibility(View.INVISIBLE);
 
         errorContainer.postDelayed(() -> {
-            displayLayout(message, goodAnswer);
+            displayLayout(title, message, goodAnswer);
 
             errorContainer.startAnimation(slideIn);
             validate.startAnimation(slideIn);
@@ -77,10 +77,10 @@ public abstract class TrainActivity extends AppCompatActivity {
     }
 
     @SuppressWarnings("deprecation")
-    protected void displayLayout(String message, boolean goodAnswer) {
+    protected void displayLayout(String title, String message, boolean goodAnswer) {
         errorContainer.setBackgroundColor(getResources().getColor(goodAnswer ? R.color.good_answer : R.color.wrong_answer));
         errorText.setText(message);
-        errorTitle.setText(goodAnswer ? "Signification : " : "Bonne réponse : ");
+        errorTitle.setText(title);
         errorContainer.setVisibility(View.VISIBLE);
         validate.setVisibility(View.VISIBLE);
     }
@@ -154,7 +154,7 @@ public abstract class TrainActivity extends AppCompatActivity {
                     disableAnswerEdit();
                     if (answerType == AnswerType.CORRECT) {
                         if (question.hasExplanation()) {
-                            showInfoMessage(false);
+                            showInfoMessage(question, false);
                         } else {
                             restartActivity();
                             return;

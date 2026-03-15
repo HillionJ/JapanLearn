@@ -30,7 +30,7 @@ public class TextTrainActivity extends TrainActivity {
         closeKeyBoard(inputText);
         if (Session.getCurrentSession().getSessionState() == SessionState.ENDING) {
             if (question.isCorrect() && question.hasExplanation()) {
-                showInfoMessage(true);
+                showInfoMessage(question, true);
                 disableAnswerEdit();
             } else if (!question.isCorrect()) {
                 showErrorMessage(true);
@@ -66,7 +66,6 @@ public class TextTrainActivity extends TrainActivity {
         inputText.requestFocus();
 
         correctAnswer = question.getAnswer();
-        Log.d("_RED", "correctAnswer: " + correctAnswer);
 
         errorContainer = findViewById(R.id.errorContainer);
         errorText = findViewById(R.id.errorText);
@@ -100,8 +99,7 @@ public class TextTrainActivity extends TrainActivity {
 
     protected AnswerType isValidInput() {
         assert inputText.getText() != null;
-
-        if (inputText.getText().length() == 0) return AnswerType.INCORRECT;
+        if (inputText.getText().length() == 0) return AnswerType.INVALID;
         if (Session.getCurrentSession().getCurrentGuessAnswerData().isValidAnswer(inputText.getText().toString())) {
             closeKeyBoard(inputText);
             Session.getCurrentSession().setCorrect(question);
