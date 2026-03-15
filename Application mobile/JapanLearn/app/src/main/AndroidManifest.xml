@@ -22,7 +22,13 @@
             android:name=".activity.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.TrainActivity"
+            android:name=".activity.train.TrainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.train.list.SelectTrainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.train.list.TextTrainActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"

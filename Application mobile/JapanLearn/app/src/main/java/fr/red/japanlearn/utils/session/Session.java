@@ -8,10 +8,12 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.red.japanlearn.activity.TrainActivity;
+import fr.red.japanlearn.activity.train.TrainActivity;
+import fr.red.japanlearn.activity.train.list.SelectTrainActivity;
+import fr.red.japanlearn.activity.train.list.TextTrainActivity;
 import fr.red.japanlearn.database.DataBase;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.question.Question;
 import fr.red.japanlearn.utils.SessionState;
 import fr.red.japanlearn.utils.Settings;
 import fr.red.japanlearn.utils.mistake.Mistakes;
@@ -59,8 +61,15 @@ public class Session {
         mistakes = Mistakes.getMistakes();
 
         nextTry();
-        Intent intent = new Intent(IHM.getIHM().getActiviteActive(), TrainActivity.class);
+        Intent intent = new Intent(IHM.getIHM().getActiviteActive(), getNextClassType());
         IHM.getIHM().getActiviteActive().startActivity(intent);
+    }
+
+    public Class<? extends TrainActivity> getNextClassType() {
+        if (getCurrentGuessAnswerData().getIDCharType() == 4) {
+            return SelectTrainActivity.class;
+        }
+        return TextTrainActivity.class;
     }
 
 
@@ -81,7 +90,9 @@ public class Session {
         question.requiredCorrection();
         dynamicQuestions.remove(question);
         dynamicQuestions.add(dynamicQuestions.size(), question);
-        mistakes.addCount(question, wrongAnswer);
+        if (type != SessionType.CORRECTION) {
+            mistakes.addCount(question, wrongAnswer);
+        }
     }
 
     public boolean hasNextTry() {

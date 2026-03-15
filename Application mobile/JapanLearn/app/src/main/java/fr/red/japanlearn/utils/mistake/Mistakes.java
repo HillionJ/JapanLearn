@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import fr.red.japanlearn.database.DataBase;
-import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.question.Question;
 
 public class Mistakes {
 

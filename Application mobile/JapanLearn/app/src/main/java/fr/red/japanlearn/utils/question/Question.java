@@ -1,17 +1,24 @@
-package fr.red.japanlearn.utils;
+package fr.red.japanlearn.utils.question;
 
-public class Question {
+import android.util.Log;
 
-    private final int idQuestion;
-    private final int idCharType;
-    private final String character;
-    private final String romaji;
-    private final String explanation;
-    private final boolean reversed;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    private boolean correction = false;
-    private boolean correct = false;
-    private boolean wasIncorrect = false;
+public abstract class Question {
+
+    protected final int idQuestion;
+    protected final int idCharType;
+    protected final String character;
+    protected final String romaji;
+    protected final String explanation;
+    protected final boolean reversed;
+    protected final List<String> possibleAnswers = new ArrayList<>();
+
+    protected boolean correction = false;
+    protected boolean correct = false;
+    protected boolean wasIncorrect = false;
 
     public Question(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed) {
         this.idQuestion = idQuestion;
@@ -40,6 +47,10 @@ public class Question {
 
     public String getQuestion() {
         return reversed ? romaji : character;
+    }
+
+    public String getAnswer(boolean reversed) {
+        return reversed ? character : romaji;
     }
 
     public String getAnswer() {
@@ -73,5 +84,18 @@ public class Question {
 
     public boolean wasIncorrect() {
         return wasIncorrect;
+    }
+
+    public abstract boolean isValidAnswer(String answer);
+
+    public abstract void updateSimilarity(List<Question> allQuestions);
+
+    protected boolean isSameObject(Question q) {
+        return getQuestion(false).equals(q.getQuestion(false))
+                && getAnswer(false).equals(q.getAnswer(false));
+    }
+
+    public List<String> getPossibleAnswers() {
+        return possibleAnswers;
     }
 }

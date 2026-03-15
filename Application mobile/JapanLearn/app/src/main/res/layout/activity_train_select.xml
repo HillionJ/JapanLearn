@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.TrainActivity">
+    tools:context=".activity.train.TrainActivity">
 
     <ImageView
         android:id="@+id/close"
@@ -39,7 +39,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:text="か"
+        android:text="としょかん"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:autoSizeMaxTextSize="190sp"
@@ -60,31 +60,69 @@
         android:text="Hiragana"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/select_container"
+        app:layout_constraintStart_toStartOf="@+id/select_container"
         app:layout_constraintTop_toBottomOf="@+id/guess" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
 
-
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/select_container"
+        android:layout_width="313dp"
+        android:layout_height="0dp"
         android:layout_marginTop="25dp"
-        app:boxStrokeColor="@color/black"
-        app:cursorColor="@color/black"
-        app:hintTextColor="@color/black"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/validate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/type">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInput"
+        <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter la réponse" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="Bibliothèque"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
 
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="3dp"
+            app:backgroundTint="@android:color/white"
+            app:rippleColor="@android:color/darker_gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="Arrêt de Bus"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:strokeColor="@android:color/black"
+            app:strokeWidth="3dp"
+            app:backgroundTint="@android:color/white"
+            app:rippleColor="@android:color/darker_gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="Cinéma"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="3dp"
+            app:backgroundTint="@android:color/white"
+            app:rippleColor="@android:color/darker_gray" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/errorContainer"

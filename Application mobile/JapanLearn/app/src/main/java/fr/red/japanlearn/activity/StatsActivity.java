@@ -21,7 +21,7 @@ import java.util.List;
 
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
-import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.question.Question;
 import fr.red.japanlearn.utils.session.Session;
 
 public class StatsActivity extends AppCompatActivity {

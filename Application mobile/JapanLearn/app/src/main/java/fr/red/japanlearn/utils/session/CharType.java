@@ -7,7 +7,7 @@ public class CharType {
     public static final CharType KANJI = new CharType(3, "Kanji");
     public static final CharType VOCABULARY = new CharType(4, "Vocabulaire");
 
-    private static final CharType[] values = new CharType[] {HIRAGANA, KATAKANA, KANJI, VOCABULARY};
+    public static final CharType[] values = new CharType[] {HIRAGANA, KATAKANA, KANJI, VOCABULARY};
 
     private final int idChar;
     private final String name;

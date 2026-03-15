@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.question.Question;
 
 public class MistakeData {
 
