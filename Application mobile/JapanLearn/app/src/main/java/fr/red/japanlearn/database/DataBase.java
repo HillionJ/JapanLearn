@@ -11,6 +11,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -124,6 +125,7 @@ public class DataBase extends SQLiteOpenHelper
 
     public List<Question> generateNewQuiz(List<CharType> types, Integer numberOfQuestions) {
         String query = "SELECT * FROM questions WHERE idCharType IN (" + buildCharTypeQuery(types) + ") ORDER BY RANDOM() ";
+        Log.d("_RED", query);
         if (numberOfQuestions != null) {
             query += " LIMIT " + numberOfQuestions;
         }
@@ -134,6 +136,7 @@ public class DataBase extends SQLiteOpenHelper
             questions.add(craftQuestion(cursor, new Random().nextBoolean()));
         }
         cursor.close();
+        Log.d("_RED", questions.size() + "");
         return questions;
     }
 

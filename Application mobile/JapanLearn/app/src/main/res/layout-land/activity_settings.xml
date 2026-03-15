@@ -71,6 +71,13 @@
                 android:buttonTint="@color/black"
                 android:text="Kanji" />
 
+            <CheckBox
+                android:id="@+id/vocabularyCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
+                android:text="Vocabulaire" />
+
             <EditText
                 android:id="@+id/numberOfQuestions"
                 android:layout_width="match_parent"

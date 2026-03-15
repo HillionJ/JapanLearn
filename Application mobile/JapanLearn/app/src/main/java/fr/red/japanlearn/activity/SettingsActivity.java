@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private IHM ihm;
     private Settings settings;
-    private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox;
+    private CheckBox hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, vocabularyCheckBox;
     private EditText numberOfQuestions;
     private final Map<String, Object> settingsMap = new HashMap<>();
 
@@ -52,6 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
         hiraganaCheckBox.setChecked(settings.isHiragana());
         katakanaCheckBox.setChecked(settings.isKatakana());
         kanjiCheckBox.setChecked(settings.isKanji());
+        vocabularyCheckBox.setChecked(settings.isVocabulary());
         numberOfQuestions.setText(settings.numberOfQuestionsStr());
     }
 
@@ -63,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
         hiraganaCheckBox = findViewById(R.id.hiraganaCheckBox);
         katakanaCheckBox = findViewById(R.id.katakanaCheckBox);
         kanjiCheckBox = findViewById(R.id.kanjiCheckBox);
+        vocabularyCheckBox= findViewById(R.id.vocabularyCheckBox);
 
         initMaxQuestionNumberInput();
         initApplyButton();
@@ -72,6 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
         settingsMap.put("katakanaCheckBox", katakanaCheckBox);
         settingsMap.put("kanjiCheckBox", kanjiCheckBox);
         settingsMap.put("numberOfQuestions", numberOfQuestions);
+        settingsMap.put("vocabularyCheckBox", vocabularyCheckBox);
     }
 
     private void initLayout() {

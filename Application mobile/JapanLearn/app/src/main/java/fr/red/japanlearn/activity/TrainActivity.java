@@ -26,6 +26,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import fr.red.japanlearn.R;
 import fr.red.japanlearn.utils.IHM;
 import fr.red.japanlearn.utils.Question;
+import fr.red.japanlearn.utils.session.CharType;
 import fr.red.japanlearn.utils.session.Session;
 import fr.red.japanlearn.utils.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
@@ -165,6 +166,9 @@ public class TrainActivity extends AppCompatActivity {
         question = Session.getCurrentSession().getCurrentGuessAnswerData();
         TextView questionText = findViewById(R.id.guess);
         questionText.setText(question.getQuestion());
+
+        TextView charTypeText = findViewById(R.id.type);
+        charTypeText.setText(CharType.fromID(question.getIDCharType()).getName());
 
         inputText = findViewById(R.id.textInput);
         inputText.setText("");

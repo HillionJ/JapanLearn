@@ -21,7 +21,7 @@ public class Settings {
         return instance;
     }
 
-    private boolean hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox;
+    private boolean hiraganaCheckBox, katakanaCheckBox, kanjiCheckBox, vocabularyCheckBox;
     private String numberOfQuestions;
     private final IHM ihm;
 
@@ -38,6 +38,7 @@ public class Settings {
         katakanaCheckBox = prefs.getBoolean("katakanaCheckBox", false);
         kanjiCheckBox = prefs.getBoolean("kanjiCheckBox", false);
         numberOfQuestions = prefs.getString("numberOfQuestions", "");
+        vocabularyCheckBox = prefs.getBoolean("vocabularyCheckBox", false);
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -49,11 +50,13 @@ public class Settings {
         katakanaCheckBox = ((CheckBox)settings.get("katakanaCheckBox")).isChecked();
         kanjiCheckBox = ((CheckBox)settings.get("kanjiCheckBox")).isChecked();
         numberOfQuestions = ((EditText)settings.get("numberOfQuestions")).getText().toString();
+        vocabularyCheckBox = ((CheckBox)settings.get("vocabularyCheckBox")).isChecked();
 
         editor.putBoolean("hiraganaCheckBox", hiraganaCheckBox);
         editor.putBoolean("katakanaCheckBox", katakanaCheckBox);
         editor.putBoolean("kanjiCheckBox", kanjiCheckBox);
         editor.putString("numberOfQuestions", numberOfQuestions);
+        editor.putBoolean("vocabularyCheckBox", vocabularyCheckBox);
 
         editor.apply();
     }
@@ -82,6 +85,10 @@ public class Settings {
         return kanjiCheckBox;
     }
 
+    public boolean isVocabulary() {
+        return vocabularyCheckBox;
+    }
+
     private int parseInt(String string) {
         int integer = 0;
         try {
@@ -103,6 +110,8 @@ public class Settings {
             charTypes.add(CharType.KATAKANA);
         if (isKanji())
             charTypes.add(CharType.KANJI);
+        if (isVocabulary())
+            charTypes.add(CharType.VOCABULARY);
         return charTypes;
     }
 }
