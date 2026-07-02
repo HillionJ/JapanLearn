@@ -2,17 +2,15 @@ package fr.red.japanlearn.utils.question.list;
 
 import static fr.red.japanlearn.database.DataBase.listJoin;
 
-import android.util.Log;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 import fr.red.japanlearn.utils.question.Question;
 
-public class TextQuestion extends Question {
+public class CharacterQuestion extends Question {
 
-    public TextQuestion(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed) {
-        super(idQuestion, idCharType, character, romaji, explanation, reversed);
+    public CharacterQuestion(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed, int score) {
+        super(idQuestion, idCharType, character, romaji, explanation, reversed, score);
     }
 
     @Override

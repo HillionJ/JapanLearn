@@ -11,7 +11,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -24,7 +23,7 @@ import java.util.Random;
 import fr.red.japanlearn.utils.question.Question;
 import fr.red.japanlearn.utils.mistake.MistakeData;
 import fr.red.japanlearn.utils.question.list.SelectQuestion;
-import fr.red.japanlearn.utils.question.list.TextQuestion;
+import fr.red.japanlearn.utils.question.list.CharacterQuestion;
 import fr.red.japanlearn.utils.session.CharType;
 
 @SuppressWarnings({ "SpellCheckingInspection", "unused", "SdCardPath" })
@@ -105,14 +104,14 @@ public class DataBase extends SQLiteOpenHelper
     }
 
     public Question getQuestion(int idQuestion, boolean reversed) {
-        String query = "SELECT * FROM questions WHERE idQuestion = " + idQuestion;
+        String query = "SELECT questions.idQuestion, questions.idCharType, questions.character, questions.romaji, questions.explanation, learning.score FROM questions FULL JOIN learning ON questions.idQuestion = learning.idQuestion WHERE questions.idQuestion = " + idQuestion;
         Cursor cursor = sqlite.rawQuery(query, null);
         cursor.moveToNext();
         return craftQuestion(cursor, reversed);
     }
 
     private List<Question> getAllDatabaseQuestions(List<CharType> types) {
-        String query = "SELECT * FROM questions WHERE idCharType IN (" + listJoinCharType(types, ",") + ")";
+        String query = "SELECT questions.idQuestion, questions.idCharType, questions.character, questions.romaji, questions.explanation, learning.score FROM questions FULL JOIN learning ON questions.idQuestion = learning.idQuestion WHERE idCharType IN (" + listJoinCharType(types, ",") + ")";
         Cursor cursor = sqlite.rawQuery(query, null);
         List<Question> questions = new ArrayList<>();
         while(cursor.moveToNext())
@@ -183,10 +182,12 @@ public class DataBase extends SQLiteOpenHelper
         String character = cursor.getString(cursor.getColumnIndexOrThrow("character"));
         String romaji = cursor.getString(cursor.getColumnIndexOrThrow("romaji"));
         String explanation = cursor.getString(cursor.getColumnIndexOrThrow("explanation"));
+        int scoreIndex = cursor.getColumnIndexOrThrow("score");
+        int score = cursor.isNull(scoreIndex) ? 10 : cursor.getInt(scoreIndex);
         if (CharType.fromID(idCharType) == CharType.VOCABULARY) {
-            return new SelectQuestion(idQuestion,idCharType, character, romaji, explanation, reversed);
+            return new SelectQuestion(idQuestion,idCharType, character, romaji, explanation, reversed, score);
         }
-        return new TextQuestion(idQuestion,idCharType, character, romaji, explanation, reversed);
+        return new CharacterQuestion(idQuestion,idCharType, character, romaji, explanation, reversed, score);
     }
 
     @Override
@@ -195,5 +196,8 @@ public class DataBase extends SQLiteOpenHelper
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
+
+    public void updateLearningScore(Question question, int increment) {
     }
 }

@@ -12,18 +12,20 @@ public abstract class Question {
     protected final String explanation;
     protected final boolean reversed;
     protected final List<String> possibleAnswers = new ArrayList<>();
+    protected final int score;
 
     protected boolean correction = false;
     protected boolean correct = false;
     protected boolean wasIncorrect = false;
 
-    public Question(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed) {
+    public Question(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed, int score) {
         this.idQuestion = idQuestion;
         this.idCharType = idCharType;
         this.character = character;
         this.romaji = romaji;
         this.explanation = explanation;
         this.reversed = reversed;
+        this.score = score;
     }
 
     public int getIDQuestion() {
@@ -98,5 +100,15 @@ public abstract class Question {
 
     public String getInfoTitle() {
         return "Signification : ";
+    }
+
+    public void reset() {
+        correction = false;
+        correct = false;
+        wasIncorrect = false;
+    }
+
+    public int getScore() {
+        return this.score;
     }
 }

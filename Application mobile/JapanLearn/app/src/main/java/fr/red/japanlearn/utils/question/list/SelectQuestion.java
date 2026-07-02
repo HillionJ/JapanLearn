@@ -10,8 +10,8 @@ import fr.red.japanlearn.utils.question.Question;
 
 public class SelectQuestion extends Question {
 
-    public SelectQuestion(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed) {
-        super(idQuestion, idCharType, character, romaji, explanation, reversed);
+    public SelectQuestion(int idQuestion, int idCharType, String character, String romaji, String explanation, boolean reversed, int score) {
+        super(idQuestion, idCharType, character, romaji, explanation, reversed, score);
     }
 
     @Override

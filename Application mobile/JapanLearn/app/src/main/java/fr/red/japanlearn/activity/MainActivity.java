@@ -15,6 +15,7 @@ import fr.red.japanlearn.database.DataBase;
 import fr.red.japanlearn.utils.IHM;
 import fr.red.japanlearn.utils.session.Session;
 import fr.red.japanlearn.utils.SessionState;
+import fr.red.japanlearn.utils.session.SessionType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initStartButton() {
         Button startButton = findViewById(R.id.start);
-        startButton.setOnClickListener(view -> Session.newSession());
+        startButton.setOnClickListener(view -> Session.newSession(SessionType.NORMAL));
     }
 
     @Override

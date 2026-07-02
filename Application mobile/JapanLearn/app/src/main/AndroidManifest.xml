@@ -28,7 +28,7 @@
             android:name=".activity.train.list.SelectTrainActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.train.list.TextTrainActivity"
+            android:name=".activity.train.list.CharacterTrainActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"

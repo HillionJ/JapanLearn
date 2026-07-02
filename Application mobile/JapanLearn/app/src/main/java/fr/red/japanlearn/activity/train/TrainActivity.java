@@ -1,5 +1,7 @@
 package fr.red.japanlearn.activity.train;
 
+import static java.lang.String.format;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +25,9 @@ import fr.red.japanlearn.R;
 import fr.red.japanlearn.activity.StatsActivity;
 import fr.red.japanlearn.utils.AnswerType;
 import fr.red.japanlearn.utils.IHM;
+import fr.red.japanlearn.utils.mistake.Mistakes;
 import fr.red.japanlearn.utils.question.Question;
+import fr.red.japanlearn.utils.session.CharType;
 import fr.red.japanlearn.utils.session.Session;
 import fr.red.japanlearn.utils.SessionState;
 import fr.red.japanlearn.utils.SoftKeyboardInput;
@@ -133,7 +137,47 @@ public abstract class TrainActivity extends AppCompatActivity {
         new SoftKeyboardInput(this);
     }
 
-    protected abstract void initVars();
+    protected void initVars() {
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+
+        Mistakes mistakes = Mistakes.getMistakes();
+
+        question = Session.getCurrentSession().getCurrentGuessAnswerData();
+        TextView questionText = findViewById(R.id.guess);
+        questionText.setText(question.getQuestion());
+
+        TextView charTypeText = findViewById(R.id.type);
+        CharType charType = CharType.fromID(question.getIDCharType());
+        assert charType != null;
+        charTypeText.setText(charType.getName());
+
+        correctAnswer = question.getAnswer();
+
+        errorContainer = findViewById(R.id.errorContainer);
+        errorText = findViewById(R.id.errorText);
+        errorTitle = findViewById(R.id.errorTitle);
+
+        TextView session_progress = findViewById(R.id.session_progress);
+        int maxNumber = Session.getCurrentSession().getMaxNumberOfQuestions();
+        int currentNumber = maxNumber - Session.getCurrentSession().getDynamicQuestions().size() + 1;
+        session_progress.setText(format(getString(R.string.quiz_progress_format), currentNumber, maxNumber));
+
+        TextView wrong_label = findViewById(R.id.wrong_label);
+        if (question.isCorrection()) {
+            wrong_label.setText(R.string.error_label);
+            wrong_label.setVisibility(View.VISIBLE);
+        } else if (mistakes.isMistake(question)) {
+            wrong_label.setText(R.string.frequent_label);
+            wrong_label.setTextColor(getResources().getColor(R.color.frequent_mistake));
+            wrong_label.setVisibility(View.VISIBLE);
+        }
+        validate = findViewById(R.id.validate);
+
+        initValidationButton(validate);
+
+        initCloseButton();
+    }
 
     protected abstract AnswerType isValidInput();
 

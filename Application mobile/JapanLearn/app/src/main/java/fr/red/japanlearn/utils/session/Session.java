@@ -10,9 +10,10 @@ import java.util.List;
 
 import fr.red.japanlearn.activity.train.TrainActivity;
 import fr.red.japanlearn.activity.train.list.SelectTrainActivity;
-import fr.red.japanlearn.activity.train.list.TextTrainActivity;
+import fr.red.japanlearn.activity.train.list.CharacterTrainActivity;
 import fr.red.japanlearn.database.DataBase;
 import fr.red.japanlearn.utils.IHM;
+import fr.red.japanlearn.utils.Learning;
 import fr.red.japanlearn.utils.question.Question;
 import fr.red.japanlearn.utils.SessionState;
 import fr.red.japanlearn.utils.Settings;
@@ -26,7 +27,7 @@ public class Session {
         return currentSession;
     }
 
-    public static void newSession() {
+    public static void newSession(SessionType type) {
         Settings settings = Settings.getSettings();
         DataBase dataBase = DataBase.getDataBase();
         IHM ihm = IHM.getIHM();
@@ -37,10 +38,13 @@ public class Session {
         }
         List<Question> questions = dataBase.generateNewQuiz(settings.getCharTypes(), settings.isNumberOfQuestionsSet() ? settings.getNumberOfQuestions() : null);
 
-        newSession(questions, SessionType.NORMAL);
+        newSession(questions, type);
     }
 
     public static void newSession(List<Question> questions, SessionType type) {
+        for (Question q : questions) {
+            q.reset();
+        }
         currentSession = new Session(questions, type);
     }
 
@@ -50,6 +54,7 @@ public class Session {
     private SessionState sessionState;
     private final int maxNumberOfQuestions;
     private final Mistakes mistakes;
+    private final Learning learning;
     private final SessionType type;
 
     public Session(@NonNull List<Question> questions, SessionType type) {
@@ -59,6 +64,7 @@ public class Session {
         this.type = type;
 
         mistakes = Mistakes.getMistakes();
+        learning = Learning.getLearning();
 
         nextTry();
         Intent intent = new Intent(IHM.getIHM().getActiviteActive(), getNextClassType());
@@ -69,7 +75,7 @@ public class Session {
         if (getCurrentGuessAnswerData().getIDCharType() == 4) {
             return SelectTrainActivity.class;
         }
-        return TextTrainActivity.class;
+        return CharacterTrainActivity.class;
     }
 
 
@@ -83,6 +89,8 @@ public class Session {
         dynamicQuestions.remove(question);
         if (type == SessionType.CORRECTION) {
             mistakes.removeCount(question);
+        } else if (type == SessionType.LEARNING) {
+            learning.updateScore(question, 1);
         }
     }
 
@@ -92,6 +100,7 @@ public class Session {
         dynamicQuestions.add(dynamicQuestions.size(), question);
         if (type != SessionType.CORRECTION) {
             mistakes.addCount(question, wrongAnswer);
+            learning.updateScore(question, -1);
         }
     }
 
